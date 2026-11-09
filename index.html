@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>دار العقارات | DAR EL AQARAT</title>
+
+  <meta name="description" content="اكتشف أفضل العقارات للبيع والإيجار في مصر مع دار العقارات.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #101b2c;
+      --navy-light: #192940;
+      --gold: #c6a15b;
+      --white: #ffffff;
+      --cream: #f7f6f2;
+      --text: #252b35;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--white);
+      color: var(--text);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      background: var(--navy);
+      color: white;
+      position: relative;
+      z-index: 10;
+    }
+
+    .navbar {
+      min-height: 85px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .logo span {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #ddd;
+      direction: ltr;
+      text-align: right;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      transition: .3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid #647084;
+      color: white;
+      padding: 9px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .add-property {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 10px 17px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 610px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background:
+        linear-gradient(90deg, rgba(10,20,34,.30), rgba(10,20,34,.88)),
+        url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=85')
+        center/cover;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      padding: 90px 0 135px;
+    }
+
+    .hero-tag {
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1.5;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      color: #e2e5e9;
+      font-size: 16px;
+      line-height: 2;
+      max-width: 570px;
+    }
+
+    /* SEARCH */
+
+    .search-box {
+      background: white;
+      color: var(--text);
+      padding: 22px;
+      border-radius: 12px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr) auto;
+      gap: 12px;
+      box-shadow: 0 15px 45px #0002;
+      margin-top: -65px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .search-field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .search-field label {
+      font-size: 12px;
+      color: #777;
+      font-weight: 700;
+    }
+
+    .search-field select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #e4e5e7;
+      border-radius: 6px;
+      background: #fff;
+      font-family: inherit;
+      color: var(--navy);
+      outline: none;
+    }
+
+    .search-btn {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 0 25px;
+      border-radius: 7px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .search-btn:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .search-box {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .search-btn {
+        min-height: 48px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .navbar {
+        min-height: 72px;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .add-property {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+
+      .hero {
+        min-height: 530px;
+      }
+
+      .hero-content {
+        padding: 70px 0 110px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      .search-box {
+        grid-template-columns: 1fr;
+        margin-top: -45px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+
+      <a href="#" class="logo">
+        دار العقارات
+        <span>DAR EL AQARAT</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="#properties">للبيع</a></li>
+        <li><a href="#properties">للإيجار</a></li>
+        <li><a href="#areas">المناطق</a></li>
+        <li><a href="#contact">تواصل معنا</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="lang-btn" id="langButton">EN</button>
+        <a href="#add-property" class="add-property">أضف عقارك +</a>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+
+          <div class="hero-tag">
+            اكتشف منزلك القادم مع دار العقارات
+          </div>
+
+          <h1>
+            بيتك المثالي<br>
+            <span>يبدأ من هنا</span>
+          </h1>
+
+          <p>
+            اكتشف أفضل العقارات للبيع والإيجار في مصر.
+            نساعدك على اختيار المكان المناسب لحياتك واستثمارك.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="search-box">
+
+        <div class="search-field">
+          <label>نوع العملية</label>
+          <select>
+            <option>شراء</option>
+            <option>إيجار</option>
+          </select>
+        </div>
+
+        <div class="search-field">
+          <label>نوع العقار</label>
+          <select>
+            <option>شقة</option>
+            <option>فيلا</option>
+            <option>دوبلكس</option>
+            <option>محل تجاري</option>
+            <option>أرض</option>
+          </select>
+        </div>
+
+        <div class="search-field">
+          <label>المحافظة</label>
+          <select>
+            <option>القاهرة</option>
+            <option>الجيزة</option>
+            <option>الإسكندرية</option>
+            <option>الساحل الشمالي</option>
+          </select>
+        </div>
+
+        <div class="search-field">
+          <label>الميزانية</label>
+          <select>
+            <option>كل الأسعار</option>
+            <option>أقل من مليون</option>
+            <option>1 - 3 مليون</option>
+            <option>3 - 5 مليون</option>
+            <option>أكثر من 5 مليون</option>
+          </select>
+        </div>
+
+        <button class="search-btn" type="button">
+          ابحث الآن
+        </button>
+
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
