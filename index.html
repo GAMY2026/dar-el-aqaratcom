@@ -410,21 +410,93 @@
   .property-image {
     height: 230px;
   }
+}  
+
+/* POPULAR AREAS */
+
+.areas-section {
+  padding: 90px 0;
+  background: white;
 }
 
+.areas-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: 230px 230px;
+  gap: 18px;
+}
 
+.area-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  display: block;
+  color: white;
+}
 
+.area-large {
+  grid-row: span 2;
+}
 
+.area-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: .5s;
+}
 
+.area-card:hover img {
+  transform: scale(1.08);
+}
 
+.area-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  background: linear-gradient(transparent, #101b2ce8);
+}
 
+.area-overlay span {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+}
 
+.area-overlay h3 {
+  font-size: 22px;
+  margin: 5px 0;
+}
 
+.area-overlay p {
+  font-size: 12px;
+  color: #ddd;
+}
 
+@media (max-width: 700px) {
+  .areas-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 250px 200px 200px;
+  }
 
+  .area-large {
+    grid-column: span 2;
+    grid-row: auto;
+  }
+}
 
-    
+@media (max-width: 400px) {
+  .areas-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 220px);
+  }
 
+  .area-large {
+    grid-column: auto;
+  }
+}    
     @media (max-width: 900px) {
       .nav-links {
         display: none;
@@ -660,5 +732,57 @@
     </div>
   </div>
 </section>
+<section class="areas-section" id="areas">
+  <div class="container">
+
+    <div class="section-heading">
+      <div>
+        <span class="section-tag">EXPLORE LOCATIONS</span>
+        <h2>اكتشف أشهر <span>المناطق</span></h2>
+        <p>اختار المنطقة المناسبة لحياتك واستثمارك</p>
+      </div>
+    </div>
+
+    <div class="areas-grid">
+
+      <a href="#" class="area-card area-large">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000" alt="القاهرة الجديدة">
+        <div class="area-overlay">
+          <span>القاهرة</span>
+          <h3>التجمع الخامس</h3>
+          <p>اكتشف العقارات المميزة ←</p>
+        </div>
+      </a>
+
+      <a href="#" class="area-card">
+        <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800" alt="الشيخ زايد">
+        <div class="area-overlay">
+          <span>الجيزة</span>
+          <h3>الشيخ زايد</h3>
+          <p>اكتشف العقارات ←</p>
+        </div>
+      </a>
+
+      <a href="#" class="area-card">
+        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800" alt="العاصمة الإدارية">
+        <div class="area-overlay">
+          <span>القاهرة</span>
+          <h3>العاصمة الإدارية</h3>
+          <p>اكتشف العقارات ←</p>
+        </div>
+      </a>
+
+      <a href="#" class="area-card">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800" alt="الساحل الشمالي">
+        <div class="area-overlay">
+          <span>الساحل الشمالي</span>
+          <h3>الساحل الشمالي</h3>
+          <p>اكتشف العقارات ←</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>  
 </body>
 </html>
