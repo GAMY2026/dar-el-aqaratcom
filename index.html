@@ -3,627 +3,229 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>دار العقارات | DAR EL AQARAT</title>
-
   <meta name="description" content="اكتشف أفضل العقارات للبيع والإيجار في مصر مع دار العقارات.">
-
+  <meta name="theme-color" content="#101b2c">
+  <title>دار العقارات | DAR EL AQARAT</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --navy: #101b2c;
-      --navy-light: #192940;
-      --gold: #c6a15b;
-      --white: #ffffff;
-      --cream: #f7f6f2;
-      --text: #252b35;
+      --navy:#101b2c;
+      --navy-light:#192940;
+      --gold:#c6a15b;
+      --white:#fff;
+      --cream:#f7f6f2;
+      --text:#252b35;
+      --muted:#777;
+      --shadow:0 18px 45px rgba(16,27,44,.10);
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: var(--white);
-      color: var(--text);
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .container {
-      width: min(1200px, 92%);
-      margin: auto;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Cairo',sans-serif; background:var(--white); color:var(--text); }
+    a { text-decoration:none; color:inherit; }
+    button,select { font:inherit; }
+    .container { width:min(1200px,92%); margin:auto; }
 
     /* HEADER */
-
-    header {
-      background: var(--navy);
-      color: white;
-      position: relative;
-      z-index: 10;
-    }
-
-    .navbar {
-      min-height: 85px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-    }
-
-    .logo {
-      font-size: 25px;
-      font-weight: 800;
-      color: var(--gold);
-      white-space: nowrap;
-    }
-
-    .logo span {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 3px;
-      color: #ddd;
-      direction: ltr;
-      text-align: right;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      list-style: none;
-      font-size: 14px;
-    }
-
-    .nav-links a {
-      transition: .3s;
-    }
-
-    .nav-links a:hover {
-      color: var(--gold);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .lang-btn {
-      background: transparent;
-      border: 1px solid #647084;
-      color: white;
-      padding: 9px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .add-property {
-      background: var(--gold);
-      color: var(--navy);
-      padding: 10px 17px;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 13px;
-    }
+    header { background:var(--navy); color:white; position:relative; z-index:10; }
+    .navbar { min-height:85px; display:flex; align-items:center; justify-content:space-between; gap:25px; }
+    .logo { font-size:25px; font-weight:800; color:var(--gold); white-space:nowrap; }
+    .logo span { display:block; font-size:10px; letter-spacing:3px; color:#ddd; direction:ltr; text-align:right; }
+    .nav-links { display:flex; align-items:center; gap:28px; list-style:none; font-size:14px; }
+    .nav-links a { transition:.3s; }
+    .nav-links a:hover { color:var(--gold); }
+    .nav-actions { display:flex; align-items:center; gap:12px; }
+    .lang-btn { background:transparent; border:1px solid #647084; color:white; padding:9px 14px; border-radius:6px; cursor:pointer; }
+    .add-property { background:var(--gold); color:var(--navy); padding:10px 17px; border-radius:6px; font-weight:700; font-size:13px; }
 
     /* HERO */
-
     .hero {
-      min-height: 610px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      background:
-        linear-gradient(90deg, rgba(10,20,34,.30), rgba(10,20,34,.88)),
-        url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=85')
-        center/cover;
-      color: white;
+      min-height:610px; display:flex; align-items:center; position:relative; color:white;
+      background:linear-gradient(90deg,rgba(10,20,34,.30),rgba(10,20,34,.88)),
+      url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=85') center/cover;
     }
-
-    .hero-content {
-      max-width: 760px;
-      padding: 90px 0 135px;
-    }
-
-    .hero-tag {
-      color: var(--gold);
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      font-size: clamp(36px, 5vw, 64px);
-      line-height: 1.5;
-      font-weight: 800;
-      margin-bottom: 15px;
-    }
-
-    .hero h1 span {
-      color: var(--gold);
-    }
-
-    .hero p {
-      color: #e2e5e9;
-      font-size: 16px;
-      line-height: 2;
-      max-width: 570px;
-    }
+    .hero-content { max-width:760px; padding:90px 0 135px; }
+    .hero-tag { color:var(--gold); font-size:14px; font-weight:700; margin-bottom:20px; }
+    .hero h1 { font-size:clamp(36px,5vw,64px); line-height:1.5; font-weight:800; margin-bottom:15px; }
+    .hero h1 span { color:var(--gold); }
+    .hero p { color:#e2e5e9; font-size:16px; line-height:2; max-width:570px; }
 
     /* SEARCH */
-
+    .search-wrap { position:relative; z-index:2; }
     .search-box {
-      background: white;
-      color: var(--text);
-      padding: 22px;
-      border-radius: 12px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr) auto;
-      gap: 12px;
-      box-shadow: 0 15px 45px #0002;
-      margin-top: -65px;
-      position: relative;
-      z-index: 2;
+      background:white; color:var(--text); padding:22px; border-radius:12px;
+      display:grid; grid-template-columns:repeat(4,1fr) auto; gap:12px;
+      box-shadow:0 15px 45px #0002; margin-top:-65px;
     }
-
-    .search-field {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .search-field label {
-      font-size: 12px;
-      color: #777;
-      font-weight: 700;
-    }
-
+    .search-field { display:flex; flex-direction:column; gap:7px; }
+    .search-field label { font-size:12px; color:#777; font-weight:700; }
     .search-field select {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #e4e5e7;
-      border-radius: 6px;
-      background: #fff;
-      font-family: inherit;
-      color: var(--navy);
-      outline: none;
+      width:100%; padding:12px; border:1px solid #e4e5e7; border-radius:6px;
+      background:#fff; color:var(--navy); outline:none;
     }
+    .search-btn { background:var(--navy); color:white; border:0; padding:0 25px; border-radius:7px; font-weight:700; cursor:pointer; transition:.3s; }
+    .search-btn:hover { background:var(--gold); color:var(--navy); }
 
-    .search-btn {
-      background: var(--navy);
-      color: white;
-      border: none;
-      padding: 0 25px;
-      border-radius: 7px;
-      font-family: inherit;
-      font-weight: 700;
-      cursor: pointer;
-    }
+    /* SHARED SECTION */
+    .section-heading { display:flex; justify-content:space-between; align-items:end; margin-bottom:40px; gap:20px; }
+    .section-tag { color:var(--gold); font-size:12px; font-weight:800; letter-spacing:2px; direction:ltr; display:inline-block; }
+    .section-heading h2 { font-size:35px; color:var(--navy); margin:8px 0; }
+    .section-heading h2 span { color:var(--gold); }
+    .section-heading p { color:var(--muted); font-size:14px; line-height:1.9; }
+    .view-all { color:var(--navy); font-size:14px; font-weight:700; }
 
-    .search-btn:hover {
-      background: var(--gold);
-      color: var(--navy);
-    }
+    /* FEATURED PROPERTIES */
+    .featured-properties { padding:100px 0; background:var(--cream); }
+    .property-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:25px; }
+    .property-card { background:white; border-radius:12px; overflow:hidden; border:1px solid #eee; transition:.35s ease; }
+    .property-card:hover { transform:translateY(-8px); box-shadow:var(--shadow); }
+    .property-image { height:245px; position:relative; overflow:hidden; }
+    .property-image img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+    .property-card:hover .property-image img { transform:scale(1.07); }
+    .property-badge { position:absolute; top:15px; right:15px; background:var(--gold); color:var(--navy); padding:6px 15px; border-radius:5px; font-size:12px; font-weight:800; }
+    .property-badge.rent { background:var(--navy); color:white; }
+    .favorite-btn { position:absolute; top:12px; left:15px; width:36px; height:36px; border:0; border-radius:50%; background:white; font-size:23px; color:#333; cursor:pointer; }
+    .favorite-btn.active { color:#c43b50; }
+    .property-info { padding:22px; }
+    .property-location { color:#888; font-size:12px; margin-bottom:10px; }
+    .property-info h3 { color:var(--navy); font-size:17px; margin-bottom:13px; }
+    .property-price { color:var(--gold); font-size:23px; font-weight:800; margin-bottom:18px; }
+    .property-price small { font-size:12px; font-weight:500; }
+    .property-features { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; padding:15px 0; border-top:1px solid #eee; border-bottom:1px solid #eee; font-size:11px; color:#666; }
+    .details-btn { width:100%; margin-top:17px; padding:12px; border:1px solid var(--navy); background:white; color:var(--navy); border-radius:6px; font-weight:700; cursor:pointer; transition:.3s; }
+    .details-btn:hover { background:var(--navy); color:white; }
 
-/* FEATURED PROPERTIES */
+    /* POPULAR AREAS */
+    .areas-section { padding:90px 0; background:white; }
+    .areas-grid { display:grid; grid-template-columns:1.4fr 1fr 1fr; grid-template-rows:230px 230px; gap:18px; }
+    .area-card { position:relative; overflow:hidden; border-radius:12px; display:block; color:white; }
+    .area-large { grid-row:span 2; }
+    .area-card img { width:100%; height:100%; object-fit:cover; transition:.5s; }
+    .area-card:hover img { transform:scale(1.08); }
+    .area-overlay { position:absolute; inset:0; padding:25px; display:flex; flex-direction:column; justify-content:end; background:linear-gradient(transparent,#101b2ce8); }
+    .area-overlay span { color:var(--gold); font-size:12px; font-weight:700; }
+    .area-overlay h3 { font-size:22px; margin:5px 0; }
+    .area-overlay p { font-size:12px; color:#ddd; }
 
-.featured-properties {
-  padding: 100px 0;
-  background: var(--cream);
-}
-
-.section-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  margin-bottom: 40px;
-  gap: 20px;
-}
-
-.section-tag {
-  color: var(--gold);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  direction: ltr;
-  display: inline-block;
-}
-
-.section-heading h2 {
-  font-size: 35px;
-  color: var(--navy);
-  margin: 8px 0;
-}
-
-.section-heading h2 span {
-  color: var(--gold);
-}
-
-.section-heading p {
-  color: #777;
-  font-size: 14px;
-}
-
-.view-all {
-  color: var(--navy);
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.property-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-}
-
-.property-card {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #eee;
-  transition: .35s ease;
-}
-
-.property-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 18px 40px #101b2c15;
-}
-
-.property-image {
-  height: 245px;
-  position: relative;
-  overflow: hidden;
-}
-
-.property-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .5s ease;
-}
-
-.property-card:hover .property-image img {
-  transform: scale(1.07);
-}
-
-.property-badge {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: var(--gold);
-  color: var(--navy);
-  padding: 6px 15px;
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.property-badge.rent {
-  background: var(--navy);
-  color: white;
-}
-
-.favorite-btn {
-  position: absolute;
-  top: 12px;
-  left: 15px;
-  width: 36px;
-  height: 36px;
-  border: none;
-  border-radius: 50%;
-  background: white;
-  font-size: 23px;
-  color: #333;
-  cursor: pointer;
-}
-
-.property-info {
-  padding: 22px;
-}
-
-.property-location {
-  color: #888;
-  font-size: 12px;
-  margin-bottom: 10px;
-}
-
-.property-info h3 {
-  color: var(--navy);
-  font-size: 17px;
-  margin-bottom: 13px;
-}
-
-.property-price {
-  color: var(--gold);
-  font-size: 23px;
-  font-weight: 800;
-  margin-bottom: 18px;
-}
-
-.property-price small {
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.property-features {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 15px 0;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-  font-size: 11px;
-  color: #666;
-}
-
-.details-btn {
-  width: 100%;
-  margin-top: 17px;
-  padding: 12px;
-  border: 1px solid var(--navy);
-  background: white;
-  color: var(--navy);
-  border-radius: 6px;
-  font-family: inherit;
-  font-weight: 700;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.details-btn:hover {
-  background: var(--navy);
-  color: white;
-}
-
-@media (max-width: 900px) {
-  .property-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 550px) {
-  .property-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .section-heading {
-    align-items: start;
-    flex-direction: column;
-  }
-
-  .section-heading h2 {
-    font-size: 28px;
-  }
-
-  .property-image {
-    height: 230px;
-  }
-}  
-
-/* POPULAR AREAS */
-
-.areas-section {
-  padding: 90px 0;
-  background: white;
-}
-
-.areas-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  grid-template-rows: 230px 230px;
-  gap: 18px;
-}
-
-.area-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  display: block;
-  color: white;
-}
-
-.area-large {
-  grid-row: span 2;
-}
-
-.area-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: .5s;
-}
-
-.area-card:hover img {
-  transform: scale(1.08);
-}
-
-.area-overlay {
-  position: absolute;
-  inset: 0;
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  background: linear-gradient(transparent, #101b2ce8);
-}
-
-.area-overlay span {
-  color: var(--gold);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.area-overlay h3 {
-  font-size: 22px;
-  margin: 5px 0;
-}
-
-.area-overlay p {
-  font-size: 12px;
-  color: #ddd;
-}
-
-@media (max-width: 700px) {
-  .areas-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 250px 200px 200px;
-  }
-
-  .area-large {
-    grid-column: span 2;
-    grid-row: auto;
-  }
-}
-
-@media (max-width: 400px) {
-  .areas-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, 220px);
-  }
-
-  .area-large {
-    grid-column: auto;
-  }
-}    
-    @media (max-width: 900px) {
-      .nav-links {
-        display: none;
-      }
-
-      .search-box {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .search-btn {
-        min-height: 48px;
-      }
-    }
-
-    @media (max-width: 550px) {
-      .navbar {
-        min-height: 72px;
-      }
-
-      .logo {
-        font-size: 20px;
-      }
-
-      .add-property {
-        padding: 8px 10px;
-        font-size: 11px;
-      }
-
-      .hero {
-        min-height: 530px;
-      }
-
-      .hero-content {
-        padding: 70px 0 110px;
-      }
-
-      .hero p {
-        font-size: 14px;
-      }
-
-      .search-box {
-        grid-template-columns: 1fr;
-        margin-top: -45px;
-      }
-    }
     /* WHY CHOOSE US */
+    .why-us { padding:90px 0; background:var(--cream); }
+    .why-us .section-heading { justify-content:center; text-align:center; }
+    .why-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+    .why-card {
+      background:white; padding:35px 22px; border-radius:12px; text-align:center;
+      border:1px solid #eee; transition:.3s ease;
+    }
+    .why-card:hover { transform:translateY(-7px); box-shadow:var(--shadow); }
+    .why-icon {
+      width:65px; height:65px; margin:0 auto 20px; display:flex; align-items:center;
+      justify-content:center; background:#c6a15b20; color:var(--gold);
+      border-radius:50%; font-size:30px; font-weight:800;
+    }
+    .why-card h3 { color:var(--navy); font-size:17px; margin-bottom:12px; }
+    .why-card p { color:var(--muted); font-size:13px; line-height:2; }
 
-.why-us {
-  padding: 90px 0;
-  background: var(--cream);
-}
+    /* FOOTER */
+    footer { background:var(--navy); color:#d8dde5; padding:35px 0; text-align:center; }
+    footer strong { color:var(--gold); }
+    footer p { font-size:13px; line-height:2; }
 
-.why-us .section-heading {
-  justify-content: center;
-  text-align: center;
-}
+    /* PROPERTY DETAILS PAGE */
+    .details-page { display:none; background:var(--cream); min-height:70vh; padding:45px 0 90px; }
+    .details-page.active { display:block; }
+    .home-content.is-hidden { display:none; }
+    .details-topbar { display:flex; justify-content:space-between; align-items:center; gap:15px; margin-bottom:25px; }
+    .back-btn { border:1px solid #d9dce1; background:#fff; color:var(--navy); padding:10px 18px; border-radius:7px; cursor:pointer; font-weight:700; }
+    .back-btn:hover { background:var(--navy); color:#fff; }
+    .details-ref { color:var(--muted); font-size:13px; }
+    .details-layout { display:grid; grid-template-columns:minmax(0,1.65fr) minmax(280px,.85fr); gap:25px; align-items:start; }
+    .details-main,.details-sidebar-card { background:#fff; border:1px solid #ececec; border-radius:13px; overflow:hidden; }
+    .gallery-main { height:440px; position:relative; background:#e9e9e9; }
+    .gallery-main img { width:100%; height:100%; object-fit:cover; display:block; }
+    .gallery-thumbs { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:12px; }
+    .gallery-thumb { height:105px; border:2px solid transparent; border-radius:8px; overflow:hidden; padding:0; cursor:pointer; background:#eee; }
+    .gallery-thumb.active { border-color:var(--gold); }
+    .gallery-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+    .details-content { padding:28px; }
+    .details-kicker { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:13px; }
+    .details-status { display:inline-block; padding:5px 13px; border-radius:5px; background:var(--gold); color:var(--navy); font-size:12px; font-weight:800; }
+    .details-status.rent { background:var(--navy); color:white; }
+    .details-location { color:var(--muted); font-size:13px; }
+    .details-title { color:var(--navy); font-size:clamp(23px,3vw,32px); line-height:1.5; margin-bottom:12px; }
+    .details-price { color:var(--gold); font-size:28px; font-weight:800; margin-bottom:22px; }
+    .details-price small { font-size:13px; color:var(--muted); font-weight:600; }
+    .details-specs { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:22px 0 28px; }
+    .detail-spec { background:var(--cream); border-radius:8px; text-align:center; padding:15px 8px; }
+    .detail-spec strong { display:block; color:var(--navy); font-size:18px; }
+    .detail-spec span { color:var(--muted); font-size:11px; }
+    .details-content h3,.details-sidebar-card h3 { color:var(--navy); font-size:19px; margin-bottom:12px; }
+    .details-description { color:#666; font-size:14px; line-height:2.1; margin-bottom:25px; }
+    .amenities-list { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; list-style:none; margin:15px 0 5px; }
+    .amenities-list li { color:#555; font-size:13px; background:#faf9f6; padding:11px 13px; border-radius:7px; }
+    .amenities-list li::before { content:"✓"; color:var(--gold); font-weight:900; margin-left:8px; }
+    .details-sidebar-card { padding:24px; position:sticky; top:20px; }
+    .details-sidebar-card p { color:var(--muted); font-size:13px; line-height:1.9; margin-bottom:18px; }
+    .inquiry-form { display:grid; gap:12px; }
+    .inquiry-form label { display:block; color:#555; font-size:12px; font-weight:700; margin-bottom:6px; }
+    .inquiry-form input,.inquiry-form textarea { width:100%; padding:12px; border:1px solid #e2e4e7; border-radius:7px; font:inherit; outline:none; background:#fff; }
+    .inquiry-form input:focus,.inquiry-form textarea:focus { border-color:var(--gold); }
+    .inquiry-form textarea { min-height:95px; resize:vertical; }
+    .inquiry-submit { border:0; border-radius:7px; background:var(--navy); color:#fff; padding:13px; cursor:pointer; font:inherit; font-weight:800; }
+    .inquiry-submit:hover { background:var(--gold); color:var(--navy); }
+    .inquiry-message { color:#23734d; font-size:12px; line-height:1.8; margin:0; }
 
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
-}
+    @media(max-width:850px) {
+      .details-layout { grid-template-columns:1fr; }
+      .details-sidebar-card { position:static; }
+      .gallery-main { height:360px; }
+    }
+    @media(max-width:550px) {
+      .details-page { padding:25px 0 60px; }
+      .details-topbar { align-items:flex-start; flex-direction:column; }
+      .gallery-main { height:260px; }
+      .gallery-thumb { height:75px; }
+      .details-content,.details-sidebar-card { padding:19px; }
+      .details-specs { grid-template-columns:repeat(2,1fr); }
+      .amenities-list { grid-template-columns:1fr; }
+    }
 
-.why-card {
-  background: white;
-  padding: 35px 22px;
-  border-radius: 12px;
-  text-align: center;
-  border: 1px solid #eee;
-  transition: .3s ease;
-}
-
-.why-card:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 15px 35px #101b2c12;
-}
-
-.why-icon {
-  width: 65px;
-  height: 65px;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #c6a15b20;
-  color: var(--gold);
-  border-radius: 50%;
-  font-size: 30px;
-  font-weight: 800;
-}
-
-.why-card h3 {
-  color: var(--navy);
-  font-size: 17px;
-  margin-bottom: 12px;
-}
-
-.why-card p {
-  color: #777;
-  font-size: 13px;
-  line-height: 2;
-}
-
-@media (max-width: 900px) {
-  .why-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 550px) {
-  .why-grid {
-    grid-template-columns: 1fr;
-  }
-}
+    /* RESPONSIVE */
+    @media (max-width:900px) {
+      .nav-links { display:none; }
+      .search-box { grid-template-columns:repeat(2,1fr); }
+      .search-btn { min-height:48px; }
+      .property-grid { grid-template-columns:repeat(2,1fr); }
+      .why-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:700px) {
+      .areas-grid { grid-template-columns:1fr 1fr; grid-template-rows:250px 200px 200px; }
+      .area-large { grid-column:span 2; grid-row:auto; }
+    }
+    @media (max-width:550px) {
+      .navbar { min-height:72px; }
+      .logo { font-size:20px; }
+      .add-property { padding:8px 10px; font-size:11px; }
+      .hero { min-height:530px; }
+      .hero-content { padding:70px 0 110px; }
+      .hero p { font-size:14px; }
+      .search-box { grid-template-columns:1fr; margin-top:-45px; }
+      .property-grid,.why-grid { grid-template-columns:1fr; }
+      .section-heading { align-items:flex-start; flex-direction:column; }
+      .section-heading h2 { font-size:28px; }
+      .property-image { height:230px; }
+    }
+    @media (max-width:400px) {
+      .areas-grid { grid-template-columns:1fr; grid-template-rows:repeat(4,220px); }
+      .area-large { grid-column:auto; }
+    }
   </style>
 </head>
 
 <body>
-
   <header>
     <div class="container navbar">
-
-      <a href="#" class="logo">
-        دار العقارات
-        <span>DAR EL AQARAT</span>
-      </a>
-
+      <a href="#" class="logo">دار العقارات<span>DAR EL AQARAT</span></a>
       <ul class="nav-links">
         <li><a href="#">الرئيسية</a></li>
         <li><a href="#properties">للبيع</a></li>
@@ -631,286 +233,601 @@
         <li><a href="#areas">المناطق</a></li>
         <li><a href="#contact">تواصل معنا</a></li>
       </ul>
-
       <div class="nav-actions">
-        <button class="lang-btn" id="langButton">EN</button>
-        <a href="#add-property" class="add-property">أضف عقارك +</a>
+        <button class="lang-btn" id="langButton" type="button" aria-label="تغيير اللغة">EN</button>
+        <a href="#contact" class="add-property">أضف عقارك +</a>
       </div>
-
     </div>
   </header>
 
-  <main>
+  <main class="home-content">
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-
-          <div class="hero-tag">
-            اكتشف منزلك القادم مع دار العقارات
-          </div>
-
-          <h1>
-            بيتك المثالي<br>
-            <span>يبدأ من هنا</span>
-          </h1>
-
-          <p>
-            اكتشف أفضل العقارات للبيع والإيجار في مصر.
-            نساعدك على اختيار المكان المناسب لحياتك واستثمارك.
-          </p>
-
+          <div class="hero-tag">اكتشف منزلك القادم مع دار العقارات</div>
+          <h1>بيتك المثالي<br><span>يبدأ من هنا</span></h1>
+          <p>اكتشف أفضل العقارات للبيع والإيجار في مصر. نساعدك على اختيار المكان المناسب لحياتك واستثمارك.</p>
         </div>
       </div>
     </section>
 
-    <div class="container">
-      <div class="search-box">
-
+    <div class="container search-wrap">
+      <form class="search-box" id="propertySearch">
         <div class="search-field">
-          <label>نوع العملية</label>
-          <select>
-            <option>شراء</option>
-            <option>إيجار</option>
+          <label for="operationType">نوع العملية</label>
+          <select id="operationType" name="operation">
+            <option value="all">كل العمليات</option>
+            <option value="sale">شراء</option>
+            <option value="rent">إيجار</option>
           </select>
         </div>
-
         <div class="search-field">
-          <label>نوع العقار</label>
-          <select>
-            <option>شقة</option>
-            <option>فيلا</option>
-            <option>دوبلكس</option>
-            <option>محل تجاري</option>
-            <option>أرض</option>
+          <label for="propertyType">نوع العقار</label>
+          <select id="propertyType" name="type">
+            <option value="all">كل الأنواع</option>
+            <option value="شقة">شقة</option>
+            <option value="فيلا">فيلا</option>
+            <option value="دوبلكس">دوبلكس</option>
+            <option value="محل تجاري">محل تجاري</option>
+            <option value="أرض">أرض</option>
           </select>
         </div>
-
         <div class="search-field">
-          <label>المحافظة</label>
-          <select>
-            <option>القاهرة</option>
-            <option>الجيزة</option>
-            <option>الإسكندرية</option>
-            <option>الساحل الشمالي</option>
+          <label for="governorate">المحافظة / المنطقة</label>
+          <select id="governorate" name="location">
+            <option value="all">كل المناطق</option>
+            <option value="القاهرة">القاهرة</option>
+            <option value="الجيزة">الجيزة</option>
+            <option value="العاصمة الإدارية">العاصمة الإدارية</option>
+            <option value="الساحل الشمالي">الساحل الشمالي</option>
           </select>
         </div>
-
         <div class="search-field">
-          <label>الميزانية</label>
-          <select>
-            <option>كل الأسعار</option>
-            <option>أقل من مليون</option>
-            <option>1 - 3 مليون</option>
-            <option>3 - 5 مليون</option>
-            <option>أكثر من 5 مليون</option>
+          <label for="budget">الميزانية</label>
+          <select id="budget" name="budget">
+            <option value="all">كل الأسعار</option>
+            <option value="under1">أقل من مليون</option>
+            <option value="1to3">1 - 3 مليون</option>
+            <option value="3to5">3 - 5 مليون</option>
+            <option value="over5">أكثر من 5 مليون</option>
           </select>
         </div>
-
-        <button class="search-btn" type="button">
-          ابحث الآن
-        </button>
-
-      </div>
+        <button class="search-btn" type="submit">ابحث الآن</button>
+      </form>
     </div>
   </main>
 
-<section class="featured-properties" id="properties">
-  <div class="container">
-
-    <div class="section-heading">
-      <div>
-        <span class="section-tag">DISCOVER PROPERTIES</span>
-        <h2>عقارات <span>مميزة</span></h2>
-        <p>اكتشف مجموعة مختارة من أفضل العقارات في مصر</p>
+  <section class="featured-properties home-content" id="properties">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="section-tag">DISCOVER PROPERTIES</span>
+          <h2>عقارات <span>مميزة</span></h2>
+          <p>اكتشف مجموعة مختارة من أفضل العقارات في مصر</p>
+        </div>
+        <a href="#properties" class="view-all">عرض جميع العقارات ←</a>
       </div>
 
-      <a href="#" class="view-all">عرض جميع العقارات ←</a>
+      <div class="property-grid" id="propertyGrid">
+        <article class="property-card" data-property-id="apt-tajamo" data-operation="sale" data-type="شقة" data-location="القاهرة" data-price="3500000">
+          <div class="property-image">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800" alt="شقة فاخرة بالتجمع الخامس" loading="lazy">
+            <span class="property-badge">للبيع</span>
+            <button class="favorite-btn" type="button" aria-label="إضافة للمفضلة" aria-pressed="false">♡</button>
+          </div>
+          <div class="property-info">
+            <div class="property-location">📍 التجمع الخامس، القاهرة</div>
+            <h3>شقة فاخرة بتصميم عصري</h3>
+            <div class="property-price">3,500,000 <small>ج.م</small></div>
+            <div class="property-features"><span>🛏 3 غرف</span><span>🚿 2 حمام</span><span>📐 180 م²</span></div>
+            <button class="details-btn" type="button">عرض التفاصيل</button>
+          </div>
+        </article>
+
+        <article class="property-card" data-property-id="villa-zayed" data-operation="rent" data-type="فيلا" data-location="الجيزة" data-price="45000">
+          <div class="property-image">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800" alt="فيلا مستقلة بالشيخ زايد" loading="lazy">
+            <span class="property-badge rent">للإيجار</span>
+            <button class="favorite-btn" type="button" aria-label="إضافة للمفضلة" aria-pressed="false">♡</button>
+          </div>
+          <div class="property-info">
+            <div class="property-location">📍 الشيخ زايد، الجيزة</div>
+            <h3>فيلا مستقلة بحديقة خاصة</h3>
+            <div class="property-price">45,000 <small>ج.م / شهرياً</small></div>
+            <div class="property-features"><span>🛏 5 غرف</span><span>🚿 4 حمام</span><span>📐 320 م²</span></div>
+            <button class="details-btn" type="button">عرض التفاصيل</button>
+          </div>
+        </article>
+
+        <article class="property-card" data-property-id="apt-capital" data-operation="sale" data-type="شقة" data-location="العاصمة الإدارية" data-price="2800000">
+          <div class="property-image">
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800" alt="شقة حديثة بالعاصمة الإدارية" loading="lazy">
+            <span class="property-badge">للبيع</span>
+            <button class="favorite-btn" type="button" aria-label="إضافة للمفضلة" aria-pressed="false">♡</button>
+          </div>
+          <div class="property-info">
+            <div class="property-location">📍 العاصمة الإدارية</div>
+            <h3>شقة راقية بإطلالة مميزة</h3>
+            <div class="property-price">2,800,000 <small>ج.م</small></div>
+            <div class="property-features"><span>🛏 2 غرف</span><span>🚿 2 حمام</span><span>📐 145 م²</span></div>
+            <button class="details-btn" type="button">عرض التفاصيل</button>
+          </div>
+        </article>
+      </div>
+      <p id="searchMessage" role="status" aria-live="polite" hidden style="margin-top:22px;text-align:center;color:#777;">لا توجد عقارات مطابقة لخيارات البحث حالياً.</p>
     </div>
+  </section>
 
-    <div class="property-grid">
-
-      <!-- Property 1 -->
-      <article class="property-card">
-        <div class="property-image">
-          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800" alt="شقة فاخرة">
-          <span class="property-badge">للبيع</span>
-          <button class="favorite-btn" aria-label="إضافة للمفضلة">♡</button>
-        </div>
-
-        <div class="property-info">
-          <div class="property-location">📍 التجمع الخامس، القاهرة</div>
-          <h3>شقة فاخرة بتصميم عصري</h3>
-          <div class="property-price">3,500,000 <small>ج.م</small></div>
-
-          <div class="property-features">
-            <span>🛏 3 غرف</span>
-            <span>🚿 2 حمام</span>
-            <span>📐 180 م²</span>
+  <!-- PROPERTY DETAILS -->
+  <section class="details-page" id="propertyDetails" aria-live="polite">
+    <div class="container">
+      <div class="details-topbar">
+        <button class="back-btn" id="backToProperties" type="button">→ العودة إلى العقارات</button>
+        <span class="details-ref" id="detailsReference"></span>
+      </div>
+      <div class="details-layout">
+        <div class="details-main">
+          <div class="gallery-main">
+            <img id="detailsMainImage" src="" alt="">
           </div>
-
-          <button class="details-btn">عرض التفاصيل</button>
-        </div>
-      </article>
-
-      <!-- Property 2 -->
-      <article class="property-card">
-        <div class="property-image">
-          <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800" alt="فيلا فاخرة">
-          <span class="property-badge rent">للإيجار</span>
-          <button class="favorite-btn" aria-label="إضافة للمفضلة">♡</button>
-        </div>
-
-        <div class="property-info">
-          <div class="property-location">📍 الشيخ زايد، الجيزة</div>
-          <h3>فيلا مستقلة بحديقة خاصة</h3>
-          <div class="property-price">45,000 <small>ج.م / شهرياً</small></div>
-
-          <div class="property-features">
-            <span>🛏 5 غرف</span>
-            <span>🚿 4 حمام</span>
-            <span>📐 320 م²</span>
+          <div class="gallery-thumbs" id="detailsGalleryThumbs"></div>
+          <div class="details-content">
+            <div class="details-kicker">
+              <span class="details-status" id="detailsStatus"></span>
+              <span class="details-location" id="detailsLocation"></span>
+            </div>
+            <h1 class="details-title" id="detailsTitle"></h1>
+            <div class="details-price" id="detailsPrice"></div>
+            <div class="details-specs" id="detailsSpecs"></div>
+            <h3>تفاصيل العقار</h3>
+            <p class="details-description" id="detailsDescription"></p>
+            <h3>مميزات العقار</h3>
+            <ul class="amenities-list" id="detailsAmenities"></ul>
           </div>
-
-          <button class="details-btn">عرض التفاصيل</button>
         </div>
-      </article>
-
-      <!-- Property 3 -->
-      <article class="property-card">
-        <div class="property-image">
-          <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800" alt="شقة حديثة">
-          <span class="property-badge">للبيع</span>
-          <button class="favorite-btn" aria-label="إضافة للمفضلة">♡</button>
-        </div>
-
-        <div class="property-info">
-          <div class="property-location">📍 العاصمة الإدارية</div>
-          <h3>شقة راقية بإطلالة مميزة</h3>
-          <div class="property-price">2,800,000 <small>ج.م</small></div>
-
-          <div class="property-features">
-            <span>🛏 2 غرف</span>
-            <span>🚿 2 حمام</span>
-            <span>📐 145 م²</span>
-          </div>
-
-          <button class="details-btn">عرض التفاصيل</button>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-<section class="areas-section" id="areas">
-  <div class="container">
-
-    <div class="section-heading">
-      <div>
-        <span class="section-tag">EXPLORE LOCATIONS</span>
-        <h2>اكتشف أشهر <span>المناطق</span></h2>
-        <p>اختار المنطقة المناسبة لحياتك واستثمارك</p>
+        <aside class="details-sidebar-card">
+          <h3>مهتم بالعقار؟</h3>
+          <p>اترك بياناتك وسجّل طلب معاينة. سيتاح لفريق دار العقارات التواصل معك عند ربط الموقع بخدمة استقبال الطلبات.</p>
+          <form class="inquiry-form" id="inquiryForm">
+            <div>
+              <label for="inquiryName">الاسم بالكامل</label>
+              <input id="inquiryName" name="name" type="text" placeholder="اكتب اسمك" required minlength="2">
+            </div>
+            <div>
+              <label for="inquiryPhone">رقم الهاتف</label>
+              <input id="inquiryPhone" name="phone" type="tel" placeholder="01xxxxxxxxx" required pattern="[0-9+()\\-\\s]{8,20}">
+            </div>
+            <div>
+              <label for="inquiryNote">ملاحظات (اختياري)</label>
+              <textarea id="inquiryNote" name="note" placeholder="اكتب الوقت المناسب للمعاينة أو أي استفسار"></textarea>
+            </div>
+            <button class="inquiry-submit" type="submit">إرسال طلب المعاينة</button>
+            <p class="inquiry-message" id="inquiryMessage" role="status" aria-live="polite" hidden></p>
+          </form>
+        </aside>
       </div>
     </div>
+  </section>
 
-    <div class="areas-grid">
-
-      <a href="#" class="area-card area-large">
-        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000" alt="القاهرة الجديدة">
-        <div class="area-overlay">
-          <span>القاهرة</span>
-          <h3>التجمع الخامس</h3>
-          <p>اكتشف العقارات المميزة ←</p>
+  <!-- POPULAR AREAS -->
+  <section class="areas-section home-content" id="areas">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="section-tag">EXPLORE LOCATIONS</span>
+          <h2>اكتشف أشهر <span>المناطق</span></h2>
+          <p>اختار المنطقة المناسبة لحياتك واستثمارك</p>
         </div>
-      </a>
-
-      <a href="#" class="area-card">
-        <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800" alt="الشيخ زايد">
-        <div class="area-overlay">
-          <span>الجيزة</span>
-          <h3>الشيخ زايد</h3>
-          <p>اكتشف العقارات ←</p>
-        </div>
-      </a>
-
-      <a href="#" class="area-card">
-        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800" alt="العاصمة الإدارية">
-        <div class="area-overlay">
-          <span>القاهرة</span>
-          <h3>العاصمة الإدارية</h3>
-          <p>اكتشف العقارات ←</p>
-        </div>
-      </a>
-
-      <a href="#" class="area-card">
-        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800" alt="الساحل الشمالي">
-        <div class="area-overlay">
-          <span>الساحل الشمالي</span>
-          <h3>الساحل الشمالي</h3>
-          <p>اكتشف العقارات ←</p>
-        </div>
-      </a>
-
+      </div>
+      <div class="areas-grid">
+        <a href="#properties" class="area-card area-large">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000" alt="عقارات التجمع الخامس" loading="lazy">
+          <div class="area-overlay"><span>القاهرة</span><h3>التجمع الخامس</h3><p>اكتشف العقارات المميزة ←</p></div>
+        </a>
+        <a href="#properties" class="area-card">
+          <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800" alt="عقارات الشيخ زايد" loading="lazy">
+          <div class="area-overlay"><span>الجيزة</span><h3>الشيخ زايد</h3><p>اكتشف العقارات ←</p></div>
+        </a>
+        <a href="#properties" class="area-card">
+          <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800" alt="عقارات العاصمة الإدارية" loading="lazy">
+          <div class="area-overlay"><span>القاهرة</span><h3>العاصمة الإدارية</h3><p>اكتشف العقارات ←</p></div>
+        </a>
+        <a href="#properties" class="area-card">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800" alt="عقارات الساحل الشمالي" loading="lazy">
+          <div class="area-overlay"><span>الساحل الشمالي</span><h3>الساحل الشمالي</h3><p>اكتشف العقارات ←</p></div>
+        </a>
+      </div>
     </div>
-  </div>
-</section>  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  </section>
 
   <!-- WHY CHOOSE US -->
-
-<section class="why-us" id="why-us">
-  <div class="container">
-
-    <div class="section-heading">
-      <div>
-        <span class="section-tag">WHY CHOOSE US</span>
-        <h2>لماذا تختار <span>دار العقارات؟</span></h2>
-        <p>نقدم لك تجربة عقارية سهلة وآمنة من البداية حتى إتمام الصفقة</p>
+  <section class="why-us home-content" id="why-us">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="section-tag">WHY CHOOSE US</span>
+          <h2>لماذا تختار <span>دار العقارات؟</span></h2>
+          <p>نقدم لك تجربة عقارية سهلة وواضحة من بداية البحث وحتى اختيار العقار المناسب</p>
+        </div>
+      </div>
+      <div class="why-grid">
+        <article class="why-card">
+          <div class="why-icon" aria-hidden="true">✓</div>
+          <h3>عقارات بمعلومات واضحة</h3>
+          <p>تفاصيل العقارات معروضة بشكل منظم لتساعدك على تكوين صورة أوضح قبل التواصل.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-icon" aria-hidden="true">◎</div>
+          <h3>مساعدة في الاختيار</h3>
+          <p>استكشف خيارات متنوعة وقارن بين المساحات والأسعار والمناطق بسهولة.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-icon" aria-hidden="true">⌖</div>
+          <h3>مناطق متنوعة</h3>
+          <p>تعرّف على عقارات في التجمع الخامس والشيخ زايد والعاصمة الإدارية والساحل.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-icon" aria-hidden="true">◇</div>
+          <h3>تجربة سهلة</h3>
+          <p>واجهة بسيطة تساعدك على الوصول إلى العقار المناسب دون خطوات معقدة.</p>
+        </article>
       </div>
     </div>
+  </section>
 
-    <div class="why-grid">
-
-      <div class="why-card">
-        <div class="why-icon">✓</div>
-        <h3>عقارات موثوقة</h3>
-        <p>نعمل على تقديم عقارات بمعلومات واضحة وتفاصيل دقيقة لمساعدتك على الاختيار.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-icon">♧</div>
-        <h3>دعم ومتابعة</h3>
-        <p>فريقنا يساعدك في رحلة البحث عن العقار المناسب والرد على استفساراتك.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-icon">⌖</div>
-        <h3>أفضل المناطق</h3>
-        <p>اكتشف مجموعة متنوعة من العقارات في أهم المناطق والمدن المصرية.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-icon">◆</div>
-        <h3>سهولة الاختيار</h3>
-        <p>نساعدك في مقارنة الخيارات للوصول إلى العقار الذي يناسب احتياجاتك.</p>
-      </div>
-
+  <footer id="contact" class="home-content">
+    <div class="container">
+      <p><strong>دار العقارات | DAR EL AQARAT</strong></p>
+      <p>منصة لاستكشاف العقارات للبيع والإيجار في مصر.</p>
+      <p>© <span id="currentYear"></span> دار العقارات. جميع الحقوق محفوظة.</p>
     </div>
-  </div>
-</section>
+  </footer>
+
+  <script>
+    // بيانات العقارات المعروضة حالياً
+    const propertyData = {
+      "apt-tajamo": {
+        reference: "DAR-1001",
+        operation: "sale",
+        status: "للبيع",
+        title: "شقة فاخرة بتصميم عصري",
+        location: "التجمع الخامس، القاهرة الجديدة",
+        price: "3,500,000",
+        priceNote: "ج.م",
+        rooms: "3",
+        baths: "2",
+        area: "180",
+        type: "شقة",
+        description: "شقة سكنية بتصميم عصري في منطقة التجمع الخامس. تتميز بتوزيع عملي للمساحات وإضاءة طبيعية، وتناسب العائلات الباحثة عن سكن مريح بالقرب من الخدمات والمحاور الرئيسية. البيانات المعروضة تجريبية ويمكن تحديثها ببيانات العقار الفعلية.",
+        images: [
+          "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85",
+          "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=85",
+          "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=85"
+        ],
+        amenities: ["تصميم عصري","إضاءة طبيعية","موقع مميز","قريبة من الخدمات","تقسيم داخلي عملي","مناسبة للعائلات"]
+      },
+
+      "villa-zayed": {
+        reference: "DAR-1002",
+        operation: "rent",
+        status: "للإيجار",
+        title: "فيلا مستقلة بحديقة خاصة",
+        location: "الشيخ زايد، الجيزة",
+        price: "45,000",
+        priceNote: "ج.م / شهرياً",
+        rooms: "5",
+        baths: "4",
+        area: "320",
+        type: "فيلا",
+        description: "فيلا مستقلة بمساحة واسعة وحديقة خاصة في الشيخ زايد. توفر مساحات مناسبة للعائلات مع خصوصية وهدوء، وبالقرب من مجموعة من الخدمات والمناطق الحيوية. البيانات المعروضة تجريبية ويمكن تحديثها ببيانات العقار الفعلية.",
+        images: [
+          "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85",
+          "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1000&q=85",
+          "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85"
+        ],
+        amenities: ["حديقة خاصة","مساحات واسعة","5 غرف نوم","4 حمامات","خصوصية وهدوء","موقع مميز"]
+      },
+
+      "apt-capital": {
+        reference: "DAR-1003",
+        operation: "sale",
+        status: "للبيع",
+        title: "شقة راقية بإطلالة مميزة",
+        location: "العاصمة الإدارية الجديدة",
+        price: "2,800,000",
+        priceNote: "ج.م",
+        rooms: "2",
+        baths: "2",
+        area: "145",
+        type: "شقة",
+        description: "شقة راقية في العاصمة الإدارية بمساحة مناسبة وتصميم يستفيد من كل جزء داخل الوحدة. اختيار مناسب للسكن أو الاستثمار، مع سهولة الوصول إلى الخدمات والمناطق الرئيسية. البيانات المعروضة تجريبية ويمكن تحديثها ببيانات العقار الفعلية.",
+        images: [
+          "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=85",
+          "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=85",
+          "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85"
+        ],
+        amenities: ["إطلالة مميزة","تصميم راقٍ","غرفتان نوم","حمامان","مناسبة للاستثمار","قريبة من الخدمات"]
+      }
+    };
+
+    const searchForm = document.getElementById('propertySearch');
+    const propertyCards = [...document.querySelectorAll('.property-card')];
+    const searchMessage = document.getElementById('searchMessage');
+    const detailsPage = document.getElementById('propertyDetails');
+    const homeContent = [...document.querySelectorAll('.home-content')];
+
+    let activeProperty = null;
+
+    // البحث والفلترة
+    searchForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const operation = document.getElementById('operationType').value;
+      const type = document.getElementById('propertyType').value;
+      const location = document.getElementById('governorate').value;
+      const budget = document.getElementById('budget').value;
+
+      let visibleCount = 0;
+
+      propertyCards.forEach(card => {
+        const cardOperation = card.dataset.operation;
+        const cardType = card.dataset.type;
+        const cardLocation = card.dataset.location;
+        const price = Number(card.dataset.price);
+
+        const operationMatch = operation === 'all' || operation === cardOperation;
+        const typeMatch = type === 'all' || type === cardType;
+
+        const locationMatch =
+          location === 'all' ||
+          cardLocation === location ||
+          (location === 'القاهرة' && cardLocation === 'العاصمة الإدارية');
+
+        let budgetMatch = budget === 'all' || cardOperation === 'rent';
+
+        if (cardOperation === 'sale') {
+          if (budget === 'under1') budgetMatch = price < 1000000;
+          if (budget === '1to3') budgetMatch = price >= 1000000 && price <= 3000000;
+          if (budget === '3to5') budgetMatch = price > 3000000 && price <= 5000000;
+          if (budget === 'over5') budgetMatch = price > 5000000;
+        }
+
+        const show = operationMatch && typeMatch && locationMatch && budgetMatch;
+
+        card.hidden = !show;
+
+        if (show) visibleCount++;
+      });
+
+      searchMessage.hidden = visibleCount !== 0;
+
+      document.getElementById('properties').scrollIntoView({
+        behavior:'smooth'
+      });
+    });
+
+    // فتح تفاصيل العقار
+    function showProperty(propertyId) {
+      const property = propertyData[propertyId];
+
+      if (!property) return;
+
+      activeProperty = propertyId;
+
+      document.getElementById('detailsReference').textContent =
+        `كود العقار: ${property.reference}`;
+
+      const status = document.getElementById('detailsStatus');
+
+      status.textContent = property.status;
+      status.classList.toggle('rent', property.operation === 'rent');
+
+      document.getElementById('detailsLocation').textContent =
+        `📍 ${property.location}`;
+
+      document.getElementById('detailsTitle').textContent =
+        property.title;
+
+      document.getElementById('detailsPrice').innerHTML =
+        `${property.price} <small>${property.priceNote}</small>`;
+
+      document.getElementById('detailsDescription').textContent =
+        property.description;
+
+      // مواصفات العقار
+      document.getElementById('detailsSpecs').innerHTML = `
+        <div class="detail-spec">
+          <strong>${property.area}</strong>
+          <span>المساحة م²</span>
+        </div>
+
+        <div class="detail-spec">
+          <strong>${property.rooms}</strong>
+          <span>غرف النوم</span>
+        </div>
+
+        <div class="detail-spec">
+          <strong>${property.baths}</strong>
+          <span>الحمامات</span>
+        </div>
+
+        <div class="detail-spec">
+          <strong>${property.type}</strong>
+          <span>نوع العقار</span>
+        </div>
+      `;
+
+      // معرض الصور
+      const mainImage = document.getElementById('detailsMainImage');
+
+      mainImage.src = property.images[0];
+      mainImage.alt = property.title;
+
+      const thumbs = document.getElementById('detailsGalleryThumbs');
+
+      thumbs.replaceChildren();
+
+      property.images.forEach((imageUrl, index) => {
+        const button = document.createElement('button');
+
+        button.type = 'button';
+
+        button.className =
+          `gallery-thumb${index === 0 ? ' active' : ''}`;
+
+        button.setAttribute(
+          'aria-label',
+          `عرض الصورة ${index + 1}`
+        );
+
+        const image = document.createElement('img');
+
+        image.src = imageUrl;
+        image.alt = `${property.title} - صورة ${index + 1}`;
+        image.loading = 'lazy';
+
+        button.appendChild(image);
+
+        button.addEventListener('click', () => {
+          mainImage.src = imageUrl;
+
+          thumbs.querySelectorAll('.gallery-thumb').forEach(item => {
+            item.classList.remove('active');
+          });
+
+          button.classList.add('active');
+        });
+
+        thumbs.appendChild(button);
+      });
+
+      // مميزات العقار
+      const amenities = document.getElementById('detailsAmenities');
+
+      amenities.replaceChildren();
+
+      property.amenities.forEach(item => {
+        const li = document.createElement('li');
+
+        li.textContent = item;
+
+        amenities.appendChild(li);
+      });
+
+      // إعادة ضبط نموذج المعاينة
+      document.getElementById('inquiryForm').reset();
+
+      document.getElementById('inquiryMessage').hidden = true;
+
+      // إخفاء الصفحة الرئيسية
+      homeContent.forEach(section => {
+        section.classList.add('is-hidden');
+      });
+
+      detailsPage.classList.add('active');
+
+      window.location.hash = `property-${propertyId}`;
+
+      window.scrollTo({
+        top:0,
+        behavior:'smooth'
+      });
+    }
+
+    // الرجوع للصفحة الرئيسية
+    function closePropertyDetails(updateHash = true) {
+      detailsPage.classList.remove('active');
+
+      homeContent.forEach(section => {
+        section.classList.remove('is-hidden');
+      });
+
+      activeProperty = null;
+
+      if (
+        updateHash &&
+        window.location.hash.startsWith('#property-')
+      ) {
+        history.replaceState(
+          null,
+          '',
+          window.location.pathname + window.location.search
+        );
+      }
+
+      window.scrollTo({
+        top:0,
+        behavior:'smooth'
+      });
+    }
+
+    // ربط أزرار عرض التفاصيل بالعقارات
+    document.querySelectorAll('.details-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.property-card');
+
+        showProperty(card.dataset.propertyId);
+      });
+    });
+
+    // زر العودة للعقارات
+    document.getElementById('backToProperties').addEventListener(
+      'click',
+      () => closePropertyDetails()
+    );
+
+    // التعامل مع روابط التفاصيل
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash.startsWith('#property-')) {
+        const propertyId = window.location.hash.replace('#property-', '');
+
+        showProperty(propertyId);
+
+      } else if (activeProperty) {
+        closePropertyDetails(false);
+      }
+    });
+
+    // نموذج طلب المعاينة - تجريبي حالياً
+    document.getElementById('inquiryForm').addEventListener(
+      'submit',
+      event => {
+        event.preventDefault();
+
+        const name = document.getElementById('inquiryName').value.trim();
+
+        const message = document.getElementById('inquiryMessage');
+
+        if (!name) return;
+
+        message.textContent =
+          'تم تسجيل طلبك على هذه الصفحة كتجربة. ربط استقبال الطلبات الفعلي سيكون في مرحلة قاعدة البيانات.';
+
+        message.hidden = false;
+      }
+    );
+
+    // زر المفضلة
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const active = button.classList.toggle('active');
+
+        button.textContent = active ? '♥' : '♡';
+
+        button.setAttribute('aria-pressed', String(active));
+      });
+    });
+
+    // فتح صفحة التفاصيل مباشرة من الرابط
+    if (window.location.hash.startsWith('#property-')) {
+      showProperty(
+        window.location.hash.replace('#property-', '')
+      );
+    }
+
+    // السنة الحالية
+    document.getElementById('currentYear').textContent =
+      new Date().getFullYear();
+  </script>
 </body>
 </html>
