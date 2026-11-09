@@ -542,6 +542,75 @@
         margin-top: -45px;
       }
     }
+    /* WHY CHOOSE US */
+
+.why-us {
+  padding: 90px 0;
+  background: var(--cream);
+}
+
+.why-us .section-heading {
+  justify-content: center;
+  text-align: center;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.why-card {
+  background: white;
+  padding: 35px 22px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #eee;
+  transition: .3s ease;
+}
+
+.why-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 15px 35px #101b2c12;
+}
+
+.why-icon {
+  width: 65px;
+  height: 65px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #c6a15b20;
+  color: var(--gold);
+  border-radius: 50%;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.why-card h3 {
+  color: var(--navy);
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.why-card p {
+  color: #777;
+  font-size: 13px;
+  line-height: 2;
+}
+
+@media (max-width: 900px) {
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 550px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 
@@ -784,5 +853,64 @@
     </div>
   </div>
 </section>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- WHY CHOOSE US -->
+
+<section class="why-us" id="why-us">
+  <div class="container">
+
+    <div class="section-heading">
+      <div>
+        <span class="section-tag">WHY CHOOSE US</span>
+        <h2>لماذا تختار <span>دار العقارات؟</span></h2>
+        <p>نقدم لك تجربة عقارية سهلة وآمنة من البداية حتى إتمام الصفقة</p>
+      </div>
+    </div>
+
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="why-icon">✓</div>
+        <h3>عقارات موثوقة</h3>
+        <p>نعمل على تقديم عقارات بمعلومات واضحة وتفاصيل دقيقة لمساعدتك على الاختيار.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">♧</div>
+        <h3>دعم ومتابعة</h3>
+        <p>فريقنا يساعدك في رحلة البحث عن العقار المناسب والرد على استفساراتك.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">⌖</div>
+        <h3>أفضل المناطق</h3>
+        <p>اكتشف مجموعة متنوعة من العقارات في أهم المناطق والمدن المصرية.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">◆</div>
+        <h3>سهولة الاختيار</h3>
+        <p>نساعدك في مقارنة الخيارات للوصول إلى العقار الذي يناسب احتياجاتك.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
 </body>
 </html>
