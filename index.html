@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -189,6 +190,177 @@ footer p {font-size:13px;line-height:2}
 .inquiry-submit:hover {background:var(--gold);color:var(--navy)}
 .inquiry-message {color:#23734d;font-size:12px;line-height:1.8;margin:0}
 
+/* ADD PROPERTY PAGE */
+.add-property-section {
+  display:none;
+  background:var(--cream);
+  min-height:80vh;
+  padding:55px 0 90px;
+}
+.add-property-section.active {display:block}
+.add-property-heading {
+  text-align:center;
+  margin-bottom:35px;
+}
+.add-property-heading h2 {
+  color:var(--navy);
+  font-size:32px;
+  margin:10px 0;
+}
+.add-property-heading p {
+  color:var(--muted);
+  font-size:14px;
+}
+.add-property-form {
+  max-width:950px;
+  margin:auto;
+  background:#fff;
+  padding:35px;
+  border-radius:14px;
+  box-shadow:var(--shadow);
+}
+.form-section-title {
+  color:var(--navy);
+  font-size:19px;
+  border-bottom:1px solid #eee;
+  padding-bottom:12px;
+  margin:25px 0 20px;
+}
+.form-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+.form-field {
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+.form-field.full {grid-column:1/-1}
+.form-field label {
+  font-size:13px;
+  color:#555;
+  font-weight:700;
+}
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width:100%;
+  min-height:47px;
+  padding:11px 13px;
+  border:1px solid #e1e3e7;
+  border-radius:7px;
+  outline:none;
+  background:#fff;
+  color:var(--navy);
+}
+.form-field textarea {
+  min-height:120px;
+  resize:vertical;
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px #c6a15b20;
+}
+.upload-area {
+  display:block;
+  border:2px dashed #d6d2c8;
+  border-radius:10px;
+  padding:30px 15px;
+  text-align:center;
+  background:#faf9f6;
+  cursor:pointer;
+  transition:.3s;
+}
+.upload-area:hover {
+  border-color:var(--gold);
+  background:#c6a15b10;
+}
+.upload-area strong {
+  display:block;
+  color:var(--navy);
+  margin-bottom:7px;
+}
+.upload-area span {
+  color:var(--muted);
+  font-size:12px;
+}
+.upload-area input {display:none}
+.image-preview-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:15px;
+}
+.preview-image {
+  height:130px;
+  border-radius:8px;
+  overflow:hidden;
+  position:relative;
+  background:#eee;
+}
+.preview-image img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.remove-preview {
+  position:absolute;
+  top:7px;
+  left:7px;
+  width:28px;
+  height:28px;
+  border:0;
+  border-radius:50%;
+  background:#b52d3d;
+  color:#fff;
+  cursor:pointer;
+  font-size:18px;
+}
+.submit-property-btn {
+  width:100%;
+  border:0;
+  background:var(--navy);
+  color:#fff;
+  padding:15px;
+  border-radius:8px;
+  font-weight:800;
+  cursor:pointer;
+  margin-top:25px;
+  transition:.3s;
+}
+.submit-property-btn:hover {
+  background:var(--gold);
+  color:var(--navy);
+}
+.submit-property-btn:disabled {
+  opacity:.6;
+  cursor:wait;
+}
+.add-property-message {
+  display:none;
+  margin-top:18px;
+  padding:14px;
+  border-radius:7px;
+  background:#e9f7ef;
+  color:#23734d;
+  font-size:13px;
+  line-height:1.8;
+}
+.add-property-message.show {display:block}
+.cancel-property-btn {
+  width:100%;
+  margin-top:10px;
+  padding:12px;
+  background:#f1f1f1;
+  color:var(--navy);
+  border:0;
+  border-radius:7px;
+  cursor:pointer;
+}
+
 /* RESPONSIVE */
 @media(max-width:900px) {
   .nav-links {display:none}
@@ -225,6 +397,11 @@ footer p {font-size:13px;line-height:2}
   .details-content,.details-sidebar-card {padding:19px}
   .details-specs {grid-template-columns:repeat(2,1fr)}
   .amenities-list {grid-template-columns:1fr}
+  .add-property-form {padding:20px}
+  .form-grid {grid-template-columns:1fr}
+  .form-field.full {grid-column:auto}
+  .add-property-heading h2 {font-size:25px}
+  .image-preview-grid {grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:400px) {
   .areas-grid {grid-template-columns:1fr;grid-template-rows:repeat(4,220px)}
@@ -247,7 +424,7 @@ footer p {font-size:13px;line-height:2}
     </ul>
     <div class="nav-actions">
       <button class="lang-btn" id="langButton" type="button">EN</button>
-      <a href="#contact" class="add-property">أضف عقارك +</a>
+      <a href="#add-property" class="add-property" id="openAddProperty">أضف عقارك +</a>
     </div>
   </div>
 </header>
@@ -263,10 +440,8 @@ footer p {font-size:13px;line-height:2}
     </div>
   </section>
 
-  <!-- SEARCH -->
   <div class="container search-wrap">
     <form class="search-box" id="propertySearch">
-
       <div class="search-title">
         <div>
           <h3>ابحث عن عقارك المثالي</h3>
@@ -360,7 +535,6 @@ footer p {font-size:13px;line-height:2}
         <button class="search-btn" type="submit">ابحث عن العقارات</button>
         <button class="reset-btn" id="resetFilters" type="button">مسح جميع الفلاتر ↺</button>
       </div>
-
     </form>
   </div>
 </main>
@@ -476,6 +650,144 @@ footer p {font-size:13px;line-height:2}
   </div>
 </section>
 
+<!-- ADD PROPERTY PAGE -->
+<section class="add-property-section" id="addPropertyPage">
+  <div class="container">
+
+    <div class="details-topbar">
+      <button class="back-btn" id="closeAddProperty" type="button">→ العودة للموقع</button>
+      <span class="details-ref">DAR EL AQARAT</span>
+    </div>
+
+    <div class="add-property-heading">
+      <span class="section-tag">LIST YOUR PROPERTY</span>
+      <h2>أضف <span style="color:var(--gold)">عقارك</span></h2>
+      <p>املأ البيانات التالية لعرض عقارك على دار العقارات</p>
+    </div>
+
+    <form class="add-property-form" id="newPropertyForm">
+
+      <h3 class="form-section-title">البيانات الأساسية</h3>
+
+      <div class="form-grid">
+        <div class="form-field full">
+          <label for="newTitle">عنوان العقار *</label>
+          <input id="newTitle" required maxlength="100" placeholder="مثال: شقة فاخرة في التجمع الخامس">
+        </div>
+
+        <div class="form-field">
+          <label for="newOperation">نوع العملية *</label>
+          <select id="newOperation" required>
+            <option value="sale">بيع</option>
+            <option value="rent">إيجار</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="newType">نوع العقار *</label>
+          <select id="newType" required>
+            <option value="">اختر نوع العقار</option>
+            <option value="شقة">شقة</option>
+            <option value="فيلا">فيلا</option>
+            <option value="دوبلكس">دوبلكس</option>
+            <option value="محل تجاري">محل تجاري</option>
+            <option value="مكتب">مكتب</option>
+            <option value="أرض">أرض</option>
+          </select>
+        </div>
+      </div>
+
+      <h3 class="form-section-title">موقع العقار</h3>
+
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="newGovernorate">المحافظة *</label>
+          <select id="newGovernorate" required>
+            <option value="">اختر المحافظة</option>
+            <option value="القاهرة">القاهرة</option>
+            <option value="الجيزة">الجيزة</option>
+            <option value="الإسكندرية">الإسكندرية</option>
+            <option value="مطروح">مطروح</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="newDistrict">المنطقة *</label>
+          <input id="newDistrict" required maxlength="80" placeholder="مثال: التجمع الخامس">
+        </div>
+
+        <div class="form-field full">
+          <label for="newAddress">العنوان بالتفصيل</label>
+          <input id="newAddress" maxlength="200" placeholder="اسم الشارع أو الكمبوند أو رقم المبنى">
+        </div>
+      </div>
+
+      <h3 class="form-section-title">تفاصيل العقار</h3>
+
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="newPrice">السعر بالجنيه المصري *</label>
+          <input id="newPrice" type="number" min="1" step="1" required placeholder="مثال: 2500000">
+        </div>
+
+        <div class="form-field">
+          <label for="newArea">المساحة بالمتر *</label>
+          <input id="newArea" type="number" min="1" required placeholder="مثال: 150">
+        </div>
+
+        <div class="form-field">
+          <label for="newRooms">عدد غرف النوم *</label>
+          <input id="newRooms" type="number" min="0" max="50" required value="3">
+        </div>
+
+        <div class="form-field">
+          <label for="newBaths">عدد الحمامات *</label>
+          <input id="newBaths" type="number" min="0" max="50" required value="2">
+        </div>
+
+        <div class="form-field full">
+          <label for="newDescription">وصف العقار *</label>
+          <textarea id="newDescription" required maxlength="1500" placeholder="اكتب وصفاً واضحاً للعقار ومميزاته..."></textarea>
+        </div>
+      </div>
+
+      <h3 class="form-section-title">صور العقار</h3>
+
+      <label class="upload-area" for="newImages">
+        <strong>＋ اضغط هنا لاختيار صور العقار</strong>
+        <span>يمكنك اختيار حتى 6 صور بصيغة JPG أو PNG أو WebP، بحد أقصى 2 ميجابايت للصورة</span>
+        <input id="newImages" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+      </label>
+
+      <div class="image-preview-grid" id="newImagePreview"></div>
+
+      <h3 class="form-section-title">بيانات المعلن</h3>
+
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="newOwnerName">اسم المعلن *</label>
+          <input id="newOwnerName" required maxlength="80" placeholder="الاسم بالكامل">
+        </div>
+
+        <div class="form-field">
+          <label for="newOwnerPhone">رقم الهاتف *</label>
+          <input id="newOwnerPhone" type="tel" required pattern="[0-9+()\- ]{8,20}" placeholder="01xxxxxxxxx">
+        </div>
+      </div>
+
+      <button type="submit" class="submit-property-btn" id="submitNewProperty">
+        إرسال العقار للنشر
+      </button>
+
+      <button type="button" class="cancel-property-btn" id="cancelNewProperty">
+        إلغاء والعودة للموقع
+      </button>
+
+      <div class="add-property-message" id="newPropertyMessage" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
 <!-- PROPERTY DETAILS -->
 <section class="details-page" id="propertyDetails" aria-live="polite">
   <div class="container">
@@ -520,7 +832,7 @@ footer p {font-size:13px;line-height:2}
           </div>
           <div>
             <label for="inquiryPhone">رقم الهاتف</label>
-            <input id="inquiryPhone" name="phone" type="tel" placeholder="01xxxxxxxxx" required pattern="[0-9+()\-\\s]{8,20}">
+            <input id="inquiryPhone" name="phone" type="tel" placeholder="01xxxxxxxxx" required pattern="[0-9+()\- ]{8,20}">
           </div>
           <div>
             <label for="inquiryNote">ملاحظات (اختياري)</label>
@@ -611,7 +923,10 @@ footer p {font-size:13px;line-height:2}
 </footer>
 
 <script>
-// بيانات العقارات
+// =========================================
+// بيانات العقارات الأساسية
+// =========================================
+
 const propertyData = {
   "apt-tajamo": {
     reference:"DAR-1001",
@@ -677,14 +992,21 @@ const propertyData = {
   }
 };
 
+const USER_PROPERTIES_KEY = "dar_el_aqarat_user_properties_v1";
+
 const searchForm = document.getElementById("propertySearch");
 const propertyCards = [...document.querySelectorAll(".property-card")];
 const detailsPage = document.getElementById("propertyDetails");
+const addPropertyPage = document.getElementById("addPropertyPage");
 const homeContent = [...document.querySelectorAll(".home-content")];
 
 let activeProperty = null;
+let selectedPropertyImages = [];
 
-// توحيد النصوص لتسهيل البحث
+// =========================================
+// البحث والفلاتر
+// =========================================
+
 function normalizeText(value) {
   return String(value || "")
     .trim()
@@ -694,7 +1016,6 @@ function normalizeText(value) {
     .replace(/\s+/g," ");
 }
 
-// قراءة الفلاتر
 function getFilters() {
   return {
     keyword:normalizeText(document.getElementById("keyword").value),
@@ -711,7 +1032,6 @@ function getFilters() {
   };
 }
 
-// التحقق من مطابقة العقار للفلاتر
 function matchesProperty(card,filters) {
   const operation = card.dataset.operation;
   const type = card.dataset.type;
@@ -765,11 +1085,9 @@ function matchesProperty(card,filters) {
     bathsMatch;
 }
 
-// تحديث النتائج
 function applyFilters(scrollToResults = false) {
   const filters = getFilters();
 
-  // التحقق من صحة نطاق السعر والمساحة
   if (filters.minPrice > filters.maxPrice) {
     document.getElementById("resultsCount").textContent = "0";
     document.getElementById("activeFilters").textContent =
@@ -789,14 +1107,11 @@ function applyFilters(scrollToResults = false) {
   propertyCards.forEach(card => {
     const show = matchesProperty(card,filters);
     card.hidden = !show;
-
     if (show) visibleCount++;
   });
 
   document.getElementById("resultsCount").textContent = visibleCount;
-
   document.getElementById("noResults").hidden = visibleCount !== 0;
-
   document.getElementById("propertyGrid").hidden = visibleCount === 0;
 
   updateActiveFilters(filters);
@@ -809,17 +1124,18 @@ function applyFilters(scrollToResults = false) {
   }
 }
 
-// عرض ملخص الفلاتر المستخدمة
 function updateActiveFilters(filters) {
   const labels = [];
 
   if (filters.keyword) labels.push("كلمة البحث");
+
   if (filters.operation !== "all")
     labels.push(filters.operation === "sale" ? "للبيع" : "للإيجار");
 
   if (filters.type !== "all") labels.push(filters.type);
   if (filters.governorate !== "all") labels.push(filters.governorate);
   if (filters.district) labels.push("المنطقة: " + filters.district);
+
   if (filters.minPrice > 0 || filters.maxPrice !== Infinity)
     labels.push("السعر");
 
@@ -834,21 +1150,16 @@ function updateActiveFilters(filters) {
     "جميع العقارات المعروضة";
 }
 
-// إرسال نموذج البحث
 searchForm.addEventListener("submit",event => {
   event.preventDefault();
   applyFilters(true);
 });
 
-// تحديث تلقائي عند تغيير أي فلتر
-const filterInputs = searchForm.querySelectorAll("input,select");
-
-filterInputs.forEach(input => {
+searchForm.querySelectorAll("input,select").forEach(input => {
   input.addEventListener("input",() => applyFilters(false));
   input.addEventListener("change",() => applyFilters(false));
 });
 
-// مسح الفلاتر
 function resetFilters() {
   searchForm.reset();
 
@@ -864,6 +1175,7 @@ function resetFilters() {
 }
 
 document.getElementById("resetFilters").addEventListener("click",resetFilters);
+
 document.getElementById("noResultsReset").addEventListener("click",() => {
   resetFilters();
   document.getElementById("properties").scrollIntoView({behavior:"smooth"});
@@ -873,17 +1185,14 @@ document.getElementById("showAllProperties").addEventListener("click",() => {
   resetFilters();
 });
 
-// روابط البيع والإيجار السريعة
 document.querySelectorAll("[data-quick-operation]").forEach(link => {
   link.addEventListener("click",() => {
     document.getElementById("operationType").value =
       link.dataset.quickOperation;
-
     applyFilters(false);
   });
 });
 
-// الضغط على منطقة من المناطق المشهورة
 document.querySelectorAll("[data-area-search]").forEach(link => {
   link.addEventListener("click",() => {
     document.getElementById("district").value = link.dataset.areaSearch;
@@ -892,11 +1201,17 @@ document.querySelectorAll("[data-area-search]").forEach(link => {
   });
 });
 
-// فتح تفاصيل العقار
+// =========================================
+// صفحة تفاصيل العقار
+// =========================================
+
 function showProperty(propertyId) {
   const property = propertyData[propertyId];
-
   if (!property) return;
+
+  if (addPropertyPage.classList.contains("active")) {
+    addPropertyPage.classList.remove("active");
+  }
 
   activeProperty = propertyId;
 
@@ -918,7 +1233,6 @@ function showProperty(propertyId) {
   document.getElementById("detailsDescription").textContent =
     property.description;
 
-  // مواصفات العقار
   document.getElementById("detailsSpecs").innerHTML = `
     <div class="detail-spec">
       <strong>${property.area}</strong>
@@ -938,7 +1252,6 @@ function showProperty(propertyId) {
     </div>
   `;
 
-  // معرض الصور
   const mainImage = document.getElementById("detailsMainImage");
   mainImage.src = property.images[0];
   mainImage.alt = property.title;
@@ -972,7 +1285,6 @@ function showProperty(propertyId) {
     thumbs.appendChild(button);
   });
 
-  // مميزات العقار
   const amenities = document.getElementById("detailsAmenities");
   amenities.replaceChildren();
 
@@ -992,11 +1304,9 @@ function showProperty(propertyId) {
   detailsPage.classList.add("active");
 
   window.location.hash = `property-${propertyId}`;
-
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-// العودة للصفحة الرئيسية
 function closePropertyDetails(updateHash = true) {
   detailsPage.classList.remove("active");
 
@@ -1017,7 +1327,6 @@ function closePropertyDetails(updateHash = true) {
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-// أزرار تفاصيل العقارات
 document.querySelectorAll(".details-btn").forEach(button => {
   button.addEventListener("click",() => {
     const card = button.closest(".property-card");
@@ -1025,12 +1334,10 @@ document.querySelectorAll(".details-btn").forEach(button => {
   });
 });
 
-// زر العودة
 document.getElementById("backToProperties").addEventListener("click",() => {
   closePropertyDetails();
 });
 
-// التعامل مع روابط التفاصيل
 window.addEventListener("hashchange",() => {
   if (window.location.hash.startsWith("#property-")) {
     const propertyId = window.location.hash.replace("#property-","");
@@ -1040,7 +1347,10 @@ window.addEventListener("hashchange",() => {
   }
 });
 
-// نموذج طلب المعاينة - تجريبي حالياً
+// =========================================
+// طلب المعاينة
+// =========================================
+
 document.getElementById("inquiryForm").addEventListener("submit",event => {
   event.preventDefault();
 
@@ -1055,17 +1365,426 @@ document.getElementById("inquiryForm").addEventListener("submit",event => {
   message.hidden = false;
 });
 
+// =========================================
 // المفضلة
+// =========================================
+
 document.querySelectorAll(".favorite-btn").forEach(button => {
   button.addEventListener("click",() => {
     const active = button.classList.toggle("active");
-
     button.textContent = active ? "♥" : "♡";
     button.setAttribute("aria-pressed",String(active));
   });
 });
 
-// فتح تفاصيل العقار من الرابط مباشرة
+// =========================================
+// نظام إضافة عقار جديد
+// =========================================
+
+function getSavedProperties() {
+  try {
+    return JSON.parse(
+      localStorage.getItem(USER_PROPERTIES_KEY) || "[]"
+    );
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveUserProperties(properties) {
+  localStorage.setItem(
+    USER_PROPERTIES_KEY,
+    JSON.stringify(properties)
+  );
+}
+
+// تحديث مصفوفة الكروت المستخدمة في البحث
+function refreshPropertyCards() {
+  propertyCards.splice(
+    0,
+    propertyCards.length,
+    ...document.querySelectorAll(".property-card")
+  );
+}
+
+// فتح صفحة إضافة عقار
+function openAddPropertyPage() {
+  if (activeProperty) {
+    closePropertyDetails(false);
+  }
+
+  addPropertyPage.classList.add("active");
+
+  homeContent.forEach(section => {
+    section.classList.add("is-hidden");
+  });
+
+  history.pushState(
+    {page:"add-property"},
+    "",
+    "#add-property"
+  );
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// إغلاق صفحة الإضافة
+function closeAddPropertyPage() {
+  addPropertyPage.classList.remove("active");
+
+  homeContent.forEach(section => {
+    section.classList.remove("is-hidden");
+  });
+
+  if (window.location.hash === "#add-property") {
+    history.replaceState(
+      null,
+      "",
+      window.location.pathname + window.location.search
+    );
+  }
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.getElementById("openAddProperty").addEventListener("click",event => {
+  event.preventDefault();
+  openAddPropertyPage();
+});
+
+document.getElementById("closeAddProperty").addEventListener("click",closeAddPropertyPage);
+document.getElementById("cancelNewProperty").addEventListener("click",closeAddPropertyPage);
+
+// =========================================
+// اختيار الصور ومعاينتها
+// =========================================
+
+const newImagesInput = document.getElementById("newImages");
+const newImagePreview = document.getElementById("newImagePreview");
+
+newImagesInput.addEventListener("change",async function() {
+  const files = [...this.files];
+
+  if (files.length > 6) {
+    alert("يمكنك اختيار 6 صور فقط للعقار.");
+    this.value = "";
+    return;
+  }
+
+  const maxSize = 2 * 1024 * 1024;
+
+  for (const file of files) {
+    if (!["image/jpeg","image/png","image/webp"].includes(file.type)) {
+      alert("اختر صور JPG أو PNG أو WebP فقط.");
+      this.value = "";
+      return;
+    }
+
+    if (file.size > maxSize) {
+      alert("حجم كل صورة يجب ألا يتجاوز 2 ميجابايت.");
+      this.value = "";
+      return;
+    }
+  }
+
+  try {
+    selectedPropertyImages = await Promise.all(
+      files.map(file => {
+        return new Promise((resolve,reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      })
+    );
+
+    renderImagePreview();
+
+  } catch (error) {
+    alert("حدث خطأ أثناء قراءة الصور. حاول مرة أخرى.");
+    selectedPropertyImages = [];
+  }
+});
+
+function renderImagePreview() {
+  newImagePreview.replaceChildren();
+
+  selectedPropertyImages.forEach((src,index) => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "preview-image";
+
+    const image = document.createElement("img");
+    image.src = src;
+    image.alt = "صورة العقار";
+
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "remove-preview";
+    removeButton.textContent = "×";
+    removeButton.setAttribute("aria-label","حذف الصورة");
+
+    removeButton.addEventListener("click",() => {
+      selectedPropertyImages.splice(index,1);
+      renderImagePreview();
+    });
+
+    wrapper.append(image,removeButton);
+    newImagePreview.appendChild(wrapper);
+  });
+}
+
+// =========================================
+// إنشاء كارت عقار جديد
+// =========================================
+
+function createUserPropertyCard(property) {
+  const card = document.createElement("article");
+  card.className = "property-card";
+
+  card.dataset.propertyId = property.id;
+  card.dataset.operation = property.operation;
+  card.dataset.type = property.type;
+  card.dataset.governorate = property.governorate;
+  card.dataset.location = property.location;
+  card.dataset.price = property.numericPrice;
+  card.dataset.area = property.area;
+  card.dataset.rooms = property.rooms;
+  card.dataset.baths = property.baths;
+
+  const imageWrapper = document.createElement("div");
+  imageWrapper.className = "property-image";
+
+  const image = document.createElement("img");
+  image.src = property.images[0];
+  image.alt = property.title;
+  image.loading = "lazy";
+
+  const badge = document.createElement("span");
+  badge.className = "property-badge" +
+    (property.operation === "rent" ? " rent" : "");
+
+  badge.textContent =
+    property.operation === "rent" ? "للإيجار" : "للبيع";
+
+  const favorite = document.createElement("button");
+  favorite.className = "favorite-btn";
+  favorite.type = "button";
+  favorite.textContent = "♡";
+  favorite.setAttribute("aria-label","إضافة للمفضلة");
+  favorite.setAttribute("aria-pressed","false");
+
+  favorite.addEventListener("click",() => {
+    const active = favorite.classList.toggle("active");
+    favorite.textContent = active ? "♥" : "♡";
+    favorite.setAttribute("aria-pressed",String(active));
+  });
+
+  imageWrapper.append(image,badge,favorite);
+
+  const info = document.createElement("div");
+  info.className = "property-info";
+
+  const location = document.createElement("div");
+  location.className = "property-location";
+  location.textContent = "📍 " + property.location;
+
+  const title = document.createElement("h3");
+  title.textContent = property.title;
+
+  const price = document.createElement("div");
+  price.className = "property-price";
+  price.textContent = Number(property.numericPrice).toLocaleString("en-US") + " ";
+
+  const priceNote = document.createElement("small");
+  priceNote.textContent = property.operation === "rent"
+    ? "ج.م / شهرياً"
+    : "ج.م";
+
+  price.appendChild(priceNote);
+
+  const features = document.createElement("div");
+  features.className = "property-features";
+
+  [
+    `🛏 ${property.rooms} غرف`,
+    `🚿 ${property.baths} حمام`,
+    `📐 ${property.area} م²`
+  ].forEach(text => {
+    const span = document.createElement("span");
+    span.textContent = text;
+    features.appendChild(span);
+  });
+
+  const detailsButton = document.createElement("button");
+  detailsButton.className = "details-btn";
+  detailsButton.type = "button";
+  detailsButton.textContent = "عرض التفاصيل";
+
+  detailsButton.addEventListener("click",() => {
+    showProperty(property.id);
+  });
+
+  info.append(location,title,price,features,detailsButton);
+  card.append(imageWrapper,info);
+
+  return card;
+}
+
+// =========================================
+// تحميل العقارات المحفوظة
+// =========================================
+
+function loadUserProperties() {
+  const savedProperties = getSavedProperties();
+  const grid = document.getElementById("propertyGrid");
+
+  savedProperties.forEach(property => {
+    if (!property || !property.id || !property.images?.length) return;
+
+    if (document.querySelector(
+      `[data-property-id="${property.id}"]`
+    )) return;
+
+    propertyData[property.id] = property;
+
+    const card = createUserPropertyCard(property);
+    grid.appendChild(card);
+  });
+
+  refreshPropertyCards();
+  applyFilters(false);
+}
+
+// =========================================
+// إرسال وحفظ العقار الجديد
+// =========================================
+
+document.getElementById("newPropertyForm").addEventListener("submit",event => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const message = document.getElementById("newPropertyMessage");
+  const submitButton = document.getElementById("submitNewProperty");
+
+  if (!form.reportValidity()) return;
+
+  if (selectedPropertyImages.length === 0) {
+    alert("من فضلك أضف صورة واحدة على الأقل للعقار.");
+    return;
+  }
+
+  const id = "user-" + Date.now();
+
+  const operation = document.getElementById("newOperation").value;
+  const title = document.getElementById("newTitle").value.trim();
+  const type = document.getElementById("newType").value;
+  const governorate = document.getElementById("newGovernorate").value;
+  const district = document.getElementById("newDistrict").value.trim();
+  const address = document.getElementById("newAddress").value.trim();
+
+  const numericPrice = Number(document.getElementById("newPrice").value);
+  const area = Number(document.getElementById("newArea").value);
+  const rooms = Number(document.getElementById("newRooms").value);
+  const baths = Number(document.getElementById("newBaths").value);
+
+  const description = document.getElementById("newDescription").value.trim();
+  const ownerName = document.getElementById("newOwnerName").value.trim();
+  const ownerPhone = document.getElementById("newOwnerPhone").value.trim();
+
+  if (
+    !title || !type || !governorate || !district ||
+    !numericPrice || !area || !description ||
+    !ownerName || !ownerPhone
+  ) {
+    alert("من فضلك أكمل جميع البيانات المطلوبة.");
+    return;
+  }
+
+  const location = district + "، " + governorate;
+
+  const property = {
+    id,
+    reference:"DAR-" + String(Date.now()).slice(-8),
+    operation,
+    status:operation === "rent" ? "للإيجار" : "للبيع",
+    title,
+    location,
+    address,
+    governorate,
+    district,
+    numericPrice,
+    price:numericPrice.toLocaleString("en-US"),
+    priceNote:operation === "rent" ? "ج.م / شهرياً" : "ج.م",
+    type,
+    area:String(area),
+    rooms:String(rooms),
+    baths:String(baths),
+    description,
+    images:[...selectedPropertyImages],
+    amenities:[
+      "موقع العقار: " + location,
+      "المساحة: " + area + " متر",
+      "عدد غرف النوم: " + rooms,
+      "عدد الحمامات: " + baths
+    ],
+    ownerName,
+    ownerPhone,
+    createdAt:new Date().toISOString()
+  };
+
+  submitButton.disabled = true;
+  submitButton.textContent = "جارٍ حفظ العقار...";
+
+  try {
+    const savedProperties = getSavedProperties();
+
+    savedProperties.unshift(property);
+    saveUserProperties(savedProperties);
+
+    propertyData[id] = property;
+
+    const card = createUserPropertyCard(property);
+    document.getElementById("propertyGrid").prepend(card);
+
+    refreshPropertyCards();
+    applyFilters(false);
+
+    form.reset();
+    selectedPropertyImages = [];
+    newImagePreview.replaceChildren();
+
+    message.textContent =
+      "تمت إضافة عقارك بنجاح! أصبح العقار ظاهرًا في قائمة العقارات، ويمكن الوصول إليه من البحث والتفاصيل.";
+
+    message.classList.add("show");
+
+    setTimeout(() => {
+      message.classList.remove("show");
+      closeAddPropertyPage();
+
+      document.getElementById("properties").scrollIntoView({
+        behavior:"smooth"
+      });
+    },1800);
+
+  } catch (error) {
+    console.error("Property save error:",error);
+
+    alert(
+      "تعذر حفظ العقار. مساحة التخزين في المتصفح قد لا تكون كافية. حاول تقليل حجم الصور."
+    );
+
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "إرسال العقار للنشر";
+  }
+});
+
+// =========================================
+// فتح التفاصيل من الرابط مباشرة
+// =========================================
+
 if (window.location.hash.startsWith("#property-")) {
   showProperty(window.location.hash.replace("#property-",""));
 }
@@ -1074,8 +1793,12 @@ if (window.location.hash.startsWith("#property-")) {
 document.getElementById("currentYear").textContent =
   new Date().getFullYear();
 
+// تحميل العقارات المضافة سابقاً
+loadUserProperties();
+
 // العدد الأولي للعقارات
 applyFilters(false);
+
 </script>
 
 </body>
