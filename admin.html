@@ -79,6 +79,22 @@ details.add input{padding:10px 12px;border:1px solid #dcd9d0;border-radius:8px;f
  body.open .scrim{display:block;position:fixed;inset:0;background:#0007;z-index:20}
  main{margin-inline-start:0!important;padding:0 14px 40px}.top h1{font-size:19px}.top .date{display:none}
 }
+
+.modal{position:fixed;inset:0;background:#07101dcc;display:none;align-items:center;justify-content:center;padding:18px;z-index:100}
+.modal.show{display:flex}
+.modal-box{width:min(850px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:15px;padding:24px;box-shadow:0 25px 80px #0004}
+.modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.modal-head h2{font-size:20px;color:var(--navy)}
+.modal-close{border:0;background:#f1f1f1;border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:22px}
+.edit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.edit-field{display:grid;gap:6px}
+.edit-field.full{grid-column:1/-1}
+.edit-field label{font-size:12px;font-weight:700;color:#555}
+.edit-field input,.edit-field select,.edit-field textarea{width:100%;padding:10px 12px;border:1px solid #ddd;border-radius:8px;outline:none;background:#fff}
+.edit-field textarea{min-height:90px;resize:vertical}
+.edit-actions{display:flex;gap:10px;margin-top:18px}
+@media(max-width:600px){.edit-grid{grid-template-columns:1fr}.edit-field.full{grid-column:auto}.modal-box{padding:17px}}
+
 </style>
 </head>
 <body>
@@ -137,6 +153,31 @@ details.add input{padding:10px 12px;border:1px solid #dcd9d0;border-radius:8px;f
   </section>
 </main>
 
+<div class="modal" id="editModal" role="dialog" aria-modal="true" aria-labelledby="editHeading">
+  <div class="modal-box">
+    <div class="modal-head"><h2 id="editHeading">تعديل بيانات العقار</h2><button class="modal-close" type="button" id="closeEdit" aria-label="إغلاق">×</button></div>
+    <form id="editForm">
+      <input type="hidden" id="editId">
+      <div class="edit-grid">
+        <div class="edit-field full"><label for="editTitle">عنوان العقار</label><input id="editTitle" required maxlength="100"></div>
+        <div class="edit-field"><label for="editOperation">نوع العملية</label><select id="editOperation"><option value="sale">بيع</option><option value="rent">إيجار</option></select></div>
+        <div class="edit-field"><label for="editType">نوع العقار</label><input id="editType" required></div>
+        <div class="edit-field"><label for="editGovernorate">المحافظة</label><input id="editGovernorate" required></div>
+        <div class="edit-field"><label for="editDistrict">المنطقة</label><input id="editDistrict" required></div>
+        <div class="edit-field full"><label for="editAddress">العنوان بالتفصيل</label><input id="editAddress"></div>
+        <div class="edit-field"><label for="editPrice">السعر بالجنيه</label><input id="editPrice" type="number" min="1" required></div>
+        <div class="edit-field"><label for="editArea">المساحة بالمتر</label><input id="editArea" type="number" min="1" required></div>
+        <div class="edit-field"><label for="editRooms">عدد الغرف</label><input id="editRooms" type="number" min="0" required></div>
+        <div class="edit-field"><label for="editBaths">عدد الحمامات</label><input id="editBaths" type="number" min="0" required></div>
+        <div class="edit-field full"><label for="editDescription">وصف العقار</label><textarea id="editDescription"></textarea></div>
+        <div class="edit-field"><label for="editOwnerName">اسم المعلن</label><input id="editOwnerName"></div>
+        <div class="edit-field"><label for="editOwnerPhone">رقم المعلن</label><input id="editOwnerPhone"></div>
+      </div>
+      <div class="edit-actions"><button class="btn" type="submit">حفظ التعديلات</button><button class="btn red" type="button" id="cancelEdit">إلغاء</button></div>
+    </form>
+  </div>
+</div>
+
 <script>
 const K={p:"dar_el_aqarat_user_properties_v1",q:"dar_inquiries_v1",c:"dar_clients_v1"};
 const ST={new:"جديد",contacted:"تم التواصل",scheduled:"معاينة محددة",closed:"مغلق"};
@@ -147,13 +188,13 @@ const DEMO=[
 ];
 const $=id=>document.getElementById(id);
 const ld=k=>{try{return JSON.parse(localStorage.getItem(k)||"[]")}catch(e){return[]}};
-const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){alert("تعذر الحفظ: مساحة التخزين ممتلئة.")}};
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){alert("تعذر الحفظ: مساحة التخزين ممتلئة.");return false}};
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const num=n=>Number(n).toLocaleString("en-US");
 const dig=p=>String(p||"").replace(/\D/g,"");
 const wa=p=>{let d=dig(p);if(d.startsWith("0"))d="20"+d.slice(1);return"https://wa.me/"+d};
 const fd=iso=>new Date(iso).toLocaleDateString("ar-EG",{day:"numeric",month:"short",year:"numeric"});
-const props=()=>ld(K.p).filter(p=>p&&p.id).concat(DEMO);
+const props=()=>ld(K.p).filter(p=>p&&p.id&&!p.demo);
 const reqs=()=>ld(K.q).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
 let rFilter="all";
 
@@ -171,19 +212,19 @@ function dashboard(){
   const kp=[["⌂",P.length,"إجمالي العقارات"],["◈",P.filter(p=>p.operation==="sale").length+" / "+P.filter(p=>p.operation==="rent").length,"للبيع / للإيجار"],["☺",C.length,"العملاء"],["✉",R.filter(r=>r.status==="new").length,"طلبات جديدة"]];
   $("kpis").innerHTML=kp.map(k=>`<div class="kpi"><div class="ic">${k[0]}</div><div><b>${k[1]}</b><span>${k[2]}</span></div></div>`).join("");
   const g={};P.forEach(p=>g[p.governorate||"أخرى"]=(g[p.governorate||"أخرى"]||0)+1);
-  const mx=Math.max(...Object.values(g));
-  $("bars").innerHTML=Object.entries(g).map(([k,v])=>`<div class="bar"><span>${esc(k)}</span><div><i style="width:${v/mx*100}%"></i></div><b>${v}</b></div>`).join("");
+  const mx=Math.max(1,...Object.values(g));
+  $("bars").innerHTML=Object.entries(g).map(([k,v])=>`<div class="bar"><span>${esc(k)}</span><div><i style="width:${v/mx*100}%"></i></div><b>${v}</b></div>`).join("")||'<div class="empty">لا توجد عقارات حقيقية مسجلة بعد</div>';
   $("recentReq").innerHTML=R.slice(0,5).map(r=>`<div class="row"><div><b>${esc(r.name)}</b><div class="m">${esc(r.property)}</div></div><div class="end"><span class="tag ${r.status}">${ST[r.status]}</span><div class="m">${fd(r.date)}</div></div></div>`).join("")||'<div class="empty">لا توجد طلبات بعد</div>';
-  $("recentProps").innerHTML=P.slice(0,4).map(p=>`<div class="row"><img src="${esc(p.images[0])}" alt=""><div><b>${esc(p.title)}</b><div class="m">${esc(p.location)}</div></div><div class="end"><b>${num(p.numericPrice)}</b> <span class="tag ${p.operation==="rent"?"rent":""}">${p.operation==="rent"?"إيجار":"بيع"}</span></div></div>`).join("");
+  $("recentProps").innerHTML=P.slice(0,4).map(p=>`<div class="row"><img src="${esc(p.images?.[0]||"")}" alt=""><div><b>${esc(p.title)}</b><div class="m">${esc(p.location)}</div></div><div class="end"><b>${num(p.numericPrice)}</b> <span class="tag ${p.operation==="rent"?"rent":""}">${p.operation==="rent"?"إيجار":"بيع"}</span></div></div>`).join("");
 }
 
 function properties(){
   const q=$("pq").value.trim(),op=$("pop").value;
-  $("pbody").innerHTML=props().filter(p=>(op==="all"||p.operation===op)&&(!q||(p.title+p.location).includes(q))).map(p=>`<tr>
-   <td><img src="${esc(p.images[0])}" alt=""></td><td><b>${esc(p.title)}</b>${p.demo?' <span class="tag demo">تجريبي</span>':""}</td><td>${esc(p.location)}</td>
+  $("pbody").innerHTML=props().filter(p=>(op==="all"||p.operation===op)&&(!q||(String(p.title||"")+String(p.location||"")).includes(q))).map(p=>`<tr>
+   <td><img src="${esc(p.images?.[0]||"")}" alt=""></td><td><b>${esc(p.title)}</b>${p.demo?' <span class="tag demo">تجريبي</span>':""}</td><td>${esc(p.location)}</td>
    <td><b>${num(p.numericPrice)}</b></td><td>${p.rooms} غرف · ${p.baths} حمام · ${p.area} م²</td>
    <td><span class="tag ${p.operation==="rent"?"rent":""}">${p.operation==="rent"?"للإيجار":"للبيع"}</span></td>
-   <td><a class="btn sm" href="index.html#property-${esc(p.id)}">عرض</a> ${p.demo?"":`<button class="btn sm red" data-del="${esc(p.id)}">حذف</button>`}</td></tr>`).join("")||'<tr><td colspan="7" class="empty">لا توجد نتائج</td></tr>';
+   <td><a class="btn sm" href="index.html#property-${esc(p.id)}">عرض</a> <button class="btn sm" data-edit="${esc(p.id)}">تعديل</button> <button class="btn sm red" data-del="${esc(p.id)}">حذف</button></td></tr>`).join("")||'<tr><td colspan="7" class="empty">لا توجد نتائج</td></tr>';
 }
 
 function clientsView(){
@@ -229,11 +270,11 @@ addEventListener("resize",syncMenu);syncMenu();
 $("scrim").onclick=()=>{document.body.classList.remove("open");syncMenu()};
 $("pq").oninput=$("pop").onchange=properties;
 $("cq").oninput=clientsView;
-$("cform").onsubmit=e=>{e.preventDefault();const a=ld(K.c);a.unshift({name:$("cn").value.trim(),phone:$("cp").value.trim(),note:$("cnote").value.trim()});sv(K.c,a);e.target.reset();clientsView()};
+$("cform").onsubmit=e=>{e.preventDefault();const a=ld(K.c);a.unshift({name:$("cn").value.trim(),phone:$("cp").value.trim(),note:$("cnote").value.trim()});if(sv(K.c,a)){e.target.reset();clientsView()}};
 document.addEventListener("click",e=>{
   const d=e.target.closest("[data-del]"),r=e.target.closest("[data-rdel]"),f=e.target.closest("[data-f]");
-  if(d&&confirm("حذف هذا العقار نهائياً؟")){sv(K.p,ld(K.p).filter(p=>p.id!==d.dataset.del));route()}
-  if(r&&confirm("حذف هذا الطلب؟")){sv(K.q,ld(K.q).filter(x=>x.id!==r.dataset.rdel));route()}
+  if(d&&confirm("حذف هذا العقار نهائياً؟")){if(sv(K.p,ld(K.p).filter(p=>p.id!==d.dataset.del)))route()}
+  if(r&&confirm("حذف هذا الطلب؟")){if(sv(K.q,ld(K.q).filter(x=>x.id!==r.dataset.rdel)))route()}
   if(f){rFilter=f.dataset.f;requests()}
 });
 document.addEventListener("change",e=>{
@@ -242,6 +283,7 @@ document.addEventListener("change",e=>{
 });
 $("seed").onclick=()=>{
   const n=Date.now(),d=h=>new Date(n-h*36e5).toISOString();
+  if(reqs().length){alert("توجد طلبات بالفعل. لن يتم استبدالها ببيانات تجريبية.");return}
   sv(K.q,[
    {id:"q"+n,name:"أحمد سمير",phone:"01012345678",property:DEMO[0].title,ref:"DAR-1001",note:"أفضل المعاينة مساءً",status:"new",date:d(2)},
    {id:"q"+(n+1),name:"منى عادل",phone:"01198765432",property:DEMO[1].title,ref:"DAR-1002",note:"",status:"contacted",date:d(30)},
