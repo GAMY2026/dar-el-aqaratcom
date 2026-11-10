@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة التحكم | دار العقارات</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#101b2c;--navy2:#192940;--gold:#c6a15b;--cream:#f4f3ef;--text:#252b35;--muted:#7a8190;--line:#e8e6e0;--ok:#23734d;--bad:#b52d3d}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo',sans-serif;background:var(--cream);color:var(--text);display:flex;min-height:100vh}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}
+/* sidebar */
+.sb{width:250px;background:var(--navy);color:#cfd6e2;position:fixed;inset-block:0;inset-inline-start:0;display:flex;flex-direction:column;padding:22px 14px;z-index:30;transition:transform .3s}
+.sb .logo{color:var(--gold);font-weight:800;font-size:22px;padding:4px 12px 22px;border-bottom:1px solid #ffffff18;margin-bottom:16px}
+.sb .logo small{display:block;font-size:10px;letter-spacing:3px;color:#9aa5b8;direction:ltr;text-align:right}
+.sb nav{display:grid;gap:4px}
+.sb nav a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:9px;font-size:14px;font-weight:600;transition:.2s;position:relative}
+.sb nav a i{font-style:normal;width:22px;text-align:center;color:var(--gold)}
+.sb nav a:hover{background:#ffffff0d}
+.sb nav a.on{background:var(--navy2);color:#fff;box-shadow:inset -3px 0 var(--gold)}
+.sb nav .n{margin-inline-start:auto;background:var(--gold);color:var(--navy);font-size:11px;font-weight:800;border-radius:20px;padding:1px 8px}
+.sb .foot{margin-top:auto;display:grid;gap:8px;font-size:13px}
+.sb .foot a{padding:10px 14px;border:1px solid #ffffff26;border-radius:9px;text-align:center}
+.sb .foot a:hover{background:var(--gold);color:var(--navy)}
+main{margin-inline-start:250px;flex:1;min-width:0;padding:0 28px 50px}
+.top{display:flex;align-items:center;gap:14px;padding:20px 0}
+.top h1{font-size:24px;color:var(--navy)}
+.top .date{margin-inline-start:auto;color:var(--muted);font-size:13px}
+.burger{display:grid;place-items:center;background:var(--navy);color:#fff;border:0;border-radius:8px;width:40px;height:40px;font-size:20px;cursor:pointer;transition:background .2s}
+.burger:hover{background:var(--gold);color:var(--navy)}
+main{transition:margin .3s}
+body.collapsed .sb{transform:translateX(100%)}
+body.collapsed main{margin-inline-start:0}
+.view{display:none}.view.on{display:block}
+/* cards */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.kpi{background:#fff;border-radius:13px;padding:20px;border:1px solid var(--line);display:flex;gap:14px;align-items:center}
+.kpi .ic{width:48px;height:48px;border-radius:12px;background:#c6a15b22;color:var(--gold);display:grid;place-items:center;font-size:22px}
+.kpi b{display:block;font-size:28px;color:var(--navy);line-height:1.2}.kpi span{font-size:12px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+.card{background:#fff;border-radius:13px;padding:22px;border:1px solid var(--line)}
+.card h3{color:var(--navy);font-size:17px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.card h3 a{font-size:12px;color:var(--gold)}
+.bar{display:grid;grid-template-columns:90px 1fr 30px;gap:10px;align-items:center;font-size:13px;margin-bottom:12px}
+.bar div{height:10px;background:#f0eee9;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),#e2c286);border-radius:6px}
+.row{display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}
+.row:last-child{border:0}.row img{width:54px;height:42px;object-fit:cover;border-radius:6px}
+.row .m{color:var(--muted);font-size:12px}.row .end{margin-inline-start:auto;text-align:end}
+/* tables */
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.tools input,.tools select{padding:10px 13px;border:1px solid #dcd9d0;border-radius:8px;background:#fff;outline:none;min-width:180px}
+.tools input:focus{border-color:var(--gold)}
+.btn{background:var(--navy);color:#fff;border:0;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer}
+.btn:hover{background:var(--gold);color:var(--navy)}.btn.sm{padding:6px 12px;font-size:12px}
+.btn.red{background:#f7e3e6;color:var(--bad)}.btn.red:hover{background:var(--bad);color:#fff}
+.btn.wa{background:#e3f6ea;color:var(--ok)}.btn.wa:hover{background:#25D366;color:#fff}
+.tw{background:#fff;border:1px solid var(--line);border-radius:13px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:720px}
+th{background:#faf9f6;color:var(--muted);font-size:12px;text-align:start;padding:13px 14px;font-weight:700}
+td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:middle}
+td img{width:64px;height:48px;object-fit:cover;border-radius:7px;display:block}
+.tag{display:inline-block;padding:3px 11px;border-radius:20px;font-size:11px;font-weight:800;background:#c6a15b2e;color:#7b5f25}
+.tag.rent{background:#e1e7f2;color:#26406b}.tag.new{background:#fde8d4;color:#a4521a}.tag.contacted{background:#e1e7f2;color:#26406b}.tag.scheduled{background:#e3f6ea;color:var(--ok)}.tag.closed{background:#eee;color:#666}
+.tag.demo{background:#eee;color:#777}
+td select{padding:6px 8px;border:1px solid #dcd9d0;border-radius:6px;background:#fff}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.pills button{border:1px solid #dcd9d0;background:#fff;border-radius:20px;padding:6px 16px;cursor:pointer;font-size:13px}
+.pills button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted)}.empty .btn{margin-top:14px}
+details.add{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:16px}
+details.add summary{cursor:pointer;font-weight:700;color:var(--navy)}
+details.add form{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+details.add input{padding:10px 12px;border:1px solid #dcd9d0;border-radius:8px;flex:1;min-width:150px}
+.scrim{display:none}
+@media(max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}}
+@media(max-width:800px){
+ .sb,body.collapsed .sb{transform:translateX(100%)}body.open .sb{transform:none}
+ body.open .scrim{display:block;position:fixed;inset:0;background:#0007;z-index:20}
+ main{margin-inline-start:0!important;padding:0 14px 40px}.top h1{font-size:19px}.top .date{display:none}
+}
+</style>
+</head>
+<body>
+<aside class="sb" id="sb">
+  <div class="logo">دار العقارات<small>ADMIN PANEL</small></div>
+  <nav>
+    <a href="#dashboard" data-v="dashboard"><i>▦</i>لوحة التحكم</a>
+    <a href="#properties" data-v="properties"><i>⌂</i>إدارة العقارات</a>
+    <a href="#clients" data-v="clients"><i>☺</i>إدارة العملاء</a>
+    <a href="#requests" data-v="requests"><i>✉</i>طلبات المعاينة<span class="n" id="newBadge">0</span></a>
+  </nav>
+  <div class="foot">
+    <a href="index.html#add-property">+ إضافة عقار</a>
+    <a href="index.html">← العودة للموقع</a>
+  </div>
+</aside>
+<div class="scrim" id="scrim"></div>
+
+<main>
+  <div class="top">
+    <button class="burger" id="burger" aria-label="فتح أو إغلاق القائمة الجانبية" aria-controls="sb" aria-expanded="true" title="القائمة الجانبية">☰</button>
+    <h1 id="title">لوحة التحكم</h1>
+    <span class="date" id="today"></span>
+  </div>
+
+  <section class="view" id="v-dashboard">
+    <div class="kpis" id="kpis"></div>
+    <div class="grid2">
+      <div class="card"><h3>العقارات حسب المحافظة</h3><div id="bars"></div></div>
+      <div class="card"><h3>آخر طلبات المعاينة <a href="#requests">عرض الكل</a></h3><div id="recentReq"></div></div>
+    </div>
+    <div class="card" style="margin-top:16px"><h3>آخر العقارات المضافة <a href="#properties">إدارة العقارات</a></h3><div id="recentProps"></div></div>
+  </section>
+
+  <section class="view" id="v-properties">
+    <div class="tools">
+      <input id="pq" type="search" placeholder="ابحث بالاسم أو المنطقة">
+      <select id="pop"><option value="all">بيع وإيجار</option><option value="sale">للبيع</option><option value="rent">للإيجار</option></select>
+      <a class="btn" href="index.html#add-property" style="margin-inline-start:auto">+ إضافة عقار</a>
+    </div>
+    <div class="tw"><table><thead><tr><th>الصورة</th><th>العقار</th><th>الموقع</th><th>السعر (ج.م)</th><th>المواصفات</th><th>الحالة</th><th>إجراءات</th></tr></thead><tbody id="pbody"></tbody></table></div>
+  </section>
+
+  <section class="view" id="v-clients">
+    <details class="add"><summary>+ إضافة عميل جديد</summary>
+      <form id="cform"><input id="cn" placeholder="اسم العميل" required><input id="cp" type="tel" placeholder="رقم الهاتف" required pattern="[0-9+()\- ]{8,20}"><input id="cnote" placeholder="ملاحظات (اختياري)"><button class="btn">حفظ</button></form>
+    </details>
+    <div class="tools"><input id="cq" type="search" placeholder="ابحث بالاسم أو الهاتف"></div>
+    <div class="tw"><table><thead><tr><th>العميل</th><th>الهاتف</th><th>النوع</th><th>الطلبات</th><th>العقارات</th><th>ملاحظات</th><th>تواصل</th></tr></thead><tbody id="cbody"></tbody></table></div>
+  </section>
+
+  <section class="view" id="v-requests">
+    <div class="pills" id="pills"></div>
+    <div class="tw"><table><thead><tr><th>التاريخ</th><th>العميل</th><th>العقار</th><th>ملاحظات</th><th>الحالة</th><th>إجراءات</th></tr></thead><tbody id="rbody"></tbody></table></div>
+    <div class="empty" id="rempty" hidden>لا توجد طلبات معاينة بعد.<br>تظهر هنا الطلبات القادمة من صفحة تفاصيل العقار.<br><button class="btn" id="seed">تحميل بيانات تجريبية</button></div>
+  </section>
+</main>
+
+<script>
+const K={p:"dar_el_aqarat_user_properties_v1",q:"dar_inquiries_v1",c:"dar_clients_v1"};
+const ST={new:"جديد",contacted:"تم التواصل",scheduled:"معاينة محددة",closed:"مغلق"};
+const DEMO=[
+ {id:"apt-tajamo",title:"شقة فاخرة بتصميم عصري",location:"التجمع الخامس، القاهرة",governorate:"القاهرة",operation:"sale",numericPrice:3500000,area:180,rooms:3,baths:2,images:["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=300"],demo:1},
+ {id:"villa-zayed",title:"فيلا مستقلة بحديقة خاصة",location:"الشيخ زايد، الجيزة",governorate:"الجيزة",operation:"rent",numericPrice:45000,area:320,rooms:5,baths:4,images:["https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=300"],demo:1},
+ {id:"apt-capital",title:"شقة راقية بإطلالة مميزة",location:"العاصمة الإدارية الجديدة",governorate:"القاهرة",operation:"sale",numericPrice:2800000,area:145,rooms:2,baths:2,images:["https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=300"],demo:1}
+];
+const $=id=>document.getElementById(id);
+const ld=k=>{try{return JSON.parse(localStorage.getItem(k)||"[]")}catch(e){return[]}};
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){alert("تعذر الحفظ: مساحة التخزين ممتلئة.")}};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const num=n=>Number(n).toLocaleString("en-US");
+const dig=p=>String(p||"").replace(/\D/g,"");
+const wa=p=>{let d=dig(p);if(d.startsWith("0"))d="20"+d.slice(1);return"https://wa.me/"+d};
+const fd=iso=>new Date(iso).toLocaleDateString("ar-EG",{day:"numeric",month:"short",year:"numeric"});
+const props=()=>ld(K.p).filter(p=>p&&p.id).concat(DEMO);
+const reqs=()=>ld(K.q).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+let rFilter="all";
+
+function clients(){
+  const map={};
+  const put=(name,phone,role,note)=>{const k=dig(phone)||name;if(!k)return;const c=map[k]||(map[k]={name,phone,roles:new Set(),req:0,props:0,note:""});c.roles.add(role);if(note)c.note=note;c.name=c.name||name;return c};
+  ld(K.c).forEach(c=>put(c.name,c.phone,"عميل",c.note));
+  reqs().forEach(r=>{const c=put(r.name,r.phone,"مهتم");if(c)c.req++});
+  ld(K.p).forEach(p=>{if(p.ownerName){const c=put(p.ownerName,p.ownerPhone,"معلن");if(c)c.props++}});
+  return Object.values(map);
+}
+
+function dashboard(){
+  const P=props(),R=reqs(),C=clients();
+  const kp=[["⌂",P.length,"إجمالي العقارات"],["◈",P.filter(p=>p.operation==="sale").length+" / "+P.filter(p=>p.operation==="rent").length,"للبيع / للإيجار"],["☺",C.length,"العملاء"],["✉",R.filter(r=>r.status==="new").length,"طلبات جديدة"]];
+  $("kpis").innerHTML=kp.map(k=>`<div class="kpi"><div class="ic">${k[0]}</div><div><b>${k[1]}</b><span>${k[2]}</span></div></div>`).join("");
+  const g={};P.forEach(p=>g[p.governorate||"أخرى"]=(g[p.governorate||"أخرى"]||0)+1);
+  const mx=Math.max(...Object.values(g));
+  $("bars").innerHTML=Object.entries(g).map(([k,v])=>`<div class="bar"><span>${esc(k)}</span><div><i style="width:${v/mx*100}%"></i></div><b>${v}</b></div>`).join("");
+  $("recentReq").innerHTML=R.slice(0,5).map(r=>`<div class="row"><div><b>${esc(r.name)}</b><div class="m">${esc(r.property)}</div></div><div class="end"><span class="tag ${r.status}">${ST[r.status]}</span><div class="m">${fd(r.date)}</div></div></div>`).join("")||'<div class="empty">لا توجد طلبات بعد</div>';
+  $("recentProps").innerHTML=P.slice(0,4).map(p=>`<div class="row"><img src="${esc(p.images[0])}" alt=""><div><b>${esc(p.title)}</b><div class="m">${esc(p.location)}</div></div><div class="end"><b>${num(p.numericPrice)}</b> <span class="tag ${p.operation==="rent"?"rent":""}">${p.operation==="rent"?"إيجار":"بيع"}</span></div></div>`).join("");
+}
+
+function properties(){
+  const q=$("pq").value.trim(),op=$("pop").value;
+  $("pbody").innerHTML=props().filter(p=>(op==="all"||p.operation===op)&&(!q||(p.title+p.location).includes(q))).map(p=>`<tr>
+   <td><img src="${esc(p.images[0])}" alt=""></td><td><b>${esc(p.title)}</b>${p.demo?' <span class="tag demo">تجريبي</span>':""}</td><td>${esc(p.location)}</td>
+   <td><b>${num(p.numericPrice)}</b></td><td>${p.rooms} غرف · ${p.baths} حمام · ${p.area} م²</td>
+   <td><span class="tag ${p.operation==="rent"?"rent":""}">${p.operation==="rent"?"للإيجار":"للبيع"}</span></td>
+   <td><a class="btn sm" href="index.html#property-${esc(p.id)}">عرض</a> ${p.demo?"":`<button class="btn sm red" data-del="${esc(p.id)}">حذف</button>`}</td></tr>`).join("")||'<tr><td colspan="7" class="empty">لا توجد نتائج</td></tr>';
+}
+
+function clientsView(){
+  const q=$("cq").value.trim();
+  $("cbody").innerHTML=clients().filter(c=>!q||(c.name+c.phone).includes(q)).map(c=>`<tr>
+   <td><b>${esc(c.name)}</b></td><td dir="ltr" style="text-align:end">${esc(c.phone)}</td>
+   <td>${[...c.roles].map(r=>`<span class="tag">${r}</span>`).join(" ")}</td><td>${c.req}</td><td>${c.props}</td><td>${esc(c.note)}</td>
+   <td>${c.phone?`<a class="btn sm wa" target="_blank" rel="noopener" href="${wa(c.phone)}">واتساب</a> <a class="btn sm" href="tel:${esc(dig(c.phone))}">اتصال</a>`:""}</td></tr>`).join("")||'<tr><td colspan="7" class="empty">لا يوجد عملاء بعد</td></tr>';
+}
+
+function requests(){
+  const R=reqs(),cnt=s=>s==="all"?R.length:R.filter(r=>r.status===s).length;
+  $("pills").innerHTML=["all",...Object.keys(ST)].map(s=>`<button class="${s===rFilter?"on":""}" data-f="${s}">${s==="all"?"الكل":ST[s]} (${cnt(s)})</button>`).join("");
+  $("rempty").hidden=R.length>0;
+  $("rbody").innerHTML=R.filter(r=>rFilter==="all"||r.status===rFilter).map(r=>`<tr>
+   <td>${fd(r.date)}</td><td><b>${esc(r.name)}</b><div dir="ltr" style="text-align:end;color:var(--muted);font-size:12px">${esc(r.phone)}</div></td>
+   <td>${esc(r.property)}<div style="color:var(--muted);font-size:12px">${esc(r.ref)}</div></td><td>${esc(r.note)||"—"}</td>
+   <td><select data-st="${esc(r.id)}">${Object.entries(ST).map(([k,v])=>`<option value="${k}" ${k===r.status?"selected":""}>${v}</option>`).join("")}</select></td>
+   <td><a class="btn sm wa" target="_blank" rel="noopener" href="${wa(r.phone)}">واتساب</a> <button class="btn sm red" data-rdel="${esc(r.id)}">حذف</button></td></tr>`).join("");
+}
+
+const T={dashboard:["لوحة التحكم",dashboard],properties:["إدارة العقارات",properties],clients:["إدارة العملاء",clientsView],requests:["طلبات المعاينة",requests]};
+function route(){
+  const v=T[location.hash.slice(1)]?location.hash.slice(1):"dashboard";
+  document.querySelectorAll(".view").forEach(s=>s.classList.toggle("on",s.id==="v-"+v));
+  document.querySelectorAll(".sb nav a").forEach(a=>a.classList.toggle("on",a.dataset.v===v));
+  $("title").textContent=T[v][0];T[v][1]();
+  $("newBadge").textContent=reqs().filter(r=>r.status==="new").length;
+  document.body.classList.remove("open");
+}
+addEventListener("hashchange",route);
+$("today").textContent=new Date().toLocaleDateString("ar-EG",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+const mobile=()=>matchMedia("(max-width:800px)").matches;
+function syncMenu(){$("burger").setAttribute("aria-expanded",String(mobile()?document.body.classList.contains("open"):!document.body.classList.contains("collapsed")))}
+try{if(localStorage.getItem("dar_admin_sb")==="0")document.body.classList.add("collapsed")}catch(e){}
+$("burger").onclick=()=>{
+  if(mobile())document.body.classList.toggle("open");
+  else{const c=document.body.classList.toggle("collapsed");try{localStorage.setItem("dar_admin_sb",c?"0":"1")}catch(e){}}
+  syncMenu();
+};
+addEventListener("keydown",e=>{if(e.key==="Escape"&&document.body.classList.contains("open")){document.body.classList.remove("open");syncMenu()}});
+addEventListener("resize",syncMenu);syncMenu();
+$("scrim").onclick=()=>{document.body.classList.remove("open");syncMenu()};
+$("pq").oninput=$("pop").onchange=properties;
+$("cq").oninput=clientsView;
+$("cform").onsubmit=e=>{e.preventDefault();const a=ld(K.c);a.unshift({name:$("cn").value.trim(),phone:$("cp").value.trim(),note:$("cnote").value.trim()});sv(K.c,a);e.target.reset();clientsView()};
+document.addEventListener("click",e=>{
+  const d=e.target.closest("[data-del]"),r=e.target.closest("[data-rdel]"),f=e.target.closest("[data-f]");
+  if(d&&confirm("حذف هذا العقار نهائياً؟")){sv(K.p,ld(K.p).filter(p=>p.id!==d.dataset.del));route()}
+  if(r&&confirm("حذف هذا الطلب؟")){sv(K.q,ld(K.q).filter(x=>x.id!==r.dataset.rdel));route()}
+  if(f){rFilter=f.dataset.f;requests()}
+});
+document.addEventListener("change",e=>{
+  const s=e.target.closest("[data-st]");if(!s)return;
+  sv(K.q,ld(K.q).map(x=>x.id===s.dataset.st?{...x,status:s.value}:x));route();
+});
+$("seed").onclick=()=>{
+  const n=Date.now(),d=h=>new Date(n-h*36e5).toISOString();
+  sv(K.q,[
+   {id:"q"+n,name:"أحمد سمير",phone:"01012345678",property:DEMO[0].title,ref:"DAR-1001",note:"أفضل المعاينة مساءً",status:"new",date:d(2)},
+   {id:"q"+(n+1),name:"منى عادل",phone:"01198765432",property:DEMO[1].title,ref:"DAR-1002",note:"",status:"contacted",date:d(30)},
+   {id:"q"+(n+2),name:"كريم حسن",phone:"01234567890",property:DEMO[2].title,ref:"DAR-1003",note:"مهتم بالدفع كاش",status:"scheduled",date:d(70)}
+  ]);route();
+};
+route();
+</script>
+</body>
+</html>
