@@ -449,16 +449,58 @@ footer p {font-size:13px;line-height:2}
     .hero-photo .hero-cta:hover{background:#fff;transform:translateY(-2px)}
     @media(max-width:900px){.hero-photo{min-height:570px;background-position:58% center}.hero-photo .hero-content{padding:85px 0 120px}}
     @media(max-width:550px){.hero-photo{min-height:520px;background-position:58% center}.hero-photo .hero-content{padding:75px 0 105px}.hero-photo p{font-size:14px}}
+
+    /* INTERACTIVE 3D BUILDING HERO */
+    .hero3d{height:760px;min-height:680px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 66% 42%,#263d59 0%,#14243a 42%,#091321 100%);color:#fff;isolation:isolate}
+    .hero3d-stage{position:absolute;inset:0;z-index:0}
+    #buildingCanvas{width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+    #buildingCanvas:active{cursor:grabbing}
+    .hero3d-vignette{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,12,23,.08) 0%,rgba(5,12,23,.22) 42%,rgba(5,12,23,.92) 100%),linear-gradient(0deg,rgba(5,12,23,.7),transparent 30%)}
+    .hero3d-copy{position:relative;z-index:2;pointer-events:none;padding-top:125px}
+    .hero3d-copy>*{pointer-events:auto}
+    .hero3d-copy .hero-tag{color:var(--gold);font-size:14px;font-weight:800;margin-bottom:18px}
+    .hero3d-copy h1{font-size:clamp(38px,5.4vw,68px);line-height:1.45;font-weight:800;margin-bottom:18px;max-width:550px}
+    .hero3d-copy h1 span{color:var(--gold)}
+    .hero3d-copy p{max-width:470px;color:#e7eaf0;font-size:15px;line-height:2.1}
+    .hero3d-copy .hero-cta{display:inline-flex;margin-top:25px;padding:13px 25px;border-radius:7px;background:var(--gold);color:var(--navy);font-weight:800;transition:.25s}
+    .hero3d-copy .hero-cta:hover{background:#fff;transform:translateY(-2px)}
+    .hero3d-hud{position:absolute;top:25px;left:4%;display:flex;align-items:center;gap:10px;padding:10px 15px;border:1px solid #ffffff30;border-radius:30px;background:#0a1728a8;backdrop-filter:blur(12px);font-size:11px;color:#e7edf5;direction:rtl}
+    .hero3d-hud b{color:var(--gold);border-right:1px solid #ffffff35;padding-right:10px}
+    .hud-dot{width:7px;height:7px;background:#63d6a0;border-radius:50%;box-shadow:0 0 12px #63d6a0}
+    .hero3d-controls{position:absolute;bottom:28px;left:4%;display:flex;align-items:center;gap:9px;flex-wrap:wrap;direction:rtl}
+    .hero3d-controls span,.hero3d-controls button{font-size:11px;color:#e7edf5;background:#0a1728b8;border:1px solid #ffffff2c;border-radius:20px;padding:9px 13px;backdrop-filter:blur(10px)}
+    .hero3d-controls button{cursor:pointer;color:var(--gold)}
+    .floor-panel{position:absolute;z-index:3;left:4%;top:100px;width:190px;max-height:570px;padding:14px;border:1px solid #ffffff2c;border-radius:13px;background:#0a1728c9;backdrop-filter:blur(16px);box-shadow:0 18px 55px #0004}
+    .floor-panel-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.floor-panel-head strong{font-size:13px}.floor-panel-head small{font-size:10px;color:var(--gold)}
+    .floor-list{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-height:300px;overflow:auto;padding:2px}
+    .floor-btn{border:1px solid #ffffff20;background:#ffffff0c;color:#dce4ef;border-radius:6px;padding:7px 3px;font-size:10px;cursor:pointer;transition:.2s}
+    .floor-btn:hover,.floor-btn.active{background:var(--gold);color:#101b2c;border-color:var(--gold);font-weight:800}
+    .floor-inspection{font-size:10px;line-height:1.8;color:#d5deea;border-top:1px solid #ffffff20;margin-top:10px;padding-top:10px;min-height:55px}
+    .floor-reset{width:100%;margin-top:8px;border:0;border-radius:6px;background:#ffffff16;color:var(--gold);padding:8px;cursor:pointer;font-size:10px}
+    .hero3d-bottom-note{position:absolute;z-index:2;bottom:31px;right:4%;font-size:11px;color:#d5deea;pointer-events:none}
+    @media(max-width:900px){.hero3d{height:760px;min-height:700px}.hero3d-vignette{background:linear-gradient(90deg,rgba(5,12,23,.05),rgba(5,12,23,.58)),linear-gradient(0deg,rgba(5,12,23,.78),transparent 45%)}.hero3d-copy{padding-top:100px}.floor-panel{top:auto;bottom:95px;left:3%;width:165px;max-height:420px}.floor-list{max-height:200px}.hero3d-controls{bottom:22px;left:3%}.hero3d-bottom-note{display:none}}
+    @media(max-width:550px){.hero3d{height:820px;min-height:760px}.hero3d-copy{padding-top:65px}.hero3d-copy h1{font-size:37px;max-width:300px}.hero3d-copy p{font-size:13px;max-width:310px}.hero3d-copy .hero-cta{margin-top:15px}.hero3d-hud{top:14px;left:3%;font-size:9px}.floor-panel{left:3%;right:3%;bottom:75px;width:auto;max-height:230px;padding:10px}.floor-list{grid-template-columns:repeat(6,1fr);max-height:95px}.floor-btn{padding:6px 2px;font-size:9px}.floor-inspection{min-height:35px;margin-top:6px;padding-top:6px}.floor-reset{margin-top:4px;padding:6px}.hero3d-controls{bottom:17px;left:3%;gap:5px}.hero3d-controls span,.hero3d-controls button{font-size:9px;padding:7px 9px}}
   </style>
-  <section class="hero hero-photo" id="bh">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-tag">اختيارك العقاري يبدأ من عنوان مميز</div>
-        <h1>مساحات أرقى<br><span>لحياة تستحقها</span></h1>
-        <p>اكتشف عقارات مختارة بعناية في أفضل المناطق، من الشقق العصرية إلى الفلل الفاخرة. نساعدك تلاقي المكان المناسب بثقة وراحة.</p>
-        <a class="hero-cta" href="#properties">اكتشف العقارات</a>
-      </div>
+  <section class="hero3d" id="bh" aria-label="استكشف العمارة ثلاثية الأبعاد">
+    <div class="hero3d-stage" id="buildingStage">
+      <canvas id="buildingCanvas" aria-label="نموذج ثلاثي الأبعاد لعمارة سكنية من 18 دور"></canvas>
+      <div class="hero3d-vignette"></div>
+      <div class="hero3d-hud"><span class="hud-dot"></span><span>نموذج معماري تفاعلي</span><b>18 دور</b></div>
+      <div class="hero3d-controls"><span>اسحب للتدوير</span><span>عجلة الماوس للتقريب</span><button id="resetBuildingView" type="button">إعادة العرض ↺</button></div>
     </div>
+    <div class="container hero3d-copy">
+      <div class="hero-tag">اختيارك العقاري يبدأ من عنوان مميز</div>
+      <h1>اكتشف العقار<br><span>من زاوية جديدة</span></h1>
+      <p>استكشف عمارتنا التفاعلية، اقترب من الأدوار، واختر الدور الذي تريد فحص تفاصيله الداخلية.</p>
+      <a class="hero-cta" href="#properties">اكتشف العقارات</a>
+    </div>
+    <aside class="floor-panel" aria-label="اختيار دور للفحص">
+      <div class="floor-panel-head"><strong>فحص الأدوار</strong><small id="selectedFloorLabel">اختر دوراً</small></div>
+      <div class="floor-list" id="floorList"></div>
+      <div class="floor-inspection" id="floorInspection">اختر أحد الأدوار لعرض تفاصيله المعمارية.</div>
+      <button class="floor-reset" id="closeFloorInspection" type="button">عرض العمارة كاملة</button>
+    </aside>
+    <div class="hero3d-bottom-note">حرّك المؤشر حول المبنى لاكتشافه من جميع الجهات</div>
   </section>
 
   <div class="container search-wrap">
@@ -942,6 +984,115 @@ footer p {font-size:13px;line-height:2}
     <p>© <span id="currentYear"></span> دار العقارات. جميع الحقوق محفوظة. · <a href="admin.html" style="color:var(--gold)">لوحة التحكم</a></p>
   </div>
 </footer>
+
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+
+const canvas = document.getElementById('buildingCanvas');
+const stage = document.getElementById('buildingStage');
+const floorList = document.getElementById('floorList');
+const floorLabel = document.getElementById('selectedFloorLabel');
+const floorInspection = document.getElementById('floorInspection');
+if (canvas && stage && floorList) {
+  let renderer, scene, camera, tower, selectedFloor = 0, targetFloor = 0;
+  let targetYaw = -0.48, yaw = -0.48, targetPitch = 0.08, pitch = 0.08;
+  let targetZoom = 29, zoom = 29, dragging = false, lastX = 0, lastY = 0;
+  const floorMeshes = [], floorInterior = [], raycaster = new THREE.Raycaster(), pointer = new THREE.Vector2();
+  const isMobile = matchMedia('(max-width:700px)').matches;
+  const material = (color, roughness=.55, metalness=.08, transparent=false, opacity=1) => new THREE.MeshStandardMaterial({color,roughness,metalness,transparent,opacity});
+  const mats = {
+    concrete:material('#d9d7d0'), dark:material('#26364a'), glass:material('#75a9c4',.18,.45,true,.48), gold:material('#c6a15b',.3,.65),
+    interior:material('#eee8dc'), wall:material('#c9c4b8'), green:material('#436d5b'), warm:material('#d8b98a')
+  };
+  try {
+    renderer = new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    scene = new THREE.Scene(); scene.fog = new THREE.Fog(0x101d30,35,85);
+    camera = new THREE.PerspectiveCamera(34,1,.1,150); camera.position.set(19,13,25);
+    scene.add(new THREE.HemisphereLight(0xdcecff,0x35404b,2.0));
+    const sun = new THREE.DirectionalLight(0xffe2b4,3.1); sun.position.set(-12,25,16); sun.castShadow=true; scene.add(sun);
+    const fill = new THREE.DirectionalLight(0x7aa9db,1.2); fill.position.set(15,12,-15); scene.add(fill);
+    const ground = new THREE.Mesh(new THREE.CircleGeometry(19,80),material('#17283a',.85)); ground.rotation.x=-Math.PI/2; ground.position.y=-.18; ground.receiveShadow=true; scene.add(ground);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(7.1,.035,8,100),mats.gold); ring.rotation.x=Math.PI/2; ring.position.y=-.12; scene.add(ring);
+    tower = new THREE.Group(); scene.add(tower);
+    const floorH=1.02, width=8.4, depth=6.2, baseY=0.25;
+    const box=(parent,w,h,d,mat,x,y,z,cast=true)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);m.castShadow=cast;m.receiveShadow=true;parent.add(m);return m;};
+    // Podium and 18 individually selectable residential floors.
+    box(tower,10.4,.65,8.2,mats.dark,0,0,0);
+    box(tower,9.4,.18,7.2,mats.gold,0,.38,0);
+    for(let f=1;f<=18;f++){
+      const y=baseY+f*floorH;
+      const group=new THREE.Group(); group.position.y=y; group.userData.floor=f; tower.add(group); floorMeshes.push(group);
+      const slab=box(group,width,.13,depth,mats.concrete,0,0,0); slab.userData.floor=f;
+      box(group,width,.10,depth,mats.dark,0,.12,0);
+      // Four facade sides, split into glass bays with solid columns.
+      const levels=3, bayW=1.22;
+      for(let i=0;i<levels;i++){
+        const z=-depth/2+.18+i*(depth-.36)/levels;
+        box(group,width-.3,.76,.055,mats.glass,0,.53,z,false);
+        for(let x=-3.6;x<=3.61;x+=1.2) box(group,.09,.83,.13,mats.concrete,x,.53,z+.05);
+      }
+      for(let side of [-1,1]){
+        for(let i=0;i<5;i++){
+          const x=-3.35+i*1.67;
+          box(group,.055,.76,depth-.4,mats.glass,x,.53,side*(depth/2-.02),false);
+          box(group,.09,.83,.12,mats.concrete,x,.53,side*(depth/2+.04));
+        }
+      }
+      // Balcony bands on the front facade.
+      box(group,width+.55,.10,.95,mats.concrete,0,.24,depth/2+.40);
+      box(group,width+.55,.08,.08,mats.gold,0,.72,depth/2+.84,false);
+      for(let x=-3.7;x<=3.71;x+=.9) box(group,.035,.48,.035,mats.glass,x,.48,depth/2+.84,false);
+      // Interior apartment floor plate and simple rooms/furniture, revealed when a floor is selected.
+      const inside=new THREE.Group(); inside.position.y=y; inside.visible=false; tower.add(inside); floorInterior.push(inside);
+      box(inside,width-.35,.035,depth-.35,mats.interior,0,.20,0,false);
+      // Partition walls form living room, bedroom and service zone.
+      box(inside,.10,.68,2.45,mats.wall,1.05,.55,-1.35,false);
+      box(inside,2.1,.68,.10,mats.wall,-2.15,.55,.35,false);
+      box(inside,.10,.68,1.7,mats.wall,-3.05,.55,-.55,false);
+      // Furniture blocks for visible architectural scale.
+      box(inside,1.45,.28,.72,mats.dark,-1.55,.38,1.55,false);
+      box(inside,.72,.34,.78,mats.warm,2.35,.40,-1.65,false);
+      box(inside,.85,.12,.42,mats.green,2.25,.28,.85,false);
+      // Golden floor number marker at the front edge.
+      const marker=box(group,.38,.18,.12,mats.gold,width/2+.18,.38,depth/2+.50,false); marker.userData.floor=f;
+    }
+    // Rooftop crown, pergola and water tank/service core.
+    const top=baseY+18*floorH+.25;
+    box(tower,8.8,.32,6.7,mats.dark,0,top+.20,0);
+    box(tower,5.5,.85,4.1,mats.concrete,0,top+.78,-.2);
+    for(let x=-2.4;x<=2.41;x+=1.2) box(tower,.08,1.5,.08,mats.gold,x,top+1.05,2.1,false);
+    box(tower,5.0,.08,.08,mats.gold,0,top+1.78,2.1,false);
+    // Architectural vertical fins and entrance glazing.
+    for(let x of [-4.55,4.55]) box(tower,.18,18.8,.20,mats.gold,x,9.8,3.18);
+    box(tower,3.2,2.8,.16,mats.glass,0,1.75,4.12,false);
+    for(let x=-1.2;x<=1.21;x+=.8) box(tower,.06,2.8,.12,mats.gold,x,1.75,4.20,false);
+    tower.scale.setScalar(.94); tower.position.y=-.2;
+    // floor buttons from 18 down to 1
+    for(let f=18;f>=1;f--){const b=document.createElement('button');b.type='button';b.className='floor-btn';b.textContent=`${f} دور`;b.dataset.floor=f;b.addEventListener('click',()=>selectFloor(f));floorList.appendChild(b);}
+    function selectFloor(f){selectedFloor=f;targetFloor=f;floorLabel.textContent=`الدور ${f}`;floorInspection.textContent=`الدور ${f}: فحص الواجهة الزجاجية والبلكونة والتقسيم الداخلي للشقة. حرّك الماوس لتغيير زاوية الرؤية.`;floorList.querySelectorAll('button').forEach(b=>b.classList.toggle('active',Number(b.dataset.floor)===f));floorInterior.forEach((g,i)=>g.visible===false);floorInterior[f-1].visible=true;floorMeshes.forEach((g,i)=>{g.traverse(o=>{if(o.isMesh&&o.material===mats.gold)o.material=mats.gold;});});targetZoom=18.5;}
+    function resetView(){selectedFloor=0;targetFloor=0;floorLabel.textContent='اختر دوراً';floorInspection.textContent='اختر أحد الأدوار لعرض تفاصيله المعمارية.';floorList.querySelectorAll('button').forEach(b=>b.classList.remove('active'));floorInterior.forEach(g=>g.visible=false);targetZoom=29;}
+    document.getElementById('closeFloorInspection')?.addEventListener('click',resetView);
+    document.getElementById('resetBuildingView')?.addEventListener('click',()=>{resetView();targetYaw=-.48;targetPitch=.08;});
+    function resize(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
+    new ResizeObserver(resize).observe(stage); resize();
+    canvas.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId);});
+    canvas.addEventListener('pointermove',e=>{const rect=canvas.getBoundingClientRect();pointer.x=((e.clientX-rect.left)/rect.width)*2-1;pointer.y=-((e.clientY-rect.top)/rect.height)*2+1;if(dragging){targetYaw+=(e.clientX-lastX)*.008;targetPitch=Math.max(-.12,Math.min(.38,targetPitch+(e.clientY-lastY)*.004));lastX=e.clientX;lastY=e.clientY;}});
+    const stopDrag=()=>dragging=false;canvas.addEventListener('pointerup',stopDrag);canvas.addEventListener('pointercancel',stopDrag);
+    canvas.addEventListener('wheel',e=>{e.preventDefault();targetZoom=Math.max(14,Math.min(43,targetZoom+e.deltaY*.018));},{passive:false});
+    canvas.addEventListener('click',e=>{if(dragging)return;const rect=canvas.getBoundingClientRect();pointer.x=((e.clientX-rect.left)/rect.width)*2-1;pointer.y=-((e.clientY-rect.top)/rect.height)*2+1;raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(tower.children,true);for(const hit of hits){let obj=hit.object;while(obj&& !obj.userData.floor)obj=obj.parent;if(obj?.userData.floor){selectFloor(obj.userData.floor);break;}}});
+    const clock=new THREE.Clock();let intro=0;
+    function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();intro=Math.min(1,intro+.012);tower.scale.setScalar(.94*(.72+.28*(1-Math.pow(1-intro,3))));tower.rotation.y+=(yaw-tower.rotation.y)*.045;yaw+=(targetYaw-yaw)*.045;pitch+=(targetPitch-pitch)*.045;zoom+=(targetZoom-zoom)*.06;const focusY=selectedFloor?baseY+selectedFloor*floorH:10.1;const a=yaw;camera.position.set(Math.sin(a)*zoom,focusY+Math.sin(pitch)*zoom*.42,Math.cos(a)*zoom);camera.lookAt(0,focusY,0);renderer.render(scene,camera);}
+    // Start camera with a slow cinematic reveal.
+    camera.position.set(26,18,34);targetZoom=29;animate();
+  } catch(error) {
+    console.error('3D building could not initialize:',error);
+    stage.innerHTML='<div style="position:absolute;inset:0;display:grid;place-items:center;color:#fff;text-align:center;padding:25px;background:linear-gradient(135deg,#192940,#101b2c)"><div><h2>استكشف العمارة التفاعلية</h2><p>تعذر تشغيل العرض ثلاثي الأبعاد على هذا المتصفح. جرّب تحديث الصفحة أو استخدام متصفح يدعم WebGL.</p></div></div>';
+  }
+}
+</script>
 
 <script>
 // =========================================
