@@ -471,6 +471,11 @@ footer p {font-size:13px;line-height:2}
 .b3-walk button{background:var(--gold);color:var(--navy);border:0;border-radius:8px;padding:8px 14px;font-weight:800;cursor:pointer}
 .b3-pad{display:none;gap:6px}
 .b3.walk .b3-copy,.b3.walk .b3-panel,.b3.walk .b3-stage,.b3.walk .b3-chip,.b3.walk .b3-zoom,.b3.walk .b3-hint{opacity:0;pointer-events:none}
+.b3-photo{position:absolute;inset:0;overflow:hidden;display:none;background:#0a1424}
+.b3.ph .b3-photo{display:block}.b3.ph canvas{display:none}.b3.ph.pn canvas{display:block}.b3.ph.pn .b3-photo{display:none}.b3.ph .b3-zoom{display:none}
+.b3-photo img{position:absolute;inset:-3%;width:106%;height:106%;object-fit:cover;opacity:0;will-change:transform,opacity}
+.b3-photo img.fl{inset:0;width:100%;height:100%;transition:opacity .5s;transform:none!important}.b3-photo img.fl.on{opacity:1}
+.b3-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(270deg,#0a1424e6 0%,#0a142499 36%,transparent 66%);pointer-events:none}
 .b3-fb{position:absolute;z-index:2;inset:0;display:grid;place-items:center;color:#9fb0c8;font-size:14px;text-align:center;padding:20px}
 .b3-fb[hidden]{display:none}
 @media(max-width:900px){
@@ -485,6 +490,7 @@ footer p {font-size:13px;line-height:2}
 </style>
 <section class="hero b3" id="b3">
   <canvas id="b3c" aria-label="مجسم ثلاثي الأبعاد تفاعلي لعمارة من 18 دور"></canvas>
+  <div class="b3-photo" id="b3ph"></div>
   <div class="b3-fb" id="b3fb" hidden>تعذر تحميل المجسم ثلاثي الأبعاد. تأكد من اتصال الإنترنت وتفعيل WebGL.</div>
   <div class="container b3-copy">
     <div class="hero-content">
@@ -508,16 +514,57 @@ footer p {font-size:13px;line-height:2}
   <div class="b3-hint" id="b3hint">حرّك الماوس على العمارة لبدء البناء</div>
   <div class="b3-walk" id="b3walk" hidden><button type="button" id="b3exit">✕ خروج من الجولة</button><span>اسحب للنظر حولك · W A S D للتحرك</span><div class="b3-pad"><button type="button" id="b3f">▲</button><button type="button" id="b3b">▼</button></div></div>
 </section>
+<script>
+/* ===== وضع الصور الحقيقية (واقعية 100%) =====
+   ضع مسارات صورك هنا. لو تركتها null تظهر النسخة ثلاثية الأبعاد.
+   stages: صور مراحل البناء بالترتيب (من الأساسات حتى المبنى المكتمل)، بنفس زاوية التصوير.
+   floors: صورة لكل دور (والمفتاح default لأي دور بلا صورة).
+   pano:   صورة بانوراما 360 (نسبة 2:1) للجولة داخل الشقة.
+   مثال:
+   window.B3_MEDIA={
+     stages:["images/s1.jpg","images/s2.jpg","images/s3.jpg","images/s4.jpg","images/s5.jpg"],
+     floors:{default:"images/floor.jpg",12:"images/floor-12.jpg"},
+     pano:{default:"images/living-360.jpg"}
+   };
+*/
+window.B3_MEDIA=null;
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
 const $=id=>document.getElementById(id),root=$("b3"),cv=$("b3c"),T=window.THREE;
 const fail=()=>{$("b3fb").hidden=false};
+function photo(M){
+ const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)),box=$("b3ph"),n=M.stages.length,steps=[...$("b3steps").children],btns=[],flo=M.floors||{},txt0=$("b3txt").textContent;
+ root.classList.add("ph");
+ const L=M.stages.map(u=>{const i=new Image();i.src=u;i.alt="";box.appendChild(i);return i}),fi=new Image();fi.className="fl";fi.alt="";box.appendChild(fi);
+ let p=0,pd=0,idle=0,sel=0,mx=0,my=0,pi=-1,PR=null;
+ function selectFloor(k){sel=k;const u=flo[k]||flo.default;if(u){fi.src=u;fi.classList.add("on")}btns.forEach((b,j)=>b&&b.classList.toggle("on",j===k));$("b3cur").textContent="الدور "+k;$("b3rng").value=k;$("b3txt").textContent="الدور "+k+": صور حقيقية لتفاصيل الشقة والتشطيب."}
+ function overview(){sel=0;fi.classList.remove("on");btns.forEach(b=>b&&b.classList.remove("on"));$("b3cur").textContent="";$("b3txt").textContent=txt0}
+ for(let k=18;k>=1;k--){const b=document.createElement("button");b.type="button";b.textContent="دور "+k;b.onclick=()=>selectFloor(k);$("b3grid").appendChild(b);btns[k]=b}
+ $("b3rng").oninput=e=>selectFloor(+e.target.value);$("b3all").onclick=overview;
+ root.addEventListener("pointermove",e=>{idle=0;root.classList.add("moved");const r=root.getBoundingClientRect();mx=(e.clientX-r.left)/r.width-.5;my=(e.clientY-r.top)/r.height-.5;p=Math.min(1,p+Math.hypot(e.movementX||0,e.movementY||0)*.0007)});
+ function startPano(u){
+  if(!PR)PR=new T.WebGLRenderer({canvas:cv,antialias:true});PR.outputEncoding=T.sRGBEncoding;
+  const sc=new T.Scene(),c=new T.PerspectiveCamera(75,1,.1,100),g=new T.SphereGeometry(10,64,40),t=new T.TextureLoader().load(u);g.scale(-1,1,1);t.encoding=T.sRGBEncoding;sc.add(new T.Mesh(g,new T.MeshBasicMaterial({map:t})));
+  let yaw=0,pit=0,d=null,on=true;root.classList.add("pn","walk");$("b3walk").hidden=false;
+  const sz=()=>{PR.setSize(root.clientWidth,root.clientHeight,false);c.aspect=root.clientWidth/root.clientHeight;c.updateProjectionMatrix()};sz();
+  const dn=e=>{d=[e.clientX,e.clientY]},mv=e=>{if(!d)return;yaw-=(e.clientX-d[0])*.005;pit=cl(pit+(e.clientY-d[1])*.004,-1.3,1.3);d=[e.clientX,e.clientY]},up=()=>{d=null};
+  cv.addEventListener("pointerdown",dn);cv.addEventListener("pointermove",mv);cv.addEventListener("pointerup",up);
+  (function lp(){if(!on)return;requestAnimationFrame(lp);c.rotation.set(pit,yaw,0,"YXZ");PR.render(sc,c)})();
+  $("b3exit").onclick=()=>{on=false;root.classList.remove("pn","walk");$("b3walk").hidden=true;cv.removeEventListener("pointerdown",dn);cv.removeEventListener("pointermove",mv);cv.removeEventListener("pointerup",up)}}
+ $("b3tour").onclick=()=>{const u=M.pano&&(M.pano[sel]||M.pano.default);if(!u||!T){$("b3txt").textContent="أضف صورة بانوراما 360 في إعدادات B3_MEDIA لتفعيل الجولة داخل الشقة.";return}startPano(u)};
+ addEventListener("keydown",e=>{if(e.key==="Escape"&&root.classList.contains("pn"))$("b3exit").click()});
+ (function frame(){requestAnimationFrame(frame);idle++;if(idle>150&&p<1)p=Math.min(1,p+.0008);pd+=(p-pd)*.07;if(p-pd<.0005)pd=p;
+  const x=pd*(n-1);L.forEach((im,i)=>{im.style.opacity=i?cl(x-i+1):1;im.style.transform=`translate(${(-mx*18).toFixed(1)}px,${(-my*10).toFixed(1)}px) scale(${(1.02+.05*pd).toFixed(4)})`});
+  const pc=Math.round(pd*100);if(pc!==pi){pi=pc;$("b3pct").textContent=pc+"%";$("b3fill").style.width=pc+"%";const s=pd>.995?4:Math.min(3,Math.floor(pd*4));steps.forEach((li,k)=>{li.className=k<s?"done":k===s?"on":""})}})();
+}
+const MEDIA=window.B3_MEDIA;if(MEDIA&&MEDIA.stages&&MEDIA.stages.length)return photo(MEDIA);
 if(!T)return fail();
 let R;try{R=new T.WebGLRenderer({canvas:cv,antialias:true,alpha:true})}catch(e){return fail()}
 const N=18,FH=3.2,BW=22,BD=15,cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)),ease=x=>x*x*(3-2*x);
 R.setPixelRatio(Math.min(devicePixelRatio||1,2));R.shadowMap.enabled=true;R.shadowMap.type=T.PCFSoftShadowMap;
-R.outputEncoding=T.sRGBEncoding;R.toneMapping=T.ACESFilmicToneMapping;R.toneMappingExposure=1.2;
+R.outputEncoding=T.sRGBEncoding;R.toneMapping=T.ACESFilmicToneMapping;R.toneMappingExposure=1.3;
 const scene=new T.Scene(),cam=new T.PerspectiveCamera(42,1,.1,700);
 /* السماء والانعكاسات */
 const skyMat=new T.ShaderMaterial({side:T.BackSide,depthWrite:false,
@@ -525,7 +572,7 @@ const skyMat=new T.ShaderMaterial({side:T.BackSide,depthWrite:false,
  fragmentShader:"varying vec3 p;void main(){float h=p.y;vec3 top=vec3(.16,.36,.78),mid=vec3(.95,.82,.66),low=vec3(.25,.30,.35);vec3 c=h>0.?mix(mid,top,pow(h,.5)):mix(mid,low,pow(-h,.5));c+=vec3(1.,.82,.55)*pow(max(dot(normalize(p),normalize(vec3(.46,.77,.39))),0.),48.)*1.6;c=mix(c,vec3(.95,.86,.74),exp(-abs(h)*7.)*.45);gl_FragColor=vec4(c,1.);}"});
 scene.add(new T.Mesh(new T.SphereGeometry(400,32,16),skyMat));
 const es=new T.Scene();es.add(new T.Mesh(new T.SphereGeometry(50,32,16),skyMat));
-scene.environment=new T.PMREMGenerator(R).fromScene(es).texture;
+
 scene.fog=new T.Fog(0xe0cdb0,170,430);
 /* الإضاءة */
 scene.add(new T.HemisphereLight(0xc4dcff,0x7a6a58,1.05),new T.AmbientLight(0xffffff,.3));
@@ -537,16 +584,17 @@ const tex=f=>{const c=document.createElement("canvas");c.width=c.height=256;f(c.
 const spk=(g,base,n,a)=>{g.fillStyle=base;g.fillRect(0,0,256,256);for(let i=0;i<n;i++){g.fillStyle=Math.random()<.5?`rgba(0,0,0,${a})`:`rgba(255,255,255,${a})`;g.fillRect(Math.random()*256,Math.random()*256,1+Math.random()*2,1+Math.random()*2)}};
 const tx={conc:tex(g=>spk(g,"#b7b5ae",9000,.07)),slab:tex(g=>spk(g,"#d3cfc6",5000,.05)),plaster:tex(g=>spk(g,"#f2ede4",3500,.035)),fabric:tex(g=>spk(g,"#66748a",9000,.09)),
  wood:tex(g=>{for(let i=0;i<10;i++){g.fillStyle=`hsl(28,40%,${(95+Math.random()*25)/2.4}%)`;g.fillRect(i*25.6,0,25.6,256)}for(let i=0;i<500;i++){g.fillStyle=`rgba(40,22,8,${Math.random()*.12})`;g.fillRect(Math.random()*256,0,1,256)}g.fillStyle="rgba(0,0,0,.35)";for(let i=0;i<10;i++)g.fillRect(i*25.6,0,1.5,256)})};
-const M=(c,o)=>new T.MeshStandardMaterial(Object.assign({color:c,roughness:.8,metalness:0},o||{}));
+const M=(c,o)=>{o=o||{};if(o.transparent)return new T.MeshStandardMaterial(Object.assign({color:c,roughness:.8,metalness:0},o));
+ const m=Object.assign({color:c,emissive:0x2e2e2e},o);["roughness","metalness","bumpMap","bumpScale","envMapIntensity"].forEach(k=>delete m[k]);return new T.MeshLambertMaterial(m)};
 const mat={conc:M(0xffffff,{roughness:.95,map:tx.conc,bumpMap:tx.conc,bumpScale:.8}),slab:M(0xffffff,{roughness:.9,map:tx.slab}),wood:M(0xffffff,{roughness:.5,map:tx.wood}),dark:M(0x5a4028,{roughness:.6}),wall:M(0xffffff,{roughness:.95,map:tx.plaster}),
- frame:M(0x2b323b,{metalness:.5,roughness:.4}),gold:M(0xc6a15b,{metalness:.6,roughness:.3}),
+ frame:M(0x2b323b),gold:M(0xc6a15b,{emissive:0x4a3a18}),
  glass:M(0x9fd0f0,{metalness:.25,roughness:.08,transparent:true,opacity:.42,envMapIntensity:1.2,depthWrite:false,emissive:0xffd9a0,emissiveIntensity:0}),
  sofa:M(0xffffff,{roughness:1,map:tx.fabric}),bed:M(0xece6dc,{roughness:1}),pil:M(0xb9a07a,{roughness:1}),black:M(0x0c0f14,{roughness:.3}),leaf:M(0x2f6b3a,{roughness:1}),
  lamp:M(0xffe2a8,{emissive:0xffcf80,emissiveIntensity:0}),crane:M(0xe0a030,{roughness:.6}),curtain:M(0xe8e1d4,{roughness:1,side:T.DoubleSide}),art:M(0xb5503c,{roughness:.8}),tree:M(0x3e7a3f,{roughness:1}),trunk:M(0x5a4028,{roughness:1}),road:M(0x2a2d32,{roughness:.95}),line:M(0xf2f2f2,{roughness:.8}),city:M(0x8a9bb0,{roughness:.8}),ground:M(0x56664f,{roughness:1}),plaza:M(0xc4c0b6,{roughness:.9})};
 const UB=new T.BoxGeometry(1,1,1),US=new T.SphereGeometry(1,14,10);
-function bx(p,m,w,h,d,x,y,z,c){const s=new T.Mesh(UB,m);s.scale.set(w,h,d);s.position.set(x,y,z);s.castShadow=!!c;s.receiveShadow=true;p.add(s);return s}
+function bx(p,m,w,h,d,x,y,z,c){const s=new T.Mesh(UB,m);s.scale.set(w,h,d);s.position.set(x,y,z);s.castShadow=!!c;s.receiveShadow=!p.userData.ns;p.add(s);return s}
 const UC=new T.CylinderGeometry(1,1,1,18);
-function cyl(p,m,r,h,x,y,z,c){const s=new T.Mesh(UC,m);s.scale.set(r,h,r);s.position.set(x,y,z);s.castShadow=!!c;s.receiveShadow=true;p.add(s);return s}
+function cyl(p,m,r,h,x,y,z,c){const s=new T.Mesh(UC,m);s.scale.set(r,h,r);s.position.set(x,y,z);s.castShadow=!!c;s.receiveShadow=!p.userData.ns;p.add(s);return s}
 function sph(p,m,r,x,y,z){const s=new T.Mesh(US,m);s.scale.set(r,r,r);s.position.set(x,y,z);p.add(s)}
 /* الأرض والمحيط */
 const gr=new T.Mesh(new T.CircleGeometry(300,48),mat.ground);gr.rotation.x=-Math.PI/2;gr.receiveShadow=true;scene.add(gr);
@@ -554,7 +602,7 @@ bx(scene,mat.plaza,BW+26,.2,BD+26,0,-.12,0,false);
 for(let k=0;k<14;k++){const a=k/14*6.283+.3,r=75+(k*37)%30,h=14+(k*53)%40;bx(scene,mat.city,10+(k%3)*4,h,10+(k%4)*3,Math.cos(a)*r,h/2,Math.sin(a)*r,false)}
 for(let k=0;k<18;k++){const a=k/18*6.283,r=26+(k%3)*3,x=Math.cos(a)*(BW/2+r*.9),z=Math.sin(a)*(BD/2+r*.9);if(z>BD/2+9&&z<BD/2+26)continue;const h=3+(k%4)*.6;cyl(scene,mat.trunk,.25,h,x,h/2,z,true);sph(scene,mat.tree,2+(k%3)*.4,x,h+1.4,z)}
 const RZ=BD/2+19;bx(scene,mat.road,220,.06,9,0,.02,RZ,false);for(let x=-100;x<100;x+=8)bx(scene,mat.line,3,.07,.25,x,.05,RZ,false);
-[[-30,0xb02a2a],[-12,0x2a4a7a],[18,0xdedede],[40,0x333333]].forEach(([x,c])=>{const m=M(c,{metalness:.5,roughness:.35}),z=RZ-2;bx(scene,m,4.4,.9,1.9,x,.6,z,true);bx(scene,mat.black,2.4,.7,1.7,x-.2,1.3,z,true);
+[[-30,0xb02a2a],[-12,0x2a4a7a],[18,0xdedede],[40,0x333333]].forEach(([x,c])=>{const m=M(c),z=RZ-2;bx(scene,m,4.4,.9,1.9,x,.6,z,true);bx(scene,mat.black,2.4,.7,1.7,x-.2,1.3,z,true);
  for(const [dx,dz] of[[-1.4,-.95],[1.4,-.95],[-1.4,.95],[1.4,.95]]){const w=cyl(scene,mat.black,.38,.3,x+dx,.38,z+dz);w.rotation.x=Math.PI/2}});
 /* العمارة */
 const bld=new T.Group();scene.add(bld);
@@ -562,7 +610,7 @@ const pit=bx(bld,mat.conc,BW+8,1.4,BD+8,0,-.7,0,false),fl=[],lamps=mat.lamp;
 function bed(I,x,z,s){bx(I,mat.dark,2.2,.35,2.3,x,.58,z);bx(I,mat.bed,2.1,.3,2.2,x,.9,z);bx(I,mat.wood,2.4,1.1,.12,x,1,z+s*1.15);
  bx(I,mat.pil,.8,.15,.4,x-.5,1.1,z+s*.85);bx(I,mat.pil,.8,.15,.4,x+.5,1.1,z+s*.85);bx(I,mat.dark,.5,.5,.4,x-1.5,.65,z+s*1);bx(I,mat.dark,.5,.5,.4,x+1.5,.65,z+s*1);bx(I,lamps,1.2,.03,.8,x,3.12,z)}
 for(let i=0;i<N;i++){
- const y=i*FH,H=FH-.35,gh=H-.5,S=new T.Group(),F=new T.Group(),I=new T.Group();
+ const y=i*FH,H=FH-.35,gh=H-.5,S=new T.Group(),F=new T.Group(),I=new T.Group();I.userData.ns=1;
  [S,F,I].forEach(g=>{g.position.y=y;bld.add(g)});
  bx(S,mat.slab,BW,.35,BD,0,.175,0,true);
  for(const cx of[-10.6,-3.5,3.5,10.6])for(const cz of[-7,7])bx(S,mat.conc,.6,H,.6,cx,.35+H/2,cz,true);
