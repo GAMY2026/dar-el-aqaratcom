@@ -434,74 +434,257 @@ footer p {font-size:13px;line-height:2}
 
 <main class="home-content">
   <style>
-    .hero-photo{
-      min-height:640px;display:flex;align-items:center;position:relative;overflow:hidden;
-      color:#fff;background:
-      linear-gradient(90deg,rgba(7,15,28,.18) 0%,rgba(7,15,28,.68) 48%,rgba(7,15,28,.94) 100%),
-      url("hero-building.png") center 48%/cover no-repeat;
-    }
-    .hero-photo .hero-content{max-width:690px;padding:115px 0 150px}
-    .hero-photo .hero-tag{color:var(--gold);font-size:14px;font-weight:800;margin-bottom:18px}
-    .hero-photo h1{font-size:clamp(38px,5.4vw,68px);line-height:1.45;font-weight:800;margin-bottom:18px}
-    .hero-photo h1 span{color:var(--gold)}
-    .hero-photo p{max-width:570px;color:#e7eaf0;font-size:16px;line-height:2.1}
-    .hero-photo .hero-cta{display:inline-flex;margin-top:28px;padding:13px 25px;border-radius:7px;background:var(--gold);color:var(--navy);font-weight:800;transition:.25s}
-    .hero-photo .hero-cta:hover{background:#fff;transform:translateY(-2px)}
-    @media(max-width:900px){.hero-photo{min-height:570px;background-position:58% center}.hero-photo .hero-content{padding:85px 0 120px}}
-    @media(max-width:550px){.hero-photo{min-height:520px;background-position:58% center}.hero-photo .hero-content{padding:75px 0 105px}.hero-photo p{font-size:14px}}
-
-    /* INTERACTIVE 3D BUILDING HERO */
-    .hero3d{height:760px;min-height:680px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 66% 42%,#263d59 0%,#14243a 42%,#091321 100%);color:#fff;isolation:isolate}
-    .hero3d-stage{position:absolute;inset:0;z-index:0}
-    #buildingCanvas{width:100%;height:100%;display:block;touch-action:none;cursor:grab}
-    #buildingCanvas:active{cursor:grabbing}
-    .hero3d-vignette{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,12,23,.08) 0%,rgba(5,12,23,.22) 42%,rgba(5,12,23,.92) 100%),linear-gradient(0deg,rgba(5,12,23,.7),transparent 30%)}
-    .hero3d-copy{position:relative;z-index:2;pointer-events:none;padding-top:125px}
-    .hero3d-copy>*{pointer-events:auto}
-    .hero3d-copy .hero-tag{color:var(--gold);font-size:14px;font-weight:800;margin-bottom:18px}
-    .hero3d-copy h1{font-size:clamp(38px,5.4vw,68px);line-height:1.45;font-weight:800;margin-bottom:18px;max-width:550px}
-    .hero3d-copy h1 span{color:var(--gold)}
-    .hero3d-copy p{max-width:470px;color:#e7eaf0;font-size:15px;line-height:2.1}
-    .hero3d-copy .hero-cta{display:inline-flex;margin-top:25px;padding:13px 25px;border-radius:7px;background:var(--gold);color:var(--navy);font-weight:800;transition:.25s}
-    .hero3d-copy .hero-cta:hover{background:#fff;transform:translateY(-2px)}
-    .hero3d-hud{position:absolute;top:25px;left:4%;display:flex;align-items:center;gap:10px;padding:10px 15px;border:1px solid #ffffff30;border-radius:30px;background:#0a1728a8;backdrop-filter:blur(12px);font-size:11px;color:#e7edf5;direction:rtl}
-    .hero3d-hud b{color:var(--gold);border-right:1px solid #ffffff35;padding-right:10px}
-    .hud-dot{width:7px;height:7px;background:#63d6a0;border-radius:50%;box-shadow:0 0 12px #63d6a0}
-    .hero3d-controls{position:absolute;bottom:28px;left:4%;display:flex;align-items:center;gap:9px;flex-wrap:wrap;direction:rtl}
-    .hero3d-controls span,.hero3d-controls button{font-size:11px;color:#e7edf5;background:#0a1728b8;border:1px solid #ffffff2c;border-radius:20px;padding:9px 13px;backdrop-filter:blur(10px)}
-    .hero3d-controls button{cursor:pointer;color:var(--gold)}
-    .floor-panel{position:absolute;z-index:3;left:4%;top:100px;width:190px;max-height:570px;padding:14px;border:1px solid #ffffff2c;border-radius:13px;background:#0a1728c9;backdrop-filter:blur(16px);box-shadow:0 18px 55px #0004}
-    .floor-panel-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.floor-panel-head strong{font-size:13px}.floor-panel-head small{font-size:10px;color:var(--gold)}
-    .floor-list{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-height:300px;overflow:auto;padding:2px}
-    .floor-btn{border:1px solid #ffffff20;background:#ffffff0c;color:#dce4ef;border-radius:6px;padding:7px 3px;font-size:10px;cursor:pointer;transition:.2s}
-    .floor-btn:hover,.floor-btn.active{background:var(--gold);color:#101b2c;border-color:var(--gold);font-weight:800}
-    .floor-inspection{font-size:10px;line-height:1.8;color:#d5deea;border-top:1px solid #ffffff20;margin-top:10px;padding-top:10px;min-height:55px}
-    .floor-reset{width:100%;margin-top:8px;border:0;border-radius:6px;background:#ffffff16;color:var(--gold);padding:8px;cursor:pointer;font-size:10px}
-    .hero3d-bottom-note{position:absolute;z-index:2;bottom:31px;right:4%;font-size:11px;color:#d5deea;pointer-events:none}
-    @media(max-width:900px){.hero3d{height:760px;min-height:700px}.hero3d-vignette{background:linear-gradient(90deg,rgba(5,12,23,.05),rgba(5,12,23,.58)),linear-gradient(0deg,rgba(5,12,23,.78),transparent 45%)}.hero3d-copy{padding-top:100px}.floor-panel{top:auto;bottom:95px;left:3%;width:165px;max-height:420px}.floor-list{max-height:200px}.hero3d-controls{bottom:22px;left:3%}.hero3d-bottom-note{display:none}}
-    @media(max-width:550px){.hero3d{height:820px;min-height:760px}.hero3d-copy{padding-top:65px}.hero3d-copy h1{font-size:37px;max-width:300px}.hero3d-copy p{font-size:13px;max-width:310px}.hero3d-copy .hero-cta{margin-top:15px}.hero3d-hud{top:14px;left:3%;font-size:9px}.floor-panel{left:3%;right:3%;bottom:75px;width:auto;max-height:230px;padding:10px}.floor-list{grid-template-columns:repeat(6,1fr);max-height:95px}.floor-btn{padding:6px 2px;font-size:9px}.floor-inspection{min-height:35px;margin-top:6px;padding-top:6px}.floor-reset{margin-top:4px;padding:6px}.hero3d-controls{bottom:17px;left:3%;gap:5px}.hero3d-controls span,.hero3d-controls button{font-size:9px;padding:7px 9px}}
-  </style>
-  <section class="hero3d" id="bh" aria-label="استكشف العمارة ثلاثية الأبعاد">
-    <div class="hero3d-stage" id="buildingStage">
-      <canvas id="buildingCanvas" aria-label="نموذج ثلاثي الأبعاد لعمارة سكنية من 18 دور"></canvas>
-      <div class="hero3d-vignette"></div>
-      <div class="hero3d-hud"><span class="hud-dot"></span><span>نموذج معماري تفاعلي</span><b>18 دور</b></div>
-      <div class="hero3d-controls"><span>اسحب للتدوير</span><span>عجلة الماوس للتقريب</span><button id="resetBuildingView" type="button">إعادة العرض ↺</button></div>
-    </div>
-    <div class="container hero3d-copy">
+.hero.b3{display:block;position:relative;height:min(92vh,860px);min-height:700px;overflow:hidden;background:radial-gradient(120% 90% at 40% 40%,#1d3150,#0a1424 70%)}
+.b3 canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:none}
+.b3.dragging canvas{cursor:grabbing}
+.b3-copy{position:relative;z-index:3;pointer-events:none;height:100%;display:flex;align-items:center;transition:opacity .5s}
+.b3 .hero-content{padding:0 0 70px;max-width:440px}
+.b3 .hero h1,.b3 h1{font-size:clamp(34px,4.2vw,58px);line-height:1.45}
+.b3-cta{pointer-events:auto;display:inline-block;margin-top:26px;background:var(--gold);color:var(--navy);padding:14px 32px;border-radius:8px;font-weight:800;transition:.3s}
+.b3-cta:hover{background:#fff}
+.b3-chip,.b3-panel,.b3-stage,.b3-walk,.b3-zoom{position:absolute;z-index:4;color:#fff;background:#0b1626cc;border:1px solid #ffffff22;backdrop-filter:blur(8px)}
+.b3-chip{left:28px;top:24px;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:700;display:flex;gap:12px;align-items:center}
+.b3-chip i{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80}
+.b3-chip b{color:var(--gold);border-inline-start:1px solid #ffffff33;padding-inline-start:12px}
+.b3-panel{left:28px;top:84px;width:200px;border-radius:14px;padding:16px;transition:opacity .4s}
+.b3-panel h4{display:flex;justify-content:space-between;align-items:baseline;font-size:15px;margin-bottom:12px}
+.b3-panel h4 small{color:var(--gold);font-size:11px}
+#b3grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+#b3grid button{background:#17263d;border:1px solid #ffffff1a;color:#dbe3ee;border-radius:7px;padding:7px 0;font-size:11px;cursor:pointer;transition:.2s}
+#b3grid button:hover{border-color:var(--gold)}#b3grid button.on{background:var(--gold);color:var(--navy);font-weight:800}
+#b3txt{font-size:11px;line-height:1.9;color:#c5d0df;margin:12px 0;border-top:1px solid #ffffff1a;padding-top:10px}
+.b3-panel .btn2{display:block;width:100%;border:1px solid #ffffff26;background:#17263d;color:#e9d7ad;border-radius:8px;padding:9px;font-size:12px;cursor:pointer;margin-top:6px;font-weight:700}
+.b3-panel .btn2.gold{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.b3-panel .btn2:hover{filter:brightness(1.15)}
+.b3-m{display:none}
+.b3-zoom{left:28px;bottom:150px;display:flex;border-radius:10px;overflow:hidden}
+.b3-zoom button{background:none;border:0;color:#fff;width:38px;height:38px;font-size:18px;cursor:pointer}.b3-zoom button:hover{background:var(--gold);color:var(--navy)}
+.b3-stage{left:50%;transform:translateX(-50%);bottom:92px;width:min(520px,86%);border-radius:12px;padding:10px 16px}
+.b3-bar{height:5px;background:#ffffff22;border-radius:5px;overflow:hidden}.b3-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),#f0d9a1)}
+#b3steps{list-style:none;display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:#8b9bb2}
+#b3steps li.on{color:var(--gold);font-weight:800}#b3steps li.done{color:#d8e0ec}#b3steps li.done::before{content:"✓ ";color:#4ade80}
+.b3-stage small{position:absolute;inset-inline-start:16px;top:-22px;font-size:12px;color:var(--gold);font-weight:800}
+.b3-hint{position:absolute;z-index:4;left:50%;top:26px;transform:translateX(-50%);font-size:13px;font-weight:700;color:#f0d9a1;background:#0b162699;border:1px solid #c6a15b66;padding:7px 20px;border-radius:30px;pointer-events:none;transition:opacity .5s}
+.b3.moved .b3-hint{opacity:0}
+.b3-walk{left:50%;transform:translateX(-50%);bottom:100px;border-radius:12px;padding:10px 16px;display:flex;gap:14px;align-items:center;font-size:12px}
+.b3-walk[hidden]{display:none}
+.b3-walk button{background:var(--gold);color:var(--navy);border:0;border-radius:8px;padding:8px 14px;font-weight:800;cursor:pointer}
+.b3-pad{display:none;gap:6px}
+.b3.walk .b3-copy,.b3.walk .b3-panel,.b3.walk .b3-stage,.b3.walk .b3-chip,.b3.walk .b3-zoom,.b3.walk .b3-hint{opacity:0;pointer-events:none}
+.b3-fb{position:absolute;z-index:2;inset:0;display:grid;place-items:center;color:#9fb0c8;font-size:14px;text-align:center;padding:20px}
+.b3-fb[hidden]{display:none}
+@media(max-width:900px){
+ .hero.b3{height:auto;min-height:720px}
+ .b3-copy{align-items:flex-start;padding-top:70px}.b3 .hero-content{max-width:100%;padding:0}
+ .b3-panel{left:12px;right:12px;top:auto;bottom:150px;width:auto;padding:12px}.b3-panel h4,#b3grid,#b3txt{display:none}
+ .b3-m{display:flex;align-items:center;gap:10px;font-size:12px}.b3-m input{flex:1}
+ .b3-chip{left:12px;top:12px}.b3-zoom{left:12px;bottom:230px}.b3-stage{bottom:100px}.b3-hint{top:auto;bottom:240px}
+ .b3-pad{display:flex}.b3-walk span{display:none}
+}
+@media(max-width:550px){.b3-stage{bottom:80px}}
+</style>
+<section class="hero b3" id="b3">
+  <canvas id="b3c" aria-label="مجسم ثلاثي الأبعاد تفاعلي لعمارة من 18 دور"></canvas>
+  <div class="b3-fb" id="b3fb" hidden>تعذر تحميل المجسم ثلاثي الأبعاد. تأكد من اتصال الإنترنت وتفعيل WebGL.</div>
+  <div class="container b3-copy">
+    <div class="hero-content">
       <div class="hero-tag">اختيارك العقاري يبدأ من عنوان مميز</div>
       <h1>اكتشف العقار<br><span>من زاوية جديدة</span></h1>
-      <p>استكشف عمارتنا التفاعلية، اقترب من الأدوار، واختر الدور الذي تريد فحص تفاصيله الداخلية.</p>
-      <a class="hero-cta" href="#properties">اكتشف العقارات</a>
+      <p>شاهد العمارة وهي تُبنى من الأساسات حتى التشطيب، ثم ادخل الشقق وشاهد الأثاث وحرّك زاوية الرؤية بنفسك.</p>
+      <a class="b3-cta" href="#properties">اكتشف العقارات</a>
     </div>
-    <aside class="floor-panel" aria-label="اختيار دور للفحص">
-      <div class="floor-panel-head"><strong>فحص الأدوار</strong><small id="selectedFloorLabel">اختر دوراً</small></div>
-      <div class="floor-list" id="floorList"></div>
-      <div class="floor-inspection" id="floorInspection">اختر أحد الأدوار لعرض تفاصيله المعمارية.</div>
-      <button class="floor-reset" id="closeFloorInspection" type="button">عرض العمارة كاملة</button>
-    </aside>
-    <div class="hero3d-bottom-note">حرّك المؤشر حول المبنى لاكتشافه من جميع الجهات</div>
-  </section>
+  </div>
+  <div class="b3-chip"><i></i>نموذج معماري تفاعلي<b>18 دور</b></div>
+  <aside class="b3-panel">
+    <h4>فحص الأدوار <small id="b3cur"></small></h4>
+    <div id="b3grid"></div>
+    <label class="b3-m">الدور <input type="range" id="b3rng" min="1" max="18" value="1" aria-label="اختيار الدور"></label>
+    <p id="b3txt">حرّك الماوس على العمارة لتُبنى من الأساسات حتى التشطيب، ثم اختر دوراً لفحصه.</p>
+    <button type="button" class="btn2" id="b3all">عرض العمارة كاملة</button>
+    <button type="button" class="btn2 gold" id="b3tour">جولة داخل الشقة</button>
+  </aside>
+  <div class="b3-zoom"><button type="button" id="b3zi" aria-label="تقريب">＋</button><button type="button" id="b3zo" aria-label="تبعيد">－</button></div>
+  <div class="b3-stage"><small id="b3pct">0%</small><div class="b3-bar"><i id="b3fill"></i></div><ol id="b3steps"><li>الأساسات</li><li>الهيكل الخرساني</li><li>الواجهة الزجاجية</li><li>التشطيب والأثاث</li></ol></div>
+  <div class="b3-hint" id="b3hint">حرّك الماوس على العمارة لبدء البناء</div>
+  <div class="b3-walk" id="b3walk" hidden><button type="button" id="b3exit">✕ خروج من الجولة</button><span>اسحب للنظر حولك · W A S D للتحرك</span><div class="b3-pad"><button type="button" id="b3f">▲</button><button type="button" id="b3b">▼</button></div></div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+const $=id=>document.getElementById(id),root=$("b3"),cv=$("b3c"),T=window.THREE;
+const fail=()=>{$("b3fb").hidden=false};
+if(!T)return fail();
+let R;try{R=new T.WebGLRenderer({canvas:cv,antialias:true,alpha:true})}catch(e){return fail()}
+const N=18,FH=3.2,BW=22,BD=15,cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)),ease=x=>x*x*(3-2*x);
+R.setPixelRatio(Math.min(devicePixelRatio||1,2));R.shadowMap.enabled=true;R.shadowMap.type=T.PCFSoftShadowMap;
+R.outputEncoding=T.sRGBEncoding;R.toneMapping=T.ACESFilmicToneMapping;R.toneMappingExposure=1.2;
+const scene=new T.Scene(),cam=new T.PerspectiveCamera(42,1,.1,700);
+/* السماء والانعكاسات */
+const skyMat=new T.ShaderMaterial({side:T.BackSide,depthWrite:false,
+ vertexShader:"varying vec3 p;void main(){p=normalize(position);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}",
+ fragmentShader:"varying vec3 p;void main(){float h=p.y;vec3 top=vec3(.16,.36,.78),mid=vec3(.95,.82,.66),low=vec3(.25,.30,.35);vec3 c=h>0.?mix(mid,top,pow(h,.5)):mix(mid,low,pow(-h,.5));c+=vec3(1.,.82,.55)*pow(max(dot(normalize(p),normalize(vec3(.46,.77,.39))),0.),48.)*1.6;c=mix(c,vec3(.95,.86,.74),exp(-abs(h)*7.)*.45);gl_FragColor=vec4(c,1.);}"});
+scene.add(new T.Mesh(new T.SphereGeometry(400,32,16),skyMat));
+const es=new T.Scene();es.add(new T.Mesh(new T.SphereGeometry(50,32,16),skyMat));
+scene.environment=new T.PMREMGenerator(R).fromScene(es).texture;
+scene.fog=new T.Fog(0xe0cdb0,170,430);
+/* الإضاءة */
+scene.add(new T.HemisphereLight(0xc4dcff,0x7a6a58,1.05),new T.AmbientLight(0xffffff,.3));
+const sun=new T.DirectionalLight(0xfff0d8,3);sun.position.set(45,75,38);sun.target.position.set(0,25,0);scene.add(sun,sun.target);const fill=new T.DirectionalLight(0x9db7ff,.6);fill.position.set(-40,30,-30);scene.add(fill);
+sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-60,right:60,top:60,bottom:-60,near:1,far:220});sun.shadow.camera.updateProjectionMatrix();sun.shadow.bias=-.0006;
+const walkLight=new T.PointLight(0xffe2b8,0,18,1.5);scene.add(walkLight);
+/* خامات */
+const tex=f=>{const c=document.createElement("canvas");c.width=c.height=256;f(c.getContext("2d"));const t=new T.CanvasTexture(c);t.wrapS=t.wrapT=T.RepeatWrapping;t.encoding=T.sRGBEncoding;t.anisotropy=4;return t};
+const spk=(g,base,n,a)=>{g.fillStyle=base;g.fillRect(0,0,256,256);for(let i=0;i<n;i++){g.fillStyle=Math.random()<.5?`rgba(0,0,0,${a})`:`rgba(255,255,255,${a})`;g.fillRect(Math.random()*256,Math.random()*256,1+Math.random()*2,1+Math.random()*2)}};
+const tx={conc:tex(g=>spk(g,"#b7b5ae",9000,.07)),slab:tex(g=>spk(g,"#d3cfc6",5000,.05)),plaster:tex(g=>spk(g,"#f2ede4",3500,.035)),fabric:tex(g=>spk(g,"#66748a",9000,.09)),
+ wood:tex(g=>{for(let i=0;i<10;i++){g.fillStyle=`hsl(28,40%,${(95+Math.random()*25)/2.4}%)`;g.fillRect(i*25.6,0,25.6,256)}for(let i=0;i<500;i++){g.fillStyle=`rgba(40,22,8,${Math.random()*.12})`;g.fillRect(Math.random()*256,0,1,256)}g.fillStyle="rgba(0,0,0,.35)";for(let i=0;i<10;i++)g.fillRect(i*25.6,0,1.5,256)})};
+const M=(c,o)=>new T.MeshStandardMaterial(Object.assign({color:c,roughness:.8,metalness:0},o||{}));
+const mat={conc:M(0xffffff,{roughness:.95,map:tx.conc,bumpMap:tx.conc,bumpScale:.8}),slab:M(0xffffff,{roughness:.9,map:tx.slab}),wood:M(0xffffff,{roughness:.5,map:tx.wood}),dark:M(0x5a4028,{roughness:.6}),wall:M(0xffffff,{roughness:.95,map:tx.plaster}),
+ frame:M(0x2b323b,{metalness:.5,roughness:.4}),gold:M(0xc6a15b,{metalness:.6,roughness:.3}),
+ glass:M(0x9fd0f0,{metalness:.25,roughness:.08,transparent:true,opacity:.42,envMapIntensity:1.2,depthWrite:false,emissive:0xffd9a0,emissiveIntensity:0}),
+ sofa:M(0xffffff,{roughness:1,map:tx.fabric}),bed:M(0xece6dc,{roughness:1}),pil:M(0xb9a07a,{roughness:1}),black:M(0x0c0f14,{roughness:.3}),leaf:M(0x2f6b3a,{roughness:1}),
+ lamp:M(0xffe2a8,{emissive:0xffcf80,emissiveIntensity:0}),crane:M(0xe0a030,{roughness:.6}),curtain:M(0xe8e1d4,{roughness:1,side:T.DoubleSide}),art:M(0xb5503c,{roughness:.8}),tree:M(0x3e7a3f,{roughness:1}),trunk:M(0x5a4028,{roughness:1}),road:M(0x2a2d32,{roughness:.95}),line:M(0xf2f2f2,{roughness:.8}),city:M(0x8a9bb0,{roughness:.8}),ground:M(0x56664f,{roughness:1}),plaza:M(0xc4c0b6,{roughness:.9})};
+const UB=new T.BoxGeometry(1,1,1),US=new T.SphereGeometry(1,14,10);
+function bx(p,m,w,h,d,x,y,z,c){const s=new T.Mesh(UB,m);s.scale.set(w,h,d);s.position.set(x,y,z);s.castShadow=!!c;s.receiveShadow=true;p.add(s);return s}
+const UC=new T.CylinderGeometry(1,1,1,18);
+function cyl(p,m,r,h,x,y,z,c){const s=new T.Mesh(UC,m);s.scale.set(r,h,r);s.position.set(x,y,z);s.castShadow=!!c;s.receiveShadow=true;p.add(s);return s}
+function sph(p,m,r,x,y,z){const s=new T.Mesh(US,m);s.scale.set(r,r,r);s.position.set(x,y,z);p.add(s)}
+/* الأرض والمحيط */
+const gr=new T.Mesh(new T.CircleGeometry(300,48),mat.ground);gr.rotation.x=-Math.PI/2;gr.receiveShadow=true;scene.add(gr);
+bx(scene,mat.plaza,BW+26,.2,BD+26,0,-.12,0,false);
+for(let k=0;k<14;k++){const a=k/14*6.283+.3,r=75+(k*37)%30,h=14+(k*53)%40;bx(scene,mat.city,10+(k%3)*4,h,10+(k%4)*3,Math.cos(a)*r,h/2,Math.sin(a)*r,false)}
+for(let k=0;k<18;k++){const a=k/18*6.283,r=26+(k%3)*3,x=Math.cos(a)*(BW/2+r*.9),z=Math.sin(a)*(BD/2+r*.9);if(z>BD/2+9&&z<BD/2+26)continue;const h=3+(k%4)*.6;cyl(scene,mat.trunk,.25,h,x,h/2,z,true);sph(scene,mat.tree,2+(k%3)*.4,x,h+1.4,z)}
+const RZ=BD/2+19;bx(scene,mat.road,220,.06,9,0,.02,RZ,false);for(let x=-100;x<100;x+=8)bx(scene,mat.line,3,.07,.25,x,.05,RZ,false);
+[[-30,0xb02a2a],[-12,0x2a4a7a],[18,0xdedede],[40,0x333333]].forEach(([x,c])=>{const m=M(c,{metalness:.5,roughness:.35}),z=RZ-2;bx(scene,m,4.4,.9,1.9,x,.6,z,true);bx(scene,mat.black,2.4,.7,1.7,x-.2,1.3,z,true);
+ for(const [dx,dz] of[[-1.4,-.95],[1.4,-.95],[-1.4,.95],[1.4,.95]]){const w=cyl(scene,mat.black,.38,.3,x+dx,.38,z+dz);w.rotation.x=Math.PI/2}});
+/* العمارة */
+const bld=new T.Group();scene.add(bld);
+const pit=bx(bld,mat.conc,BW+8,1.4,BD+8,0,-.7,0,false),fl=[],lamps=mat.lamp;
+function bed(I,x,z,s){bx(I,mat.dark,2.2,.35,2.3,x,.58,z);bx(I,mat.bed,2.1,.3,2.2,x,.9,z);bx(I,mat.wood,2.4,1.1,.12,x,1,z+s*1.15);
+ bx(I,mat.pil,.8,.15,.4,x-.5,1.1,z+s*.85);bx(I,mat.pil,.8,.15,.4,x+.5,1.1,z+s*.85);bx(I,mat.dark,.5,.5,.4,x-1.5,.65,z+s*1);bx(I,mat.dark,.5,.5,.4,x+1.5,.65,z+s*1);bx(I,lamps,1.2,.03,.8,x,3.12,z)}
+for(let i=0;i<N;i++){
+ const y=i*FH,H=FH-.35,gh=H-.5,S=new T.Group(),F=new T.Group(),I=new T.Group();
+ [S,F,I].forEach(g=>{g.position.y=y;bld.add(g)});
+ bx(S,mat.slab,BW,.35,BD,0,.175,0,true);
+ for(const cx of[-10.6,-3.5,3.5,10.6])for(const cz of[-7,7])bx(S,mat.conc,.6,H,.6,cx,.35+H/2,cz,true);
+ bx(S,mat.conc,5,H,3.4,0,.35+H/2,-5.6,true);
+ if(i===N-1){bx(S,mat.slab,BW+.4,.4,BD+.4,0,FH+.15,0,true);bx(S,mat.gold,BW+.6,.16,BD+.6,0,FH+.42,0,false);bx(S,mat.frame,6,2.2,4,5,FH+1.5,-3,true)}
+ /* الواجهة */
+ for(const z of[BD/2,-BD/2]){bx(F,mat.glass,BW,gh,.06,0,.85+gh/2,z);bx(F,mat.conc,BW+.2,.5,.2,0,.6,z,true);
+  for(const x of[-BW/2,-BW/6,BW/6,BW/2])bx(F,mat.frame,.12,H,.14,x,.35+H/2,z)}
+ for(const x of[BW/2,-BW/2]){bx(F,mat.glass,.06,gh,BD,x,.85+gh/2,0);bx(F,mat.conc,.2,.5,BD+.2,x,.6,0,true);bx(F,mat.frame,.14,H,.12,x,.35+H/2,0)}
+ if(i%2===1){bx(F,mat.slab,BW-6,.28,2.4,0,.21,BD/2+1.2,true);bx(F,mat.glass,BW-6,1.05,.04,0,.9,BD/2+2.4);bx(F,mat.gold,BW-6,.05,.07,0,1.45,BD/2+2.4)}
+ bx(F,mat.frame,BW+.2,.07,.7,0,FH-.12,BD/2+.35,true);
+ if(i===0){bx(F,mat.frame,10,.25,4.5,0,2.7,BD/2+2.2,true);for(const x of[-4.5,4.5])cyl(F,mat.gold,.15,2.7,x,1.35,BD/2+4,true)}
+ /* الداخل والأثاث */
+ bx(I,mat.wood,BW-.4,.04,BD-.4,0,.37,0);
+ bx(I,mat.wall,6.5,2.7,.15,-7.25,1.75,3.2);bx(I,mat.wall,6,2.7,.15,7,1.75,-1.2);
+ bed(I,-7.2,5.2,1);bed(I,7,-5.8,-1);
+ bx(I,mat.wood,.6,2.4,2.8,-10.2,1.6,5.2);bx(I,mat.wood,.6,2.4,2.4,9.7,1.6,-3.2);
+ bx(I,mat.sofa,4.2,.45,1.5,7,.62,4.4);bx(I,mat.sofa,4.2,.75,.3,7,1.05,5.1);bx(I,mat.sofa,.3,.65,1.5,4.75,.72,4.4);bx(I,mat.sofa,.3,.65,1.5,9.25,.72,4.4);
+ bx(I,mat.pil,5.5,.02,3.6,7,.4,2.2);bx(I,mat.wood,1.6,.35,.9,7,.58,2.4);
+ bx(I,mat.dark,3,.5,.4,7,.65,-.95);bx(I,mat.black,2.2,1.2,.06,7,1.7,-1.05);bx(I,lamps,1.6,.03,1,7,3.12,2.4);
+ bx(I,mat.wood,2.2,.07,1.1,-6,1.17,-2.5);bx(I,mat.dark,.15,.75,.9,-6.8,.8,-2.5);bx(I,mat.dark,.15,.75,.9,-5.2,.8,-2.5);
+ for(const dx of[-.6,.6])for(const dz of[-3.4,-1.6])bx(I,mat.sofa,.45,.45,.45,-6+dx,.65,dz);
+ bx(I,lamps,1.4,.03,.9,-6,3.12,-2.5);
+ bx(I,mat.dark,5.5,.9,.7,-7,.85,-6.9);bx(I,mat.black,5.5,.05,.75,-7,1.32,-6.9);bx(I,mat.dark,5.5,.7,.4,-7,2.3,-7.1);
+ cyl(I,mat.dark,.3,.5,9.4,.65,6.4);sph(I,mat.leaf,.55,9.4,1.4,6.4);sph(I,mat.leaf,.42,9.1,1.8,6.5);sph(I,mat.leaf,.4,9.7,1.7,6.2);
+ cyl(I,mat.frame,.03,1.5,4.3,1.15,6.6);cyl(I,lamps,.25,.3,4.3,1.95,6.6);bx(I,mat.curtain,2,2.6,.05,-9.2,1.7,BD/2-.4);bx(I,mat.curtain,2,2.6,.05,9.2,1.7,BD/2-.4);bx(I,mat.art,1.2,.8,.04,-7.2,2,3.1);bx(I,mat.pil,.5,.35,.12,5.9,.95,4.9);bx(I,mat.gold,.5,.35,.12,8.1,.95,4.9);
+ fl.push({S,F,I});
+}
+const hl=new T.Mesh(UB,new T.MeshBasicMaterial({color:0xc6a15b,transparent:true,opacity:.16,depthWrite:false}));hl.scale.set(BW+1,FH,BD+1);hl.visible=false;scene.add(hl);
+/* الونش */
+const crane=new T.Group();crane.position.set(BW/2+4,0,-BD/2-3);scene.add(crane);
+const mast=bx(crane,mat.crane,1.2,1,1.2,0,.5,0,false),jib=new T.Group();crane.add(jib);
+bx(jib,mat.crane,22,.6,.6,5,0,0);bx(jib,mat.crane,3,1.6,1.6,-9,-.4,0);bx(jib,mat.frame,.12,7,.12,13,-3.5,0);
+/* مخطط العمارة الكامل (يظهر من البداية ثم يختفي مع البناء) */
+const gm=new T.MeshBasicMaterial({color:0xc6a15b,transparent:true,opacity:.1,depthWrite:false}),gl=new T.LineBasicMaterial({color:0xe2c286,transparent:true,opacity:.9}),ghost=new T.Group();scene.add(ghost);
+{const g=new T.Mesh(UB,gm);g.scale.set(BW,N*FH,BD);g.position.y=N*FH/2;ghost.add(g)}
+for(let i=0;i<=N;i++){const l=new T.LineSegments(new T.EdgesGeometry(UB),gl);l.scale.set(BW,.01,BD);l.position.y=i*FH;ghost.add(l)}
+for(const x of[-BW/2,BW/2])for(const z of[-BD/2,BD/2]){const l=new T.LineSegments(new T.EdgesGeometry(UB),gl);l.scale.set(.01,N*FH,.01);l.position.set(x,N*FH/2,z);ghost.add(l)}
+/* مراحل البناء: 0 -> 1 */
+function build(p){
+ pit.scale.y=Math.max(.001,1.4*ease(cl(p/.12)));pit.position.y=-pit.scale.y/2;
+ let top=0;
+ for(let i=0;i<N;i++){const o=fl[i],t=cl((p-.12)/.43*N-i),f=cl((p-.55)/.27*(N+3)-i),d=cl((p-.82)/.18*(N+3)-i);
+  o.S.visible=t>0;o.S.scale.y=Math.max(.001,ease(t));if(t>0)top=i*FH+FH*ease(t);
+  o.F.visible=f>0;o.F.scale.y=Math.max(.001,ease(f));
+  o.I.visible=d>0;o.I.scale.y=Math.max(.001,ease(d))}
+ lamps.emissiveIntensity=cl((p-.93)/.07)*3;mat.glass.emissiveIntensity=cl((p-.93)/.07)*.14;ghost.visible=p<.995;gm.opacity=.1*(1-p);gl.opacity=.9*(1-p);
+ crane.visible=p<.97;const h=Math.max(10,top+12);mast.scale.y=h;mast.position.y=h/2;jib.position.y=h;jib.rotation.y+=.004;
+}
+/* الكاميرا والتحكم */
+const goal={th:.75,ph:1.2,r:78,ty:24},cur=Object.assign({},goal),w={on:false,x:0,z:5.6,yaw:0,pitch:0,f:0,k:{}};
+let p=matchMedia("(prefers-reduced-motion:reduce)").matches?1:0,pd=0,idle=0,vis=true,sel=0,drag=null,want=false,pi=-1,si=-1;
+const btns=[],steps=[...$("b3steps").children],txt0=$("b3txt").textContent;
+function size(){const W=root.clientWidth,H=root.clientHeight;R.setSize(W,H,false);cam.aspect=W/H;
+ if(W>900&&!w.on)cam.setViewOffset(W,H,Math.round(W*.12),0,W,H);else cam.clearViewOffset();cam.updateProjectionMatrix()}
+function selectFloor(n){sel=n;Object.assign(goal,{ty:(n-1)*FH+FH/2,r:32,ph:1.38});hl.visible=true;hl.position.y=(n-1)*FH+FH/2;
+ btns.forEach((b,k)=>b&&b.classList.toggle("on",k===n));$("b3cur").textContent="الدور "+n;$("b3rng").value=n;
+ $("b3txt").textContent="الدور "+n+": فحص الواجهة الزجاجية والبلكونات والتقسيم الداخلي للشقة. اسحب لتغيير زاوية الرؤية."}
+function overview(){sel=0;Object.assign(goal,{ph:1.2,r:78,ty:24});hl.visible=false;btns.forEach(b=>b&&b.classList.remove("on"));$("b3cur").textContent="";$("b3txt").textContent=txt0}
+for(let n=N;n>=1;n--){const b=document.createElement("button");b.type="button";b.textContent="دور "+n;b.onclick=()=>selectFloor(n);$("b3grid").appendChild(b);btns[n]=b}
+$("b3rng").oninput=e=>selectFloor(+e.target.value);$("b3all").onclick=overview;
+$("b3zi").onclick=()=>{goal.r=cl(goal.r*.8,12,130)};$("b3zo").onclick=()=>{goal.r=cl(goal.r*1.25,12,130)};
+function enterTour(){w.on=true;w.f=(sel||12)-1;w.x=0;w.z=5.6;w.yaw=0;w.pitch=0;hl.visible=false;cam.fov=74;size();walkLight.intensity=1.3;root.classList.add("walk");$("b3walk").hidden=false}
+function exitTour(){w.on=false;w.k={};cam.fov=42;walkLight.intensity=0;root.classList.remove("walk");$("b3walk").hidden=true;size();if(sel)selectFloor(sel)}
+$("b3tour").onclick=()=>{if(pd>.985)enterTour();else{p=1;want=true;$("b3hint").textContent="جارٍ إكمال البناء ثم الدخول للشقة…";root.classList.remove("moved")}};
+$("b3exit").onclick=exitTour;
+[["b3f","f"],["b3b","b"]].forEach(([id,k])=>{const e=$(id);e.onpointerdown=()=>{w.k[k]=1};["pointerup","pointerleave","pointercancel"].forEach(ev=>e.addEventListener(ev,()=>{w.k[k]=0}))});
+const km={KeyW:"f",ArrowUp:"f",KeyS:"b",ArrowDown:"b",KeyA:"l",ArrowLeft:"l",KeyD:"r",ArrowRight:"r"};
+addEventListener("keydown",e=>{if(w.on&&km[e.code]&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)){w.k[km[e.code]]=1;e.preventDefault()}if(e.key==="Escape"&&w.on)exitTour()});
+addEventListener("keyup",e=>{if(km[e.code])w.k[km[e.code]]=0});
+cv.addEventListener("pointerdown",e=>{drag={x:e.clientX,y:e.clientY};cv.setPointerCapture(e.pointerId);root.classList.add("dragging");idle=0});
+cv.addEventListener("pointermove",e=>{
+ const dx=drag?e.clientX-drag.x:0,dy=drag?e.clientY-drag.y:0;idle=0;root.classList.add("moved");
+ if(drag){drag.x=e.clientX;drag.y=e.clientY;
+  if(w.on){w.yaw+=dx*.005;w.pitch=cl(w.pitch-dy*.004,-1.2,1.2)}else{goal.th-=dx*.006;goal.ph=cl(goal.ph-dy*.005,.3,1.5)}}
+ if(!w.on)p=Math.min(1,p+Math.hypot(e.movementX||dx,e.movementY||dy)*.0007)});
+["pointerup","pointercancel"].forEach(ev=>cv.addEventListener(ev,()=>{drag=null;root.classList.remove("dragging")}));
+function ok(x,z){return x>-10&&x<10&&z>-.9&&z<6.8&&!(x<-4&&Math.abs(z-3.2)<.35)&&!(x>4&&Math.abs(z+1.2)<.35)}
+function walk(){const sp=.075,fw=(w.k.f?1:0)-(w.k.b?1:0),st=(w.k.r?1:0)-(w.k.l?1:0);
+ if(fw||st){const nx=w.x+(Math.sin(w.yaw)*fw+Math.cos(w.yaw)*st)*sp,nz=w.z+(-Math.cos(w.yaw)*fw+Math.sin(w.yaw)*st)*sp;
+  if(ok(nx,nz)){w.x=nx;w.z=nz}else if(ok(nx,w.z))w.x=nx;else if(ok(w.x,nz))w.z=nz}
+ const y=w.f*FH+1.95;cam.position.set(w.x,y,w.z);walkLight.position.set(w.x,y+.5,w.z);
+ cam.lookAt(w.x+Math.sin(w.yaw)*Math.cos(w.pitch),y+Math.sin(w.pitch),w.z-Math.cos(w.yaw)*Math.cos(w.pitch))}
+function orbit(){for(const k in goal)cur[k]+=(goal[k]-cur[k])*.08;const s=Math.sin(cur.ph);
+ cam.position.set(s*Math.sin(cur.th)*cur.r,cur.ty+Math.cos(cur.ph)*cur.r,s*Math.cos(cur.th)*cur.r);cam.lookAt(0,cur.ty,0)}
+function hud(){const pc=Math.round(pd*100);if(pc===pi)return;pi=pc;$("b3pct").textContent=pc+"%";$("b3fill").style.width=pc+"%";
+ const s=pd>.995?4:pd<.12?0:pd<.55?1:pd<.82?2:3;if(s!==si){si=s;steps.forEach((li,k)=>{li.className=k<s?"done":k===s?"on":""})}}
+function frame(){requestAnimationFrame(frame);if(!vis)return;idle++;
+ if(!w.on&&idle>150&&p<1)p=Math.min(1,p+.0008);
+ if(!w.on&&!sel&&!drag&&idle>120)goal.th+=.0018;
+ pd+=(p-pd)*(want?.12:.07);if(p-pd<.0005)pd=p;
+ if(want&&pd>.985){want=false;enterTour()}
+ build(pd);w.on?walk():orbit();R.render(scene,cam);hud()}
+if("IntersectionObserver" in window)new IntersectionObserver(e=>{vis=e[0].isIntersecting}).observe(root);
+if("ResizeObserver" in window)new ResizeObserver(size).observe(root);else addEventListener("resize",size);
+size();frame();
+})();
+</script>
+<script>
+/* ========== ربط الموقع بلوحة التحكم ========== */
+document.addEventListener("DOMContentLoaded",()=>{
+  /* حفظ طلبات المعاينة ليراها المدير في admin.html */
+  const form=document.getElementById("inquiryForm");
+  if(form)form.addEventListener("submit",()=>{
+    try{
+      const K="dar_inquiries_v1",list=JSON.parse(localStorage.getItem(K)||"[]");
+      list.unshift({
+        id:"q"+Date.now(),
+        name:document.getElementById("inquiryName").value.trim(),
+        phone:document.getElementById("inquiryPhone").value.trim(),
+        note:document.getElementById("inquiryNote").value.trim(),
+        property:document.getElementById("detailsTitle").textContent,
+        ref:document.getElementById("detailsReference").textContent.replace("كود العقار: ",""),
+        status:"new",date:new Date().toISOString()
+      });
+      localStorage.setItem(K,JSON.stringify(list));
+    }catch(e){}
+  });
+  /* فتح صفحة إضافة عقار من لوحة التحكم */
+  if(location.hash==="#add-property")setTimeout(()=>document.getElementById("openAddProperty").click(),0);
+});
+</script>
 
   <div class="container search-wrap">
     <form class="search-box" id="propertySearch">
@@ -984,115 +1167,6 @@ footer p {font-size:13px;line-height:2}
     <p>© <span id="currentYear"></span> دار العقارات. جميع الحقوق محفوظة. · <a href="admin.html" style="color:var(--gold)">لوحة التحكم</a></p>
   </div>
 </footer>
-
-<script type="module">
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
-
-const canvas = document.getElementById('buildingCanvas');
-const stage = document.getElementById('buildingStage');
-const floorList = document.getElementById('floorList');
-const floorLabel = document.getElementById('selectedFloorLabel');
-const floorInspection = document.getElementById('floorInspection');
-if (canvas && stage && floorList) {
-  let renderer, scene, camera, tower, selectedFloor = 0, targetFloor = 0;
-  let targetYaw = -0.48, yaw = -0.48, targetPitch = 0.08, pitch = 0.08;
-  let targetZoom = 29, zoom = 29, dragging = false, lastX = 0, lastY = 0;
-  const floorMeshes = [], floorInterior = [], raycaster = new THREE.Raycaster(), pointer = new THREE.Vector2();
-  const isMobile = matchMedia('(max-width:700px)').matches;
-  const material = (color, roughness=.55, metalness=.08, transparent=false, opacity=1) => new THREE.MeshStandardMaterial({color,roughness,metalness,transparent,opacity});
-  const mats = {
-    concrete:material('#d9d7d0'), dark:material('#26364a'), glass:material('#75a9c4',.18,.45,true,.48), gold:material('#c6a15b',.3,.65),
-    interior:material('#eee8dc'), wall:material('#c9c4b8'), green:material('#436d5b'), warm:material('#d8b98a')
-  };
-  try {
-    renderer = new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
-    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-    renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-    scene = new THREE.Scene(); scene.fog = new THREE.Fog(0x101d30,35,85);
-    camera = new THREE.PerspectiveCamera(34,1,.1,150); camera.position.set(19,13,25);
-    scene.add(new THREE.HemisphereLight(0xdcecff,0x35404b,2.0));
-    const sun = new THREE.DirectionalLight(0xffe2b4,3.1); sun.position.set(-12,25,16); sun.castShadow=true; scene.add(sun);
-    const fill = new THREE.DirectionalLight(0x7aa9db,1.2); fill.position.set(15,12,-15); scene.add(fill);
-    const ground = new THREE.Mesh(new THREE.CircleGeometry(19,80),material('#17283a',.85)); ground.rotation.x=-Math.PI/2; ground.position.y=-.18; ground.receiveShadow=true; scene.add(ground);
-    const ring = new THREE.Mesh(new THREE.TorusGeometry(7.1,.035,8,100),mats.gold); ring.rotation.x=Math.PI/2; ring.position.y=-.12; scene.add(ring);
-    tower = new THREE.Group(); scene.add(tower);
-    const floorH=1.02, width=8.4, depth=6.2, baseY=0.25;
-    const box=(parent,w,h,d,mat,x,y,z,cast=true)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);m.castShadow=cast;m.receiveShadow=true;parent.add(m);return m;};
-    // Podium and 18 individually selectable residential floors.
-    box(tower,10.4,.65,8.2,mats.dark,0,0,0);
-    box(tower,9.4,.18,7.2,mats.gold,0,.38,0);
-    for(let f=1;f<=18;f++){
-      const y=baseY+f*floorH;
-      const group=new THREE.Group(); group.position.y=y; group.userData.floor=f; tower.add(group); floorMeshes.push(group);
-      const slab=box(group,width,.13,depth,mats.concrete,0,0,0); slab.userData.floor=f;
-      box(group,width,.10,depth,mats.dark,0,.12,0);
-      // Four facade sides, split into glass bays with solid columns.
-      const levels=3, bayW=1.22;
-      for(let i=0;i<levels;i++){
-        const z=-depth/2+.18+i*(depth-.36)/levels;
-        box(group,width-.3,.76,.055,mats.glass,0,.53,z,false);
-        for(let x=-3.6;x<=3.61;x+=1.2) box(group,.09,.83,.13,mats.concrete,x,.53,z+.05);
-      }
-      for(let side of [-1,1]){
-        for(let i=0;i<5;i++){
-          const x=-3.35+i*1.67;
-          box(group,.055,.76,depth-.4,mats.glass,x,.53,side*(depth/2-.02),false);
-          box(group,.09,.83,.12,mats.concrete,x,.53,side*(depth/2+.04));
-        }
-      }
-      // Balcony bands on the front facade.
-      box(group,width+.55,.10,.95,mats.concrete,0,.24,depth/2+.40);
-      box(group,width+.55,.08,.08,mats.gold,0,.72,depth/2+.84,false);
-      for(let x=-3.7;x<=3.71;x+=.9) box(group,.035,.48,.035,mats.glass,x,.48,depth/2+.84,false);
-      // Interior apartment floor plate and simple rooms/furniture, revealed when a floor is selected.
-      const inside=new THREE.Group(); inside.position.y=y; inside.visible=false; tower.add(inside); floorInterior.push(inside);
-      box(inside,width-.35,.035,depth-.35,mats.interior,0,.20,0,false);
-      // Partition walls form living room, bedroom and service zone.
-      box(inside,.10,.68,2.45,mats.wall,1.05,.55,-1.35,false);
-      box(inside,2.1,.68,.10,mats.wall,-2.15,.55,.35,false);
-      box(inside,.10,.68,1.7,mats.wall,-3.05,.55,-.55,false);
-      // Furniture blocks for visible architectural scale.
-      box(inside,1.45,.28,.72,mats.dark,-1.55,.38,1.55,false);
-      box(inside,.72,.34,.78,mats.warm,2.35,.40,-1.65,false);
-      box(inside,.85,.12,.42,mats.green,2.25,.28,.85,false);
-      // Golden floor number marker at the front edge.
-      const marker=box(group,.38,.18,.12,mats.gold,width/2+.18,.38,depth/2+.50,false); marker.userData.floor=f;
-    }
-    // Rooftop crown, pergola and water tank/service core.
-    const top=baseY+18*floorH+.25;
-    box(tower,8.8,.32,6.7,mats.dark,0,top+.20,0);
-    box(tower,5.5,.85,4.1,mats.concrete,0,top+.78,-.2);
-    for(let x=-2.4;x<=2.41;x+=1.2) box(tower,.08,1.5,.08,mats.gold,x,top+1.05,2.1,false);
-    box(tower,5.0,.08,.08,mats.gold,0,top+1.78,2.1,false);
-    // Architectural vertical fins and entrance glazing.
-    for(let x of [-4.55,4.55]) box(tower,.18,18.8,.20,mats.gold,x,9.8,3.18);
-    box(tower,3.2,2.8,.16,mats.glass,0,1.75,4.12,false);
-    for(let x=-1.2;x<=1.21;x+=.8) box(tower,.06,2.8,.12,mats.gold,x,1.75,4.20,false);
-    tower.scale.setScalar(.94); tower.position.y=-.2;
-    // floor buttons from 18 down to 1
-    for(let f=18;f>=1;f--){const b=document.createElement('button');b.type='button';b.className='floor-btn';b.textContent=`${f} دور`;b.dataset.floor=f;b.addEventListener('click',()=>selectFloor(f));floorList.appendChild(b);}
-    function selectFloor(f){selectedFloor=f;targetFloor=f;floorLabel.textContent=`الدور ${f}`;floorInspection.textContent=`الدور ${f}: فحص الواجهة الزجاجية والبلكونة والتقسيم الداخلي للشقة. حرّك الماوس لتغيير زاوية الرؤية.`;floorList.querySelectorAll('button').forEach(b=>b.classList.toggle('active',Number(b.dataset.floor)===f));floorInterior.forEach((g,i)=>g.visible===false);floorInterior[f-1].visible=true;floorMeshes.forEach((g,i)=>{g.traverse(o=>{if(o.isMesh&&o.material===mats.gold)o.material=mats.gold;});});targetZoom=18.5;}
-    function resetView(){selectedFloor=0;targetFloor=0;floorLabel.textContent='اختر دوراً';floorInspection.textContent='اختر أحد الأدوار لعرض تفاصيله المعمارية.';floorList.querySelectorAll('button').forEach(b=>b.classList.remove('active'));floorInterior.forEach(g=>g.visible=false);targetZoom=29;}
-    document.getElementById('closeFloorInspection')?.addEventListener('click',resetView);
-    document.getElementById('resetBuildingView')?.addEventListener('click',()=>{resetView();targetYaw=-.48;targetPitch=.08;});
-    function resize(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
-    new ResizeObserver(resize).observe(stage); resize();
-    canvas.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId);});
-    canvas.addEventListener('pointermove',e=>{const rect=canvas.getBoundingClientRect();pointer.x=((e.clientX-rect.left)/rect.width)*2-1;pointer.y=-((e.clientY-rect.top)/rect.height)*2+1;if(dragging){targetYaw+=(e.clientX-lastX)*.008;targetPitch=Math.max(-.12,Math.min(.38,targetPitch+(e.clientY-lastY)*.004));lastX=e.clientX;lastY=e.clientY;}});
-    const stopDrag=()=>dragging=false;canvas.addEventListener('pointerup',stopDrag);canvas.addEventListener('pointercancel',stopDrag);
-    canvas.addEventListener('wheel',e=>{e.preventDefault();targetZoom=Math.max(14,Math.min(43,targetZoom+e.deltaY*.018));},{passive:false});
-    canvas.addEventListener('click',e=>{if(dragging)return;const rect=canvas.getBoundingClientRect();pointer.x=((e.clientX-rect.left)/rect.width)*2-1;pointer.y=-((e.clientY-rect.top)/rect.height)*2+1;raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(tower.children,true);for(const hit of hits){let obj=hit.object;while(obj&& !obj.userData.floor)obj=obj.parent;if(obj?.userData.floor){selectFloor(obj.userData.floor);break;}}});
-    const clock=new THREE.Clock();let intro=0;
-    function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();intro=Math.min(1,intro+.012);tower.scale.setScalar(.94*(.72+.28*(1-Math.pow(1-intro,3))));tower.rotation.y+=(yaw-tower.rotation.y)*.045;yaw+=(targetYaw-yaw)*.045;pitch+=(targetPitch-pitch)*.045;zoom+=(targetZoom-zoom)*.06;const focusY=selectedFloor?baseY+selectedFloor*floorH:10.1;const a=yaw;camera.position.set(Math.sin(a)*zoom,focusY+Math.sin(pitch)*zoom*.42,Math.cos(a)*zoom);camera.lookAt(0,focusY,0);renderer.render(scene,camera);}
-    // Start camera with a slow cinematic reveal.
-    camera.position.set(26,18,34);targetZoom=29;animate();
-  } catch(error) {
-    console.error('3D building could not initialize:',error);
-    stage.innerHTML='<div style="position:absolute;inset:0;display:grid;place-items:center;color:#fff;text-align:center;padding:25px;background:linear-gradient(135deg,#192940,#101b2c)"><div><h2>استكشف العمارة التفاعلية</h2><p>تعذر تشغيل العرض ثلاثي الأبعاد على هذا المتصفح. جرّب تحديث الصفحة أو استخدام متصفح يدعم WebGL.</p></div></div>';
-  }
-}
-</script>
 
 <script>
 // =========================================
