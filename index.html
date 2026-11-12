@@ -440,13 +440,6 @@ body[data-theme="dark"] .dar-extra-section{background:#101b2c;color:#fff}body[da
 @media(max-width:900px){.dar-extra-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dar-service-layout{grid-template-columns:1fr}.dar-vehicle-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.service-nav-menu{position:static;box-shadow:none;margin-top:5px}.service-nav-group:hover .service-nav-menu{display:grid}}
 @media(max-width:600px){.dar-extra-section{padding:55px 0}.dar-extra-grid,.dar-form-grid{grid-template-columns:1fr}.dar-form{padding:17px}.dar-vehicle-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dar-result{align-items:flex-start;flex-direction:column}.customer-login-link{font-size:11px;padding:9px!important}}
 </style>
-<style id="darIntroVideoStyles">
-.intro-video{position:relative;background:#050a12;overflow:hidden;line-height:0}
-.intro-video video{width:100%;height:min(80vh,760px);min-height:260px;object-fit:cover;display:block}
-.intro-video::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(transparent,#101b2c);pointer-events:none}
-.intro-sound{position:absolute;z-index:3;bottom:22px;left:22px;width:46px;height:46px;border-radius:50%;border:1px solid #c6a15b;background:#0b1626cc;color:#f0d9a1;font-size:19px;cursor:pointer;backdrop-filter:blur(8px);line-height:1}
-.intro-sound:hover{background:#c6a15b;color:#101b2c}
-</style>
 </head>
 
 <body>
@@ -474,16 +467,6 @@ body[data-theme="dark"] .dar-extra-section{background:#101b2c;color:#fff}body[da
   </div>
 </header>
 
-<section class="intro-video home-content" id="introVideo" aria-label="فيديو افتتاحي">
-  <video id="introVideoEl" src="hero-intro.mp4" poster="hero-poster.jpg" autoplay muted loop playsinline preload="auto"></video>
-  <button class="intro-sound" id="introSound" type="button" aria-label="تشغيل الصوت" aria-pressed="false">🔇</button>
-</section>
-<script>
-(function(){var v=document.getElementById("introVideoEl"),b=document.getElementById("introSound");if(!v||!b)return;
- var p=v.play();if(p&&p.catch)p.catch(function(){});
- b.addEventListener("click",function(){v.muted=!v.muted;if(!v.muted)v.play();b.textContent=v.muted?"🔇":"🔊";b.setAttribute("aria-pressed",String(!v.muted))});
- if("IntersectionObserver" in window)new IntersectionObserver(function(e){if(e[0].isIntersecting)v.play().catch(function(){});else v.pause()},{threshold:.15}).observe(v)})();
-</script>
 
 <main class="home-content">
   <style>
