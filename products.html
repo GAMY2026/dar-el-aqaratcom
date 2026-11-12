@@ -3,165 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="مجموعة منتقاة من الكنب والفوتيه والإضاءة بتصاميم عصرية لبيت يليق بك. من دار العقارات.">
-<meta name="theme-color" content="#ffffff">
+<meta name="description" content="أثاث منزلي وإكسسوارات ديكور من دار العقارات لتجهيز بيتك بالكامل.">
+<meta name="theme-color" content="#101b2c">
 <title>الأثاث والإكسسوارات | دار العقارات</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --navy:#101b2c;--gold:#b8934a;--gold-soft:#c6a15b;--ink:#252b35;--muted:#7b8088;
-  --line:#ece8df;--cream:#faf8f3;--paper:#f3efe8;--shadow:0 22px 50px rgba(16,27,44,.09);
+  --navy:#101b2c;--navy-light:#192940;--gold:#c6a15b;--white:#fff;--cream:#f7f6f2;
+  --text:#252b35;--muted:#777;--shadow:0 18px 45px rgba(16,27,44,.10);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Cairo',sans-serif;background:#fff;color:var(--ink)}
+body{font-family:'Cairo',sans-serif;background:#fff;color:var(--text)}
 a{text-decoration:none;color:inherit}
 button,input,select,textarea{font:inherit}
-.container{width:min(1240px,92%);margin:auto}
-.en{font-family:'Playfair Display',serif;letter-spacing:.14em;direction:ltr;display:inline-block}
+.container{width:min(1200px,92%);margin:auto}
 
 /* HEADER */
-header{background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
-.navbar{min-height:80px;display:flex;align-items:center;justify-content:space-between;gap:25px}
-.logo{font-size:25px;font-weight:800;color:var(--navy);white-space:nowrap;line-height:1.2}
-.logo span{display:block;font-family:'Playfair Display',serif;font-size:10px;letter-spacing:.38em;color:var(--gold);direction:ltr;text-align:right;font-weight:500}
-.nav-links{display:flex;align-items:center;gap:30px;list-style:none;font-size:14px;font-weight:600;color:#3a4352}
-.nav-links a{position:relative;padding:6px 0;transition:.25s}
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:50}
+.navbar{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.logo{font-size:25px;font-weight:800;color:var(--gold);white-space:nowrap}
+.logo span{display:block;font-size:10px;letter-spacing:3px;color:#ddd;direction:ltr;text-align:right}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;font-size:14px}
 .nav-links a:hover,.nav-links a.active{color:var(--gold)}
-.nav-links a.active::after{content:"";position:absolute;right:0;left:0;bottom:-2px;height:2px;background:var(--gold)}
-.cart-btn{background:var(--navy);color:#fff;border:0;padding:11px 20px;border-radius:40px;font-weight:700;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:9px;transition:.3s}
-.cart-btn:hover{background:var(--gold)}
-.cart-count{background:#fff;color:var(--navy);border-radius:20px;min-width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;padding:0 6px}
+.nav-links a.active{font-weight:700}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.cart-btn{position:relative;background:var(--gold);color:var(--navy);border:0;padding:10px 17px;border-radius:6px;font-weight:800;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:8px}
+.cart-count{background:var(--navy);color:#fff;border-radius:20px;min-width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;padding:0 6px}
 
 /* HERO */
-.page-hero{padding:74px 0 96px;text-align:center;background:linear-gradient(180deg,var(--cream),#fff)}
-.crumbs{font-size:12px;color:var(--muted);margin-bottom:18px}
-.crumbs a:hover{color:var(--gold)}
-.hero-tag{color:var(--gold);font-size:12px;font-weight:600;margin-bottom:14px}
-.page-hero h1{font-size:clamp(32px,4.6vw,54px);line-height:1.55;font-weight:800;color:var(--navy);margin-bottom:12px}
+.page-hero{
+  color:#fff;padding:70px 0 80px;text-align:center;
+  background:linear-gradient(180deg,rgba(10,20,34,.78),rgba(10,20,34,.9)),
+  url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80') center/cover,var(--navy);
+}
+.hero-tag{color:var(--gold);font-size:13px;font-weight:800;letter-spacing:2px;direction:ltr;display:inline-block;margin-bottom:12px}
+.page-hero h1{font-size:clamp(30px,4.5vw,50px);line-height:1.5;font-weight:800;margin-bottom:10px}
 .page-hero h1 span{color:var(--gold)}
-.page-hero p{color:#59616e;font-size:16px;line-height:2.1;max-width:640px;margin:auto}
-.rule{width:64px;height:2px;background:var(--gold-soft);margin:22px auto 0}
+.page-hero p{color:#e2e5e9;font-size:15px;line-height:2;max-width:620px;margin:auto}
 
 /* TOOLBAR */
-.toolbar-wrap{position:relative;z-index:2;margin-top:-52px}
-.toolbar{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:22px;display:grid;grid-template-columns:1fr 230px;gap:14px}
-.toolbar input,.toolbar select{width:100%;min-height:48px;padding:10px 16px;border:1px solid #e6e2d8;border-radius:10px;background:#fff;color:var(--navy);outline:none;transition:.2s}
-.toolbar input:focus,.toolbar select:focus{border-color:var(--gold-soft);box-shadow:0 0 0 4px #c6a15b1f}
-.chips{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px}
-.chip{border:1px solid #e6e2d8;background:#fff;color:var(--navy);padding:9px 20px;border-radius:40px;font-size:13px;font-weight:700;cursor:pointer;transition:.25s;display:flex;align-items:center;gap:8px}
-.chip small{font-size:11px;color:var(--muted);font-weight:600}
-.chip:hover{border-color:var(--gold-soft)}
+.toolbar-wrap{position:relative;z-index:2;margin-top:-34px}
+.toolbar{background:#fff;border-radius:13px;box-shadow:0 15px 45px #0002;padding:20px;display:grid;grid-template-columns:1fr 220px;gap:14px}
+.toolbar input,.toolbar select{width:100%;min-height:46px;padding:10px 14px;border:1px solid #e2e4e8;border-radius:7px;background:#fff;color:var(--navy);outline:none}
+.toolbar input:focus,.toolbar select:focus{border-color:var(--gold);box-shadow:0 0 0 3px #c6a15b20}
+.chips{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid #e2e4e8;background:#fff;color:var(--navy);padding:8px 16px;border-radius:30px;font-size:13px;font-weight:700;cursor:pointer;transition:.25s}
+.chip:hover{border-color:var(--gold)}
 .chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
-.chip.on small{color:#c9cfd9}
 
-/* GRID */
-.products-section{padding:54px 0 110px}
-.results-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;color:var(--navy);font-size:14px;font-weight:700}
-.results-bar span{color:var(--gold);font-size:19px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
-.card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .35s,box-shadow .35s}
-.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.thumb{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--paper);cursor:pointer}
-.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
-.card:hover .thumb img{transform:scale(1.06)}
-.badge{position:absolute;top:12px;right:12px;background:#fff;color:var(--navy);padding:5px 14px;border-radius:30px;font-size:11px;font-weight:800;z-index:2;box-shadow:0 4px 14px #0001}
-.badge.sale{background:var(--navy);color:#fff}
-.quick{position:absolute;left:12px;right:12px;bottom:12px;background:#ffffffee;color:var(--navy);border:0;padding:10px;border-radius:10px;font-weight:700;font-size:12px;cursor:pointer;opacity:0;transform:translateY(8px);transition:.3s;backdrop-filter:blur(6px)}
-.card:hover .quick{opacity:1;transform:none}
-.info{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1}
-.cat{color:var(--gold);font-size:11px;font-weight:700;margin-bottom:6px}
-.info h3{color:var(--navy);font-size:15.5px;line-height:1.7;margin-bottom:12px;cursor:pointer;font-weight:700}
-.info h3:hover{color:var(--gold)}
-.price{color:var(--navy);font-size:19px;font-weight:800;margin-top:auto;margin-bottom:14px}
-.price small{font-size:12px;font-weight:500;color:var(--muted)}
+/* PRODUCTS */
+.products-section{padding:55px 0 95px;background:var(--cream);margin-top:-34px;padding-top:90px}
+.results-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;flex-wrap:wrap}
+.results-count{color:var(--navy);font-size:14px;font-weight:800}
+.results-count span{color:var(--gold);font-size:19px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #eee;transition:.35s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+.thumb{height:210px;position:relative;display:flex;align-items:center;justify-content:center;font-size:84px;cursor:pointer;
+  background:radial-gradient(circle at 50% 40%,#fbf3df,#ecdcb6)}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;top:12px;right:12px;background:var(--gold);color:var(--navy);padding:5px 13px;border-radius:5px;font-size:11px;font-weight:800;z-index:1}
+.badge.sale{background:#b52d3d;color:#fff}
+.info{padding:18px;display:flex;flex-direction:column;flex:1}
+.cat{color:#888;font-size:12px;margin-bottom:6px}
+.info h3{color:var(--navy);font-size:16px;margin-bottom:10px;cursor:pointer;line-height:1.6}
+.price{color:var(--gold);font-size:21px;font-weight:800;margin-top:auto;margin-bottom:14px}
+.price small{font-size:12px;font-weight:500}
 .price del{color:#aaa;font-size:13px;font-weight:500;margin-right:8px}
-.add-btn{width:100%;padding:11px;border:1px solid var(--navy);background:#fff;color:var(--navy);border-radius:10px;font-weight:700;cursor:pointer;transition:.3s}
+.add-btn{width:100%;padding:11px;border:1px solid var(--navy);background:#fff;color:var(--navy);border-radius:6px;font-weight:700;cursor:pointer;transition:.3s}
 .add-btn:hover{background:var(--navy);color:#fff}
-.more-wrap{text-align:center;margin-top:44px}
-.more-btn{border:1px solid var(--navy);background:#fff;color:var(--navy);padding:14px 38px;border-radius:40px;font-weight:800;cursor:pointer;transition:.3s}
-.more-btn:hover{background:var(--navy);color:#fff}
-.empty{padding:70px 20px;text-align:center;background:var(--cream);border:1px dashed #d9d3c4;border-radius:14px}
+.empty{padding:55px 20px;text-align:center;background:#fff;border:1px dashed #d9d5cc;border-radius:12px}
 .empty h3{color:var(--navy);font-size:21px;margin-bottom:8px}
 .empty p{color:var(--muted);font-size:13px}
 
 /* MODAL */
-.overlay{position:fixed;inset:0;background:#0a14248c;backdrop-filter:blur(4px);z-index:90;display:none;align-items:center;justify-content:center;padding:16px}
+.overlay{position:fixed;inset:0;background:#0a1424b3;z-index:90;display:none;align-items:center;justify-content:center;padding:16px}
 .overlay.open{display:flex}
-.modal{background:#fff;border-radius:18px;width:min(900px,100%);max-height:92vh;overflow:auto;display:grid;grid-template-columns:1.05fr 1fr;position:relative}
-.modal-img{background:var(--paper);display:flex;align-items:center}
-.modal-img img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
-.modal-body{padding:34px 30px}
-.modal-body h2{color:var(--navy);font-size:24px;line-height:1.6;margin:6px 0 10px}
-.modal-body .desc{color:#5d6470;font-size:14px;line-height:2.1;margin:14px 0}
-.specs{list-style:none;margin:8px 0 18px}
-.specs li{font-size:13px;color:#555;padding:9px 0;border-bottom:1px solid var(--line)}
-.specs li::before{content:"✓";color:var(--gold);font-weight:900;margin-left:10px}
-.note{font-size:12px;color:var(--muted);line-height:1.9;margin-bottom:18px}
-.qty-row{display:flex;align-items:center;gap:14px;margin-bottom:16px}
-.qty{display:flex;align-items:center;border:1px solid #e6e2d8;border-radius:10px;overflow:hidden}
-.qty button{width:38px;height:40px;border:0;background:var(--cream);cursor:pointer;font-size:18px}
-.qty button:hover{background:var(--gold-soft);color:#fff}
+.modal{background:#fff;border-radius:14px;width:min(820px,100%);max-height:92vh;overflow:auto;display:grid;grid-template-columns:1fr 1fr;position:relative}
+.modal-img{min-height:340px;display:flex;align-items:center;justify-content:center;font-size:130px;background:radial-gradient(circle at 50% 40%,#fbf3df,#ecdcb6);position:relative;overflow:hidden}
+.modal-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.modal-body{padding:28px}
+.modal-body h2{color:var(--navy);font-size:23px;line-height:1.5;margin:6px 0 10px}
+.modal-body .desc{color:#666;font-size:14px;line-height:2;margin:12px 0}
+.specs{list-style:none;margin:10px 0 18px}
+.specs li{font-size:13px;color:#555;background:#faf9f6;padding:9px 12px;border-radius:7px;margin-bottom:6px}
+.specs li::before{content:"✓";color:var(--gold);font-weight:900;margin-left:8px}
+.qty-row{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.qty{display:flex;align-items:center;border:1px solid #e2e4e8;border-radius:7px;overflow:hidden}
+.qty button{width:38px;height:40px;border:0;background:#f4f2ec;cursor:pointer;font-size:18px}
+.qty button:hover{background:var(--gold)}
 .qty span{min-width:40px;text-align:center;font-weight:700}
-.primary{width:100%;border:0;background:var(--navy);color:#fff;padding:15px;border-radius:12px;font-weight:800;cursor:pointer;transition:.3s}
-.primary:hover{background:var(--gold)}
-.close-x{position:absolute;top:14px;left:14px;width:38px;height:38px;border:0;border-radius:50%;background:#fff;box-shadow:0 4px 16px #0003;font-size:22px;cursor:pointer;z-index:3}
+.primary{width:100%;border:0;background:var(--navy);color:#fff;padding:14px;border-radius:8px;font-weight:800;cursor:pointer;transition:.3s}
+.primary:hover{background:var(--gold);color:var(--navy)}
+.close-x{position:absolute;top:12px;left:12px;width:36px;height:36px;border:0;border-radius:50%;background:#fff;box-shadow:0 2px 10px #0003;font-size:22px;cursor:pointer;z-index:3}
 
-/* CART */
-.drawer{position:fixed;top:0;bottom:0;left:0;width:min(440px,100%);background:#fff;z-index:95;transform:translateX(-105%);transition:transform .38s;display:flex;flex-direction:column;box-shadow:0 0 60px #0004}
+/* CART DRAWER */
+.drawer{position:fixed;top:0;bottom:0;left:0;width:min(430px,100%);background:#fff;z-index:95;transform:translateX(-105%);transition:transform .35s;display:flex;flex-direction:column;box-shadow:0 0 50px #0005}
 .drawer.open{transform:none}
-.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line)}
-.drawer-head h3{font-size:18px;color:var(--navy)}
-.drawer-head button{background:none;border:0;color:var(--navy);font-size:28px;cursor:pointer}
-.drawer-lines{flex:1;overflow:auto;padding:6px 22px}
-.line{display:grid;grid-template-columns:68px 1fr auto;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
-.line .ico{width:68px;height:52px;border-radius:8px;overflow:hidden;background:var(--paper)}
-.line .ico img{width:100%;height:100%;object-fit:cover;display:block}
-.line h4{font-size:13.5px;color:var(--navy);margin-bottom:4px;line-height:1.6}
-.line .lp{font-size:13px;color:var(--gold);font-weight:800}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;background:var(--navy);color:#fff}
+.drawer-head h3{font-size:18px}
+.drawer-head button{background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
+.drawer-lines{flex:1;overflow:auto;padding:8px 20px}
+.line{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #eee}
+.line .ico{position:relative;width:56px;height:56px;border-radius:9px;background:#f4ead0;display:flex;align-items:center;justify-content:center;font-size:30px;overflow:hidden}
+.line .ico img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.line h4{font-size:14px;color:var(--navy);margin-bottom:4px}
+.line .lp{font-size:13px;color:var(--gold);font-weight:700}
 .line .qty button{width:30px;height:32px}
 .line .qty span{min-width:30px;font-size:13px}
 .rm{background:none;border:0;color:#b52d3d;font-size:12px;cursor:pointer;margin-top:4px;display:block}
-.drawer-foot{padding:18px 22px;border-top:1px solid var(--line);background:var(--cream)}
+.drawer-foot{padding:16px 20px;border-top:1px solid #eee;background:#fbfaf7}
 .total-row{display:flex;justify-content:space-between;font-weight:800;color:var(--navy);margin-bottom:12px}
 .total-row span:last-child{color:var(--gold);font-size:19px}
-.checkout{display:grid;gap:9px}
-.checkout input,.checkout textarea{width:100%;padding:12px;border:1px solid #e6e2d8;border-radius:10px;outline:none;background:#fff}
+.checkout{display:grid;gap:9px;margin-bottom:10px}
+.checkout input,.checkout textarea{width:100%;padding:11px 12px;border:1px solid #e2e4e7;border-radius:7px;outline:none;background:#fff}
 .checkout textarea{min-height:60px;resize:vertical}
-.checkout input:focus,.checkout textarea:focus{border-color:var(--gold-soft)}
-.order-msg{background:#eef8f2;color:#23734d;font-size:13px;line-height:1.9;padding:13px;border-radius:10px}
-.cart-empty{text-align:center;color:var(--muted);padding:70px 10px;font-size:14px}
+.checkout input:focus,.checkout textarea:focus{border-color:var(--gold)}
+.order-msg{background:#e9f7ef;color:#23734d;font-size:13px;line-height:1.8;padding:12px;border-radius:7px;margin-top:10px}
+.cart-empty{text-align:center;color:var(--muted);padding:60px 10px;font-size:14px}
 .backdrop{position:fixed;inset:0;background:#0a14248c;z-index:94;display:none}
 .backdrop.open{display:block}
-.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(30px);background:var(--navy);color:#fff;padding:12px 24px;border-radius:40px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transition:.35s;z-index:99}
+
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(30px);background:var(--navy);color:#fff;padding:12px 22px;border-radius:30px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transition:.35s;z-index:99;border:1px solid #c6a15b66}
 .toast.show{opacity:1;transform:translateX(-50%)}
 
-footer{background:#fff;border-top:1px solid var(--line);color:#5a626e;padding:44px 0;text-align:center}
-footer strong{color:var(--navy);font-size:16px}
-footer p{font-size:13px;line-height:2.1}
-footer a{color:var(--gold)}
+footer{background:var(--navy);color:#d8dde5;padding:35px 0;text-align:center}
+footer strong{color:var(--gold)}
+footer p{font-size:13px;line-height:2}
 
-@media(max-width:1050px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:850px){
   .nav-links{display:none}
-  .grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .grid{grid-template-columns:repeat(2,1fr)}
   .toolbar{grid-template-columns:1fr}
   .modal{grid-template-columns:1fr}
-  .modal-body{padding:24px 20px}
+  .modal-img{min-height:230px;font-size:100px}
 }
 @media(max-width:480px){
   .logo{font-size:20px}
   .navbar{min-height:70px}
   .grid{gap:12px}
+  .thumb{height:150px;font-size:60px}
   .info{padding:13px}
-  .info h3{font-size:13.5px}
-  .price{font-size:16px}
-  .quick{display:none}
+  .info h3{font-size:14px}
+  .price{font-size:17px}
   .cart-btn .lbl{display:none}
-  .page-hero{padding:56px 0 84px}
 }
 </style>
 </head>
@@ -173,30 +163,30 @@ footer a{color:var(--gold)}
     <a href="index.html" class="logo">دار العقارات<span>DAR EL AQARAT</span></a>
     <ul class="nav-links">
       <li><a href="index.html">الرئيسية</a></li>
-      <li><a href="index.html#properties">العقارات</a></li>
+      <li><a href="index.html#properties">للبيع والإيجار</a></li>
       <li><a href="index.html#areas">المناطق</a></li>
       <li><a href="products.html" class="active">الأثاث والإكسسوارات</a></li>
       <li><a href="#contact">تواصل معنا</a></li>
     </ul>
-    <button class="cart-btn" id="openCart" type="button" aria-label="فتح السلة">
-      <span class="lbl">السلة</span> <span class="cart-count" id="cartCount">0</span>
-    </button>
+    <div class="nav-actions">
+      <button class="cart-btn" id="openCart" type="button" aria-label="فتح السلة">
+        🛒 <span class="lbl">السلة</span> <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
   </div>
 </header>
 
 <section class="page-hero">
   <div class="container">
-    <div class="crumbs"><a href="index.html">الرئيسية</a> &nbsp;/&nbsp; الأثاث والإكسسوارات</div>
-    <span class="hero-tag en">THE COLLECTION</span>
-    <h1>قطع تصنع <span>الفارق</span> في كل ركن</h1>
-    <p>مختارات من الكنب والفوتيه والإضاءة بتصاميم معاصرة، انتقيناها لتمنح بيتك دفئًا وشخصية، وتكمل جمال المكان الذي اخترته.</p>
-    <div class="rule"></div>
+    <span class="hero-tag">FURNITURE &amp; DECOR</span>
+    <h1>جهّز بيتك بـ <span>أثاث وإكسسوارات</span> تليق بيه</h1>
+    <p>مجموعة مختارة من الأثاث المنزلي وإكسسوارات الديكور لكل غرفة في بيتك، من الكنب وغرف النوم حتى الإضاءة واللمسات الأخيرة.</p>
   </div>
 </section>
 
 <div class="container toolbar-wrap">
   <div class="toolbar">
-    <input id="q" type="search" placeholder="ابحث في المجموعة: كنبة، فوتيه، أباجورة…" aria-label="بحث">
+    <input id="q" type="search" placeholder="ابحث عن منتج، مثال: كنبة أو ثريا" aria-label="بحث">
     <select id="sort" aria-label="ترتيب المنتجات">
       <option value="default">الترتيب الافتراضي</option>
       <option value="low">السعر: من الأقل للأعلى</option>
@@ -208,21 +198,22 @@ footer a{color:var(--gold)}
 
 <section class="products-section">
   <div class="container">
-    <div class="results-bar"><div>عدد المنتجات: <span id="count">0</span></div></div>
+    <div class="results-bar">
+      <div class="results-count">عدد المنتجات: <span id="count">0</span></div>
+    </div>
     <div class="grid" id="grid"></div>
     <div class="empty" id="empty" hidden>
-      <h3>لم نجد منتجات مطابقة</h3>
-      <p>جرّب كلمة بحث أخرى أو اختر تصنيفًا مختلفًا.</p>
+      <h3>مفيش منتجات مطابقة للبحث</h3>
+      <p>جرّب كلمة تانية أو اختار تصنيف مختلف.</p>
     </div>
-    <div class="more-wrap" id="moreWrap" hidden><button class="more-btn" id="moreBtn" type="button">عرض المزيد</button></div>
   </div>
 </section>
 
 <footer id="contact">
   <div class="container">
-    <p><strong>دار العقارات</strong></p>
-    <p>عقارات منتقاة بعناية، وأثاث يكمل جمال المكان.</p>
-    <p>© <span id="year"></span> دار العقارات. جميع الحقوق محفوظة. · <a href="index.html">العودة للرئيسية</a></p>
+    <p><strong>دار العقارات | DAR EL AQARAT</strong></p>
+    <p>عقارات للبيع والإيجار، وأثاث وإكسسوارات لتجهيز بيتك.</p>
+    <p>© <span id="year"></span> دار العقارات. جميع الحقوق محفوظة. · <a href="index.html" style="color:var(--gold)">العودة للموقع</a></p>
   </div>
 </footer>
 
@@ -230,19 +221,18 @@ footer a{color:var(--gold)}
 <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="modal">
     <button class="close-x" id="closeModal" type="button" aria-label="إغلاق">×</button>
-    <div class="modal-img"><img id="mImg" alt=""></div>
+    <div class="modal-img" id="mImg"></div>
     <div class="modal-body">
       <div class="cat" id="mCat"></div>
       <h2 id="mTitle"></h2>
       <div class="price" id="mPrice" style="margin-bottom:0"></div>
       <p class="desc" id="mDesc"></p>
       <ul class="specs" id="mSpecs"></ul>
-      <p class="note">الألوان والمقاسات المتاحة تُؤكَّد معك عند تسجيل الطلب.</p>
       <div class="qty-row">
         <span style="font-size:13px;font-weight:700;color:#555">الكمية</span>
         <div class="qty"><button type="button" id="mMinus" aria-label="تقليل">−</button><span id="mQty">1</span><button type="button" id="mPlus" aria-label="زيادة">+</button></div>
       </div>
-      <button class="primary" id="mAdd" type="button">أضف إلى السلة</button>
+      <button class="primary" id="mAdd" type="button">أضف للسلة</button>
     </div>
   </div>
 </div>
@@ -252,7 +242,6 @@ footer a{color:var(--gold)}
 <aside class="drawer" id="drawer" aria-label="سلة المشتريات">
   <div class="drawer-head"><h3>سلة المشتريات</h3><button type="button" id="closeCart" aria-label="إغلاق السلة">×</button></div>
   <div class="drawer-lines" id="lines"></div>
-  <div class="order-msg" id="orderMsg" role="status" hidden style="margin:12px 22px"></div>
   <div class="drawer-foot" id="foot">
     <div class="total-row"><span>الإجمالي</span><span id="total">0 ج.م</span></div>
     <form class="checkout" id="checkout">
@@ -262,6 +251,7 @@ footer a{color:var(--gold)}
       <button class="primary" type="submit">تأكيد الطلب</button>
     </form>
   </div>
+  <div class="order-msg" id="orderMsg" role="status" hidden style="margin:12px 20px"></div>
 </aside>
 
 <div class="toast" id="toast" role="status"></div>
@@ -270,126 +260,81 @@ footer a{color:var(--gold)}
 /* =========================================
    إعدادات سريعة
    ========================================= */
-// رقم واتساب لاستقبال الطلبات بالصيغة الدولية بدون + (مثال: 201012345678). اتركه فارغًا لتسجيل الطلبات في المتصفح فقط.
+// رقم واتساب لاستقبال الطلبات بالصيغة الدولية بدون + (مثال: 201012345678).
+// اتركه فاضي لو عايز الطلبات تتسجل في المتصفح فقط.
 const WHATSAPP = "";
-const CART_KEY = "dar_cart_v2";
+
+const CART_KEY = "dar_cart_v1";
 const ORDERS_KEY = "dar_orders_v1";
-const PAGE_SIZE = 12;
 
 /* =========================================
-   المنتجات: الصور في images/products/
-   الأسعار هنا أمثلة تجريبية: عدّلها بأسعارك
+   بيانات المنتجات (غيّرها بمنتجاتك وأسعارك)
+   img: ضع مسار صورة حقيقية، ولو تركته فاضي تظهر أيقونة
    ========================================= */
-const CATS = {sofa: "الكنب", chair: "الفوتيه والكراسي", lamp: "الإضاءة"};
+const CATEGORIES = ["غرف المعيشة","غرف النوم","السفرة والمطبخ","الإضاءة","الديكور والإكسسوارات","السجاد والستائر"];
 
-const SOFAS = [
-  ["كنبة بوكليه كريمية", "ملمس بوكليه ناعم وخطوط منحنية تعانق المكان بدفء."],
-  ["كنبة مخملية بتخطيط رأسي", "مخمل أخضر عميق بتفصيلات رأسية فاخرة."],
-  ["كنبة منحنية بيج", "انسيابية هادئة تمنح الصالون حضورًا راقيًا."],
-  ["ركنة L بلون الكراميل", "ركنة رحبة بدرجة كراميل دافئة للجلسات العائلية."],
-  ["كنبة منخفضة بلون الزيتون", "ارتفاع منخفض وشكل عضوي يناسب التصاميم المعاصرة."],
-  ["كنبة مودرن كلاسيك", "توازن بين الأناقة الكلاسيكية والخطوط الحديثة."],
-  ["ركنة مودولار بيج", "وحدات مرنة تعيد ترتيبها كما يناسب مساحتك."],
-  ["كنبة بظهر مخطط", "ظهر مضلّع أنيق وجلسة مريحة طوال اليوم."],
-  ["كنبة بلون الكراميل", "حضور دافئ بتفاصيل أرجل نحيلة وتصميم خفيف."],
-  ["كنبة بقماش محبب", "قماش بملمس غني يضيف عمقًا للمكان."],
-  ["كنبة مينيمال زيتية", "خطوط نقية وهدوء بصري لمن يعشق البساطة."],
-  ["كنبة سكندنافية بإطار خشبي", "إطار خشبي مكشوف بروح اسكندنافية دافئة."],
-  ["ركنة بيج مع ترابيزة جانبية", "ركنة واسعة بدرجات محايدة تناسب كل الديكورات."],
-  ["كنبة عضوية بلون الصدأ", "شكل نحتي ناعم بدرجة ترابية جريئة."],
-  ["كنبة بمنحنيات ناعمة", "تقسيمات منتفخة وانحناءات تدعو للاسترخاء."],
-  ["كنبة مودولار زيتية", "تصميم متكامل بوسائد وثيرة ولون هادئ."],
-  ["كنبة مضلّعة بيج", "تضليع طولي أنيق يمنح الكنبة طابعًا فنيًا."],
-  ["كنبة نحتية بيج", "قطعة فنية بخطوط مائلة تلفت النظر."],
-  ["كنبة كابتونيه زيتية", "تنجيد كابتونيه كلاسيكي بروح معاصرة."],
-  ["كنبة بوسائد منفصلة", "وسائد مريحة وأرجل خشبية بتصميم دافئ."],
-  ["ركنة منحنية بالكراميل", "ركنة دائرية الانحناء تصنع مجلسًا حميميًا."],
-  ["كنبة بتنجيد مطوي", "طيات قماش ناعمة تمنح شكلًا راقيًا وهادئًا."],
-  ["كنبة كراميل جريئة", "لون غني ووسائد أسطوانية لمسة جريئة."],
-  ["كنبة بوكليه مينيمال", "بوكليه كريمي بتصميم بسيط ومنحنى أنيق."]
+const PRODUCTS = [
+  {id:1, name:"كنبة ثلاث مقاعد", cat:"غرف المعيشة", price:18500, old:22000, icon:"🛋️", img:"", badge:"خصم",
+   desc:"كنبة مريحة بقماش مخمل وهيكل خشب زان قوي، مناسبة للريسبشن وغرف المعيشة.",
+   specs:["العرض 220 سم","قماش مخمل مقاوم للبقع","هيكل خشب زان","ضمان سنتين"]},
+  {id:2, name:"ترابيزة قهوة بسطح رخام", cat:"غرف المعيشة", price:4200, icon:"☕", img:"", badge:"جديد",
+   desc:"ترابيزة قهوة بسطح رخام وقاعدة معدن ذهبي تعطي لمسة فخمة للمكان.",
+   specs:["سطح رخام طبيعي","قاعدة معدن ذهبي","القطر 90 سم"]},
+  {id:3, name:"وحدة تلفزيون خشب", cat:"غرف المعيشة", price:6800, icon:"📺", img:"",
+   desc:"وحدة تلفزيون بتصميم عصري مع أدراج ورفوف للتخزين وتنظيم الأسلاك.",
+   specs:["طول 180 سم","مناسبة لشاشات حتى 65 بوصة","أدراج بنظام إغلاق هادئ"]},
+  {id:4, name:"سرير مزدوج مع تسريحة", cat:"غرف النوم", price:21000, old:24500, icon:"🛏️", img:"", badge:"خصم",
+   desc:"سرير مزدوج بتصميم أنيق مع مسند رأس مبطن، ومعاه تسريحة بمرآة.",
+   specs:["مقاس المرتبة 160×200","مسند رأس مبطن","تسريحة بمرآة"]},
+  {id:5, name:"دولاب ملابس 4 درف", cat:"غرف النوم", price:14500, icon:"🚪", img:"",
+   desc:"دولاب واسع بتقسيم داخلي منظم للشماعات والأدراج والرفوف.",
+   specs:["العرض 200 سم","4 درف بمفصلات هادئة","تقسيم داخلي عملي"]},
+  {id:6, name:"مرتبة طبية مزدوجة", cat:"غرف النوم", price:7900, icon:"😴", img:"", badge:"جديد",
+   desc:"مرتبة بنظام سوست مستقل وطبقة فوم لدعم مريح للظهر.",
+   specs:["مقاس 160×200","سوست مستقل","ضمان 5 سنين"]},
+  {id:7, name:"ترابيزة سفرة مع 6 كراسي", cat:"السفرة والمطبخ", price:16500, icon:"🍽️", img:"",
+   desc:"طقم سفرة من الخشب الطبيعي مع كراسي مبطنة، يتسع لست أفراد.",
+   specs:["الطول 180 سم","6 كراسي مبطنة","خشب طبيعي بتشطيب لامع"]},
+  {id:8, name:"طقم أطباق 24 قطعة", cat:"السفرة والمطبخ", price:1850, old:2200, icon:"🥣", img:"", badge:"خصم",
+   desc:"طقم أطباق بورسلين بحواف ذهبية يكفي ستة أفراد.",
+   specs:["24 قطعة","بورسلين عالي الجودة","آمن للغسالة والميكروويف"]},
+  {id:9, name:"ثريا كريستال", cat:"الإضاءة", price:5400, icon:"💡", img:"", badge:"جديد",
+   desc:"ثريا كريستال بإطار ذهبي تضيف إضاءة دافية وفخامة للريسبشن.",
+   specs:["قطر 70 سم","6 لمبات E14","إطار معدن ذهبي"]},
+  {id:10, name:"أباجورة ذهبية", cat:"الإضاءة", price:950, icon:"🪔", img:"",
+   desc:"أباجورة بقاعدة ذهبية وغطاء قماش، مناسبة للكومودينو والمكاتب.",
+   specs:["الارتفاع 55 سم","لمبة E27","قاعدة معدن"]},
+  {id:11, name:"مصباح أرضي", cat:"الإضاءة", price:1300, icon:"🏮", img:"",
+   desc:"مصباح أرضي بذراع مرن يمكن توجيهه لركن القراءة أو جنب الكنبة.",
+   specs:["الارتفاع 160 سم","ذراع قابل للتعديل","مفتاح تشغيل بالقدم"]},
+  {id:12, name:"مرآة حائط بإطار ذهبي", cat:"الديكور والإكسسوارات", price:2200, icon:"🪞", img:"", badge:"جديد",
+   desc:"مرآة دائرية بإطار ذهبي رفيع تعطي إحساس بالاتساع وتناسب المداخل.",
+   specs:["القطر 80 سم","إطار معدن","جاهزة للتعليق"]},
+  {id:13, name:"مزهرية سيراميك", cat:"الديكور والإكسسوارات", price:480, icon:"🏺", img:"",
+   desc:"مزهرية سيراميك بتشطيب مطفي، مناسبة للترابيزات والرفوف.",
+   specs:["الارتفاع 35 سم","سيراميك مصقول يدويًا"]},
+  {id:14, name:"لوحة حائط فنية", cat:"الديكور والإكسسوارات", price:750, icon:"🖼️", img:"",
+   desc:"لوحة بإطار خشب بتصميم مجرد بألوان دافية تناسب أغلب الديكورات.",
+   specs:["مقاس 70×100 سم","إطار خشب","جاهزة للتعليق"]},
+  {id:15, name:"ساعة حائط كبيرة", cat:"الديكور والإكسسوارات", price:620, icon:"🕰️", img:"",
+   desc:"ساعة حائط بماكينة صامتة وأرقام واضحة بإطار ذهبي.",
+   specs:["القطر 60 سم","ماكينة صامتة"]},
+  {id:16, name:"سجادة صالون 200×300", cat:"السجاد والستائر", price:3600, old:4100, icon:"🧶", img:"", badge:"خصم",
+   desc:"سجادة بخامة ناعمة وتصميم هادئ يناسب الصالونات وغرف المعيشة.",
+   specs:["المقاس 200×300 سم","وبر ناعم","سهلة التنظيف"]},
+  {id:17, name:"ستارة بلاك أوت (زوج)", cat:"السجاد والستائر", price:1450, icon:"🪟", img:"",
+   desc:"زوج ستائر بلاك أوت يحجب الضوء ويوفر خصوصية وعزل حراري.",
+   specs:["الارتفاع 270 سم","يحجب الضوء بنسبة عالية","فتحات للتعليق بالشريط"]},
+  {id:18, name:"طقم وسائد مخمل (4 قطع)", cat:"السجاد والستائر", price:680, icon:"🛋️", img:"",
+   desc:"أربع وسائد مخمل بألوان متناسقة لإضافة لمسة دفء للكنب والسراير.",
+   specs:["مقاس 45×45 سم","4 قطع","أغطية بسوستة قابلة للغسل"]}
 ];
-
-const CHAIRS = [
-  ["فوتيه أخضر زيتوني", "كتل ناعمة منتفخة بلون الزيتون العميق."],
-  ["فوتيه بوكليه كريمي", "حضن مريح بقماش بوكليه دافئ."],
-  ["فوتيه برتقالي دوّار", "درجة محروقة جذابة وقاعدة دوّارة."],
-  ["كرسي أخضر هادئ بأرجل خشبية", "مسند أسطواني وأرجل خشب طبيعي."],
-  ["فوتيه وردي ناعم", "لمسة أنثوية رقيقة وتنجيد وثير."],
-  ["فوتيه دوّار أخضر فاتح", "قاعدة ذهبية وانحناء مريح للجلوس."],
-  ["فوتيه رمادي ترابي", "أرجل أسطوانية وتصميم نحتي ثابت."],
-  ["فوتيه بترولي", "لون عميق فاخر يتألق في أي ركن."],
-  ["فوتيه بوكليه بعجلة خشبية", "تصميم مرح بتفصيلة خشبية مميزة."],
-  ["فوتيه بتصميم الفقاعات", "بتلات منتفخة بلون الصدأ، قطعة تلفت الأنظار."],
-  ["فوتيه خردلي", "لون مشرق وأرجل أسطوانية بروح عصرية."],
-  ["كنبة صغيرة كريمية", "مثالية للزوايا الهادئة مع وسادة دائرية."],
-  ["فوتيه وردي دوّار", "قاعدة ذهبية وشكل دائري ناعم."],
-  ["بوف أخضر بحلقة ذهبية", "قطعة متعددة الاستخدام بتفصيل ذهبي."],
-  ["فوتيه دوّار بيج", "جلسة عميقة ومسند مريح بقاعدة خشبية."],
-  ["فوتيه بإطار خشبي", "إطار خشب أنيق وتنجيد بوكليه ناعم."],
-  ["فوتيه مرجاني", "دفء مرجاني وتفاصيل مبطنة."],
-  ["فوتيه بتصميم القرع", "تقسيمات دائرية تذكّر بالأزهار المتفتحة."],
-  ["فوتيه دوّار أزرق رمادي", "درجة هادئة وقاعدة خشبية متينة."],
-  ["كرسي نحتي أخضر", "تصميم فني منحني يشبه المنحوتة."],
-  ["كرسي دوّار تركوازي", "قاعدة معدنية وخطوط انسيابية عصرية."],
-  ["كرسي استرخاء بإطار معدني", "مسند رأس وإطار معدني بروح كلاسيكية حديثة."],
-  ["بوف بوكليه بأرجل خشبية", "مقعد إضافي أنيق وأرجل خشب طبيعي."],
-  ["كرسي استرخاء برتقالي", "تصميم ملتف بلون محروق دافئ."],
-  ["فوتيه كريمي بأرجل خشبية", "راحة كاملة وتصميم مدوّر ناعم."],
-  ["فوتيه كراميل", "بلون الصدأ الدافئ وتنجيد وثير."],
-  ["فوتيه كريمي بإطار خشبي", "نظافة خطوط ودفء الخشب في آن واحد."],
-  ["فوتيه أخضر فاتح", "كتل متداخلة بلون الفستقي الهادئ."],
-  ["فوتيه بوكليه ملتف", "قاعدة خشبية ومسند ينساب مع الجسم."],
-  ["فوتيه بدرجة الوردي الترابي", "تنجيد منتفخ بدرجة ناعمة وراقية."]
-];
-
-const LAMPS = [
-  ["نجفة زجاج كهرماني", "زجاج بدرجة العنبر يبعث ضوءًا دافئًا."],
-  ["نجفة زجاج أخضر مضلّع", "تضليع زجاجي أنيق بلون أخضر هادئ."],
-  ["أباجورة برتقالية بقاعدة معدنية", "كتلة زجاجية مدوّرة على قاعدة كروم."],
-  ["سقفية زجاج أخضر", "طبقات زجاجية شفافة تنشر إضاءة ناعمة."],
-  ["أباجورة بغطاء كريمي", "غطاء مطوي وقاعدة حمراء بخطوط متتالية."],
-  ["أباجورة شفافة برتقالية", "تصميم نحتي شفاف يتوهج بلون الكهرمان."],
-  ["أباجورة حمراء بساق منحنية", "ساق متموّجة وقبعة لامعة بحضور مرح."],
-  ["أباجورة عنابية", "قبة لامعة وساق نحيلة بتوهج دافئ."],
-  ["أباجورة بتصميم المشروم", "قبة عريضة وقاعدة انسيابية بلون برتقالي."],
-  ["استاند أرضي عنابي", "ساق متعرجة تنتهي بقبة لامعة أنيقة."],
-  ["استاند أرضي زيتي", "نحيل وأنيق وإضاءة ناعمة من الأعلى."],
-  ["أباجورة زجاج أخضر", "زجاج أخضر بشكل مشروم وإضاءة آسرة."]
-];
-
-const pad = n => String(n).padStart(2, "0");
-const roundTo = (v, s) => Math.round(v / s) * s;
-const PRODUCTS = [];
-
-function push(cat, list, base, price) {
-  list.forEach((p, i) => {
-    const n = i + 1;
-    let pr = price(n);
-    const sale = n % 5 === 0;
-    PRODUCTS.push({
-      id: base + n, cat, name: p[0], desc: p[1], price: pr,
-      old: sale ? roundTo(pr * 1.15, 100) : 0,
-      badge: sale ? "خصم" : (n % 7 === 0 ? "جديد" : ""),
-      img: `images/products/${cat}-${pad(n)}.jpg`
-    });
-  });
-}
-push("sofa", SOFAS, 0, n => 14500 + ((n * 7) % 9) * 1500 + ([4, 7, 13, 21].includes(n) ? 9000 : 0));
-push("chair", CHAIRS, 100, n => 5200 + ((n * 5) % 8) * 700);
-push("lamp", LAMPS, 200, n => 1200 + ((n * 3) % 7) * 450 + ([1, 2, 4].includes(n) ? 1500 : 0));
-
-const SPECS = {
-  sofa: ["تنجيد فاخر بخامات منتقاة", "هيكل متين وجلسة مريحة", "تناسب الصالونات وغرف المعيشة"],
-  chair: ["تنجيد ناعم ومريح", "تصميم نحتي معاصر", "تناسب الزوايا والريسبشن وغرف النوم"],
-  lamp: ["إضاءة دافئة تصنع أجواء هادئة", "خامات عالية الجودة", "تناسب المداخل والصالونات والكومودينو"]
-};
 
 /* =========================================
-   أدوات
+   أدوات مساعدة
    ========================================= */
 const $ = id => document.getElementById(id);
 const fmt = n => Number(n).toLocaleString("en-US");
-const byId = id => PRODUCTS.find(p => p.id === Number(id));
 
 function el(tag, cls, text) {
   const e = document.createElement(tag);
@@ -398,11 +343,19 @@ function el(tag, cls, text) {
   return e;
 }
 
-function img(src, alt, w, h) {
-  const i = document.createElement("img");
-  i.src = src; i.alt = alt; i.loading = "lazy"; i.decoding = "async";
-  if (w) { i.width = w; i.height = h; }
-  return i;
+function iconBox(p, cls) {
+  // صورة حقيقية لو موجودة، وإلا أيقونة
+  const box = el("div", cls);
+  box.textContent = p.icon;
+  if (p.img) {
+    const img = document.createElement("img");
+    img.src = p.img;
+    img.alt = p.name;
+    img.loading = "lazy";
+    img.onerror = () => img.remove();
+    box.appendChild(img);
+  }
+  return box;
 }
 
 let toastTimer;
@@ -417,38 +370,53 @@ function toast(msg) {
 /* =========================================
    السلة
    ========================================= */
-let cart = {};
+let cart = {};   // id -> quantity
 try { cart = JSON.parse(localStorage.getItem(CART_KEY) || "{}") || {}; } catch (e) { cart = {}; }
-Object.keys(cart).forEach(id => { if (!byId(id) || !(cart[id] > 0)) delete cart[id]; });
+Object.keys(cart).forEach(id => { if (!PRODUCTS.some(p => String(p.id) === id) || !(cart[id] > 0)) delete cart[id]; });
 
-const saveCart = () => { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {} };
+function saveCart() { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {} }
+const byId = id => PRODUCTS.find(p => p.id === Number(id));
 const cartCount = () => Object.values(cart).reduce((a, b) => a + b, 0);
 const cartTotal = () => Object.entries(cart).reduce((s, [id, q]) => s + byId(id).price * q, 0);
 
-function addToCart(id, qty = 1) { cart[id] = Math.min(99, (cart[id] || 0) + qty); saveCart(); renderCart(); }
-function setQty(id, qty) { if (qty <= 0) delete cart[id]; else cart[id] = Math.min(99, qty); saveCart(); renderCart(); }
+function addToCart(id, qty = 1) {
+  cart[id] = Math.min(99, (cart[id] || 0) + qty);
+  saveCart();
+  renderCart();
+}
+
+function setQty(id, qty) {
+  if (qty <= 0) delete cart[id]; else cart[id] = Math.min(99, qty);
+  saveCart();
+  renderCart();
+}
 
 function renderCart() {
   $("cartCount").textContent = cartCount();
   const lines = $("lines");
   lines.replaceChildren();
   const ids = Object.keys(cart);
+
   $("foot").hidden = ids.length === 0;
 
   if (!ids.length) {
-    lines.appendChild(el("div", "cart-empty", "السلة فارغة. أضف قطعًا من المجموعة."));
+    lines.appendChild(el("div", "cart-empty", "السلة فاضية. أضف منتجات من الصفحة."));
     return;
   }
+
   ids.forEach(id => {
     const p = byId(id);
     const row = el("div", "line");
-    const ico = el("div", "ico"); ico.appendChild(img(p.img, p.name, 68, 52)); row.appendChild(ico);
+    row.appendChild(iconBox(p, "ico"));
 
     const mid = el("div");
     mid.appendChild(el("h4", "", p.name));
     mid.appendChild(el("div", "lp", fmt(p.price * cart[id]) + " ج.م"));
-    const rm = el("button", "rm", "حذف"); rm.type = "button"; rm.onclick = () => setQty(id, 0);
-    mid.appendChild(rm); row.appendChild(mid);
+    const rm = el("button", "rm", "حذف");
+    rm.type = "button";
+    rm.onclick = () => setQty(id, 0);
+    mid.appendChild(rm);
+    row.appendChild(mid);
 
     const q = el("div", "qty");
     const minus = el("button", "", "−"); minus.type = "button"; minus.setAttribute("aria-label", "تقليل");
@@ -457,13 +425,23 @@ function renderCart() {
     plus.onclick = () => setQty(id, cart[id] + 1);
     q.append(minus, el("span", "", String(cart[id])), plus);
     row.appendChild(q);
+
     lines.appendChild(row);
   });
+
   $("total").textContent = fmt(cartTotal()) + " ج.م";
 }
 
-function openCart() { $("orderMsg").hidden = true; $("drawer").classList.add("open"); $("backdrop").classList.add("open"); }
-function closeCart() { $("drawer").classList.remove("open"); $("backdrop").classList.remove("open"); }
+function openCart() {
+  $("orderMsg").hidden = true;
+  $("drawer").classList.add("open");
+  $("backdrop").classList.add("open");
+}
+function closeCart() {
+  $("drawer").classList.remove("open");
+  $("backdrop").classList.remove("open");
+}
+
 $("openCart").onclick = openCart;
 $("closeCart").onclick = closeCart;
 $("backdrop").onclick = closeCart;
@@ -471,11 +449,22 @@ $("backdrop").onclick = closeCart;
 $("checkout").addEventListener("submit", e => {
   e.preventDefault();
   if (!cartCount()) return;
-  const items = Object.entries(cart).map(([id, q]) => { const p = byId(id); return {id: p.id, name: p.name, qty: q, price: p.price}; });
+
+  const items = Object.entries(cart).map(([id, q]) => {
+    const p = byId(id);
+    return {id: p.id, name: p.name, qty: q, price: p.price};
+  });
   const order = {
-    id: "o" + Date.now(), name: $("cName").value.trim(), phone: $("cPhone").value.trim(),
-    address: $("cAddr").value.trim(), items, total: cartTotal(), status: "new", date: new Date().toISOString()
+    id: "o" + Date.now(),
+    name: $("cName").value.trim(),
+    phone: $("cPhone").value.trim(),
+    address: $("cAddr").value.trim(),
+    items,
+    total: cartTotal(),
+    status: "new",
+    date: new Date().toISOString()
   };
+
   try {
     const list = JSON.parse(localStorage.getItem(ORDERS_KEY) || "[]");
     list.unshift(order);
@@ -488,109 +477,125 @@ $("checkout").addEventListener("submit", e => {
       `\nالإجمالي: ${fmt(order.total)} ج.م\nالاسم: ${order.name}\nالهاتف: ${order.phone}\nالعنوان: ${order.address}`;
     window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(text), "_blank", "noopener");
   }
-  cart = {}; saveCart(); renderCart(); e.target.reset();
+
+  cart = {};
+  saveCart();
+  renderCart();
+  e.target.reset();
+
   const msg = $("orderMsg");
   msg.textContent = WHATSAPP
-    ? "تم تسجيل طلبك وفتح واتساب لإرساله. نشكرك على ثقتك."
-    : "تم تسجيل طلبك بنجاح. سيتواصل معك فريقنا لتأكيد التفاصيل والتوصيل.";
+    ? "تم تسجيل طلبك وفتح واتساب لإرساله. شكرًا لثقتك."
+    : "تم تسجيل طلبك بنجاح. سيتواصل معك فريقنا لتأكيد الطلب والتوصيل.";
   msg.hidden = false;
 });
 
 /* =========================================
-   العرض
+   عرض المنتجات
    ========================================= */
-let activeCat = "all";
-let shown = PAGE_SIZE;
-let modalProduct = null, modalQty = 1;
+let activeCat = "الكل";
+let modalProduct = null;
+let modalQty = 1;
 
 function renderChips() {
   const box = $("chips");
   box.replaceChildren();
-  const make = (key, label, n) => {
-    const b = el("button", "chip" + (key === activeCat ? " on" : ""), label + " ");
-    b.appendChild(el("small", "", "(" + n + ")"));
+  ["الكل", ...CATEGORIES].forEach(c => {
+    const b = el("button", "chip" + (c === activeCat ? " on" : ""), c);
     b.type = "button";
-    b.onclick = () => { activeCat = key; shown = PAGE_SIZE; renderChips(); renderProducts(); };
+    b.onclick = () => { activeCat = c; renderChips(); renderProducts(); };
     box.appendChild(b);
-  };
-  make("all", "الكل", PRODUCTS.length);
-  Object.keys(CATS).forEach(k => make(k, CATS[k], PRODUCTS.filter(p => p.cat === k).length));
+  });
 }
 
-const norm = v => String(v || "").trim().toLowerCase().replace(/[أإآ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي").replace(/\s+/g, " ");
-
-function filtered() {
-  const q = norm($("q").value);
-  let list = PRODUCTS.filter(p =>
-    (activeCat === "all" || p.cat === activeCat) &&
-    (!q || norm(p.name).includes(q) || norm(p.desc).includes(q) || norm(CATS[p.cat]).includes(q)));
-  const s = $("sort").value;
-  if (s === "low") list = [...list].sort((a, b) => a.price - b.price);
-  if (s === "high") list = [...list].sort((a, b) => b.price - a.price);
-  return list;
+function normalize(v) {
+  return String(v || "").trim().toLowerCase().replace(/[أإآ]/g, "ا").replace(/ة/g, "ه").replace(/\s+/g, " ");
 }
 
 function renderProducts() {
-  const list = filtered();
+  const q = normalize($("q").value);
+  const sort = $("sort").value;
+
+  let list = PRODUCTS.filter(p =>
+    (activeCat === "الكل" || p.cat === activeCat) &&
+    (!q || normalize(p.name).includes(q) || normalize(p.cat).includes(q) || normalize(p.desc).includes(q))
+  );
+
+  if (sort === "low") list = [...list].sort((a, b) => a.price - b.price);
+  if (sort === "high") list = [...list].sort((a, b) => b.price - a.price);
+
   const grid = $("grid");
   grid.replaceChildren();
   $("count").textContent = list.length;
   $("empty").hidden = list.length !== 0;
   grid.hidden = list.length === 0;
 
-  list.slice(0, shown).forEach(p => {
+  list.forEach(p => {
     const card = el("article", "card");
-    const thumb = el("div", "thumb");
-    thumb.appendChild(img(p.img, p.name, 640, 480));
-    if (p.badge) thumb.appendChild(el("span", "badge" + (p.badge === "خصم" ? " sale" : ""), p.badge));
-    const qv = el("button", "quick", "نظرة سريعة"); qv.type = "button";
-    qv.onclick = e => { e.stopPropagation(); openModal(p); };
-    thumb.appendChild(qv);
+
+    const thumb = iconBox(p, "thumb");
+    if (p.badge) thumb.prepend(el("span", "badge" + (p.badge === "خصم" ? " sale" : ""), p.badge));
     thumb.onclick = () => openModal(p);
     card.appendChild(thumb);
 
     const info = el("div", "info");
-    info.appendChild(el("div", "cat", CATS[p.cat]));
-    const h = el("h3", "", p.name); h.onclick = () => openModal(p);
+    info.appendChild(el("div", "cat", p.cat));
+    const h = el("h3", "", p.name);
+    h.onclick = () => openModal(p);
     info.appendChild(h);
+
     const price = el("div", "price", fmt(p.price) + " ");
     price.appendChild(el("small", "", "ج.م"));
     if (p.old) price.appendChild(el("del", "", fmt(p.old)));
     info.appendChild(price);
-    const add = el("button", "add-btn", "أضف إلى السلة"); add.type = "button";
-    add.onclick = () => { addToCart(p.id); toast("أُضيف «" + p.name + "» إلى السلة"); };
+
+    const add = el("button", "add-btn", "أضف للسلة");
+    add.type = "button";
+    add.onclick = () => { addToCart(p.id); toast("اتضاف " + p.name + " للسلة"); };
     info.appendChild(add);
+
     card.appendChild(info);
     grid.appendChild(card);
   });
-
-  const rest = list.length - shown;
-  $("moreWrap").hidden = rest <= 0;
-  if (rest > 0) $("moreBtn").textContent = "عرض المزيد (" + rest + " منتج)";
 }
 
-$("moreBtn").onclick = () => { shown += PAGE_SIZE; renderProducts(); };
-$("q").addEventListener("input", () => { shown = PAGE_SIZE; renderProducts(); });
-$("sort").addEventListener("change", () => { shown = PAGE_SIZE; renderProducts(); });
+$("q").addEventListener("input", renderProducts);
+$("sort").addEventListener("change", renderProducts);
 
 /* =========================================
-   نافذة التفاصيل
+   نافذة تفاصيل المنتج
    ========================================= */
 function openModal(p) {
-  modalProduct = p; modalQty = 1; $("mQty").textContent = "1";
-  const i = $("mImg"); i.src = p.img; i.alt = p.name;
-  $("mCat").textContent = CATS[p.cat];
+  modalProduct = p;
+  modalQty = 1;
+  $("mQty").textContent = "1";
+
+  const img = $("mImg");
+  img.replaceChildren();
+  img.textContent = p.icon;
+  if (p.img) {
+    const i = document.createElement("img");
+    i.src = p.img; i.alt = p.name; i.onerror = () => i.remove();
+    img.appendChild(i);
+  }
+
+  $("mCat").textContent = p.cat;
   $("mTitle").textContent = p.name;
   const price = $("mPrice");
   price.textContent = fmt(p.price) + " ";
   price.appendChild(el("small", "", "ج.م"));
   if (p.old) price.appendChild(el("del", "", fmt(p.old)));
   $("mDesc").textContent = p.desc;
-  const specs = $("mSpecs"); specs.replaceChildren();
-  SPECS[p.cat].forEach(s => specs.appendChild(el("li", "", s)));
+
+  const specs = $("mSpecs");
+  specs.replaceChildren();
+  p.specs.forEach(s => specs.appendChild(el("li", "", s)));
+
   $("overlay").classList.add("open");
 }
+
 function closeModal() { $("overlay").classList.remove("open"); modalProduct = null; }
+
 $("closeModal").onclick = closeModal;
 $("overlay").addEventListener("click", e => { if (e.target === $("overlay")) closeModal(); });
 $("mMinus").onclick = () => { modalQty = Math.max(1, modalQty - 1); $("mQty").textContent = modalQty; };
@@ -598,12 +603,17 @@ $("mPlus").onclick = () => { modalQty = Math.min(99, modalQty + 1); $("mQty").te
 $("mAdd").onclick = () => {
   if (!modalProduct) return;
   addToCart(modalProduct.id, modalQty);
-  toast("أُضيف «" + modalProduct.name + "» إلى السلة");
+  toast("اتضاف " + modalProduct.name + " للسلة");
   closeModal();
 };
-document.addEventListener("keydown", e => { if (e.key === "Escape") { closeModal(); closeCart(); } });
 
-/* تشغيل */
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") { closeModal(); closeCart(); }
+});
+
+/* =========================================
+   تشغيل
+   ========================================= */
 $("year").textContent = new Date().getFullYear();
 renderChips();
 renderProducts();
