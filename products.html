@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="مجموعة منتقاة من الكنب والفوتيه والإضاءة بتصاميم عصرية لبيت يليق بك. من دار العقارات.">
+<meta name="description" content="مجموعة منتقاة من الكنب والكراسي والإضاءة والديكورات بتصاميم عصرية لبيت يليق بك. من دار العقارات.">
 <meta name="theme-color" content="#ffffff">
 <title>الأثاث والإكسسوارات | دار العقارات</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -189,14 +189,14 @@ footer a{color:var(--gold)}
     <div class="crumbs"><a href="index.html">الرئيسية</a> &nbsp;/&nbsp; الأثاث والإكسسوارات</div>
     <span class="hero-tag en">THE COLLECTION</span>
     <h1>قطع تصنع <span>الفارق</span> في كل ركن</h1>
-    <p>مختارات من الكنب والفوتيه والإضاءة بتصاميم معاصرة، انتقيناها لتمنح بيتك دفئًا وشخصية، وتكمل جمال المكان الذي اخترته.</p>
+    <p>مختارات من الكنب والكراسي والإضاءة والديكورات بتصاميم معاصرة، انتقيناها لتمنح بيتك دفئًا وشخصية، وتكمل جمال المكان الذي اخترته.</p>
     <div class="rule"></div>
   </div>
 </section>
 
 <div class="container toolbar-wrap">
   <div class="toolbar">
-    <input id="q" type="search" placeholder="ابحث في المجموعة: كنبة، فوتيه، أباجورة…" aria-label="بحث">
+    <input id="q" type="search" placeholder="ابحث في المجموعة: كنبة، كرسي، إضاءة، ديكور…" aria-label="بحث">
     <select id="sort" aria-label="ترتيب المنتجات">
       <option value="default">الترتيب الافتراضي</option>
       <option value="low">السعر: من الأقل للأعلى</option>
@@ -208,7 +208,7 @@ footer a{color:var(--gold)}
 
 <section class="products-section">
   <div class="container">
-    <div class="results-bar"><div>عدد المنتجات: <span id="count">0</span></div></div>
+    <div class="results-bar"><div>عدد المنتجات: <span id="count">0</span></div><small style="color:#8a7a5b;font-size:11px">أسعار المنتجات المضافة حديثًا تجريبية ويمكن تعديلها من بيانات المنتج داخل الكود.</small></div>
     <div class="grid" id="grid"></div>
     <div class="empty" id="empty" hidden>
       <h3>لم نجد منتجات مطابقة</h3>
@@ -280,7 +280,7 @@ const PAGE_SIZE = 12;
    المنتجات: الصور في images/products/
    الأسعار هنا أمثلة تجريبية: عدّلها بأسعارك
    ========================================= */
-const CATS = {sofa: "الكنب", chair: "الفوتيه والكراسي", lamp: "الإضاءة"};
+const CATS = {sofa: "الكنب", chair: "الفوتيه والكراسي", lamp: "الإضاءة", decor: "الديكورات والإكسسوارات"};
 
 const SOFAS = [
   ["كنبة بوكليه كريمية", "ملمس بوكليه ناعم وخطوط منحنية تعانق المكان بدفء."],
@@ -378,10 +378,23 @@ push("sofa", SOFAS, 0, n => 14500 + ((n * 7) % 9) * 1500 + ([4, 7, 13, 21].inclu
 push("chair", CHAIRS, 100, n => 5200 + ((n * 5) % 8) * 700);
 push("lamp", LAMPS, 200, n => 1200 + ((n * 3) % 7) * 450 + ([1, 2, 4].includes(n) ? 1500 : 0));
 
+// منتجات الصور الجديدة التي أرسلها المستخدم.
+// الأسعار التالية أسعار تجريبية قابلة للتعديل قبل النشر.
+const NEW_PHOTO_PRODUCTS = [
+  {id: 301, cat: "chair", name: "كرسي استرخاء خشبي بتصميم عضوي", desc: "كرسي مميز بإطار خشبي منحوت وتنجيد كريمي ناعم، مناسب لركن القراءة والاسترخاء.", price: 7800, img: "https://cdn.phototourl.com/member/2026-11-12-e223b309-7dc1-48fe-b66b-1e28b605ee71.jpg"},
+  {id: 302, cat: "sofa", name: "كنبة مخملية منحنية باللون العنابي", desc: "كنبة عصرية بخطوط منحنية وتنجيد مخملي غني يمنح غرفة المعيشة حضورًا أنيقًا.", price: 18500, img: "https://cdn.phototourl.com/member/2026-11-12-50d4fbea-ff39-46db-b729-59aeedc15360.jpg"},
+  {id: 303, cat: "decor", name: "مجموعة فازات ديكورية معدنية", desc: "ثلاث فازات بأطوال وتشطيبات معدنية مختلفة لتزيين الطاولات والأرفف.", price: 1800, img: "https://cdn.phototourl.com/member/2026-11-12-de4aca78-8c40-46d9-8399-d21766d401f2.jpg"},
+  {id: 304, cat: "decor", name: "مجموعة منحوتات وديكور للكتب", desc: "قطع ديكورية فنية بتفاصيل نحتية وألوان محايدة، مناسبة للمكتبات والكونسول.", price: 1500, img: "https://cdn.phototourl.com/member/2026-11-12-59c25920-794b-4941-a92e-b499bc4bd3be.jpg"},
+  {id: 305, cat: "lamp", name: "مجموعة إضاءة معلّقة زجاجية", desc: "ثلاث وحدات إضاءة معلّقة بزجاج دخاني ولمبات دافئة لتصميم إضاءة جذاب.", price: 4200, img: "https://cdn.phototourl.com/member/2026-11-12-e58032bb-4c2a-4b8e-8086-658486d1793e.jpg"},
+  {id: 306, cat: "chair", name: "كرسي معلّق من الخيزران", desc: "كرسي معلّق بتصميم عشّي منسوج مع وسادة داكنة وحامل معدني، مناسب للمساحات الداخلية والخارجية.", price: 9500, img: "https://cdn.phototourl.com/member/2026-11-12-a7b573dd-ec70-4d46-9be7-9378dd8c5cbd.jpg"}
+];
+PRODUCTS.push(...NEW_PHOTO_PRODUCTS);
+
 const SPECS = {
   sofa: ["تنجيد فاخر بخامات منتقاة", "هيكل متين وجلسة مريحة", "تناسب الصالونات وغرف المعيشة"],
   chair: ["تنجيد ناعم ومريح", "تصميم نحتي معاصر", "تناسب الزوايا والريسبشن وغرف النوم"],
-  lamp: ["إضاءة دافئة تصنع أجواء هادئة", "خامات عالية الجودة", "تناسب المداخل والصالونات والكومودينو"]
+  lamp: ["إضاءة دافئة تصنع أجواء هادئة", "خامات عالية الجودة", "تناسب المداخل والصالونات والكومودينو"],
+  decor: ["تفاصيل ديكورية تضيف شخصية للمكان", "تصميم مناسب للطاولات والأرفف", "تنسجم مع الديكورات العصرية والكلاسيكية"]
 };
 
 /* =========================================
