@@ -51,6 +51,9 @@ header {background:var(--navy);color:#fff;position:relative;z-index:10}
 .hero h1 span {color:var(--gold)}
 .hero p {color:#e2e5e9;font-size:16px;line-height:2;max-width:570px}
 
+/* إخفاء قسم البحث الموجود في مقدمة الصفحة مع الحفاظ على وظائف الموقع الداخلية */
+.search-wrap { display: none !important; }
+
 /* SEARCH */
 .search-wrap {position:relative;z-index:2}
 .search-box {
@@ -362,6 +365,25 @@ footer p {font-size:13px;line-height:2}
 
 .admin-link{font-size:13px;white-space:nowrap}
 
+
+/* FEATURED / VIP / SALES / FLOORPLAN EXTENSIONS */
+.featured-ribbon{position:absolute;right:15px;bottom:15px;background:#101b2c;color:#f4d28c;padding:7px 13px;border-radius:5px;font-size:11px;font-weight:800;z-index:2;border:1px solid #c6a15b}
+.vip-projects{padding:95px 0;background:#101b2c;color:#fff}
+.vip-projects .section-heading h2{color:#fff}.vip-projects .section-heading p{color:#cbd2dc}
+.vip-project-card{display:grid;grid-template-columns:1.1fr 1fr;gap:0;background:#192940;border:1px solid #c6a15b66;border-radius:16px;overflow:hidden;box-shadow:0 22px 55px #0003}
+.vip-project-image{min-height:390px;position:relative}.vip-project-image img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.vip-label{position:absolute;top:20px;right:20px;background:#c6a15b;color:#101b2c;padding:8px 15px;border-radius:5px;font-size:12px;font-weight:900}
+.vip-project-info{padding:clamp(25px,4vw,50px);display:flex;flex-direction:column;justify-content:center}
+.vip-project-info .eyebrow{color:#d7b875;font-size:12px;letter-spacing:2px;font-weight:800}
+.vip-project-info h3{font-size:clamp(25px,3vw,38px);margin:12px 0;color:#fff}.vip-project-info p{color:#cbd2dc;line-height:2;font-size:14px}
+.vip-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:25px 0}.vip-stats div{background:#ffffff0d;padding:13px;border-radius:8px;text-align:center}.vip-stats strong{display:block;color:#e0c17c;font-size:20px}.vip-stats span{font-size:11px;color:#cbd2dc}
+.vip-project-btn{border:0;background:#c6a15b;color:#101b2c;padding:14px 22px;border-radius:7px;font:inherit;font-weight:900;cursor:pointer;align-self:flex-start}
+.sales-team{padding:90px 0;background:#f7f6f2}.sales-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.sales-card{background:#fff;border:1px solid #eee;border-radius:13px;overflow:hidden;text-align:center;padding:28px 20px;box-shadow:0 10px 28px #101b2c0a}.sales-avatar{width:92px;height:92px;margin:0 auto 15px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#101b2c,#334966);color:#e0c17c;font-size:30px;font-weight:900;border:3px solid #c6a15b}.sales-card h3{color:#101b2c;font-size:18px}.sales-role{color:#b18b45;font-size:12px;font-weight:800;margin:5px 0 12px}.sales-card p{color:#777;font-size:13px;line-height:1.9}.sales-contact{display:inline-block;margin-top:14px;color:#101b2c;border:1px solid #c6a15b;padding:8px 17px;border-radius:6px;font-size:12px;font-weight:800}
+.floorplan-section{margin:30px 0;padding:25px;background:#faf9f6;border:1px solid #e8e1d4;border-radius:12px}.floorplan-section h3{margin-bottom:8px}.floorplan-note{color:#8a7652;font-size:12px;line-height:1.8;margin-bottom:15px}.floorplan-canvas{background:#fff;border:1px solid #e6e0d5;border-radius:10px;padding:12px;overflow:auto}.floorplan-canvas svg{display:block;width:100%;min-width:420px;max-height:520px}.floorplan-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;color:#777;font-size:11px}.floorplan-legend span:before{content:"";display:inline-block;width:9px;height:9px;background:#e8dfce;border:1px solid #6f685b;margin-left:6px}
+.form-hint{color:#8b806d;font-size:11px;line-height:1.8}.check-field{display:flex;align-items:center;gap:10px;background:#faf9f6;border:1px solid #e8e1d4;border-radius:8px;padding:13px}.check-field input{width:18px;height:18px;accent-color:#c6a15b}.check-field label{font-size:13px;font-weight:800;color:#101b2c}
+@media(max-width:800px){.vip-project-card{grid-template-columns:1fr}.vip-project-image{min-height:260px}.sales-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:550px){.sales-grid{grid-template-columns:1fr}.vip-stats{grid-template-columns:1fr 1fr 1fr}.vip-project-btn{width:100%}}
+
 /* RESPONSIVE */
 @media(max-width:900px) {
   .nav-links {display:none}
@@ -410,6 +432,14 @@ footer p {font-size:13px;line-height:2}
   .area-large {grid-column:auto}
 }
 </style>
+<style id="darExtraServicesStyles">
+/* DAR EL AQARAT - SERVICES & CUSTOMER PORTAL */
+.service-nav-group{position:relative}.service-nav-menu{display:none;position:absolute;top:100%;right:0;min-width:220px;background:#fff;border:1px solid #e7e2d8;border-radius:10px;padding:8px;box-shadow:0 15px 35px #101b2c20;z-index:1000}.service-nav-group:hover .service-nav-menu,.service-nav-group:focus-within .service-nav-menu{display:grid;gap:3px}.service-nav-menu a{padding:10px 12px;border-radius:7px;color:#17243a!important;white-space:nowrap}.service-nav-menu a:hover{background:#f4efe5}.customer-login-link{white-space:nowrap}
+.dar-extra-section{padding:76px 0;background:#f7f6f2;color:#17243a}.dar-extra-section.alt{background:#fff}.dar-extra-section.dark{background:#101b2c;color:#fff}.dar-extra-head{text-align:center;max-width:760px;margin:0 auto 34px}.dar-extra-head h2{font-size:clamp(25px,3vw,36px);margin:0 0 12px;color:inherit}.dar-extra-head p{color:#77808d;line-height:1.9;margin:0}.dark .dar-extra-head p{color:#cbd2dc}.dar-extra-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.dar-extra-card{background:#fff;color:#17243a;border:1px solid #e9e6df;border-radius:14px;padding:23px;box-shadow:0 12px 30px #101b2c08}.dar-extra-card h3{margin:0 0 10px;font-size:19px}.dar-extra-card p{color:#6f7783;line-height:1.8;font-size:14px}.dar-extra-card .dar-tag{display:inline-block;background:#f5ecd9;color:#87662d;border-radius:30px;padding:5px 11px;font-size:11px;font-weight:800;margin-bottom:12px}.dar-extra-btn{border:0;border-radius:8px;padding:12px 18px;background:#c6a15b;color:#101b2c;font:inherit;font-weight:800;cursor:pointer}.dar-extra-btn.secondary{background:#101b2c;color:#fff}.dar-form{background:#fff;color:#17243a;border:1px solid #e8e5df;border-radius:14px;padding:24px;display:grid;gap:15px;box-shadow:0 12px 32px #101b2c0a}.dar-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.dar-field{display:grid;gap:7px}.dar-field label{font-size:13px;font-weight:800;color:#394252}.dar-field input,.dar-field select,.dar-field textarea{width:100%;padding:12px 13px;border:1px solid #dfe2e7;border-radius:8px;background:#fff;color:#17243a;font:inherit;min-width:0}.dar-field textarea{min-height:90px;resize:vertical}.dar-result{background:#101b2c;color:#fff;border-radius:12px;padding:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.dar-result strong{color:#f0cf8c;font-size:22px}.dar-muted{color:#7a8492;font-size:12px;line-height:1.8}.dar-service-layout{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:start}.dar-service-list{display:grid;gap:12px}.dar-service-point{background:#ffffff12;border:1px solid #ffffff20;padding:16px;border-radius:10px;line-height:1.8}.dar-service-point b{color:#f0cf8c}.dar-vehicle-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.dar-vehicle{border:2px solid #e6e3dc;border-radius:11px;padding:12px;text-align:center;cursor:pointer;background:#fff;color:#17243a}.dar-vehicle input{accent-color:#c6a15b}.dar-vehicle:has(input:checked){border-color:#c6a15b;background:#fbf7ee}.dar-vehicle b{display:block;margin:7px 0}.dar-vehicle small{color:#78818d}.dar-account-wrap{max-width:720px;margin:auto}.dar-account-tabs{display:flex;gap:8px;margin-bottom:16px}.dar-account-tabs button{flex:1;padding:12px;border:1px solid #ddd;border-radius:8px;background:#fff;font:inherit;cursor:pointer}.dar-account-tabs button.active{background:#101b2c;color:#fff;border-color:#101b2c}.dar-notice{padding:12px;border-radius:8px;background:#f5f0e5;color:#71572b;font-size:13px;line-height:1.8}.dar-request-item{border:1px solid #e7e4dc;border-radius:10px;padding:14px;margin-top:10px;background:#fff;color:#17243a}.dar-hidden{display:none!important}
+body[data-theme="dark"] .dar-extra-section{background:#101b2c;color:#fff}body[data-theme="dark"] .dar-extra-section.alt{background:#142238}body[data-theme="dark"] .dar-extra-card,body[data-theme="dark"] .dar-form{background:#1a2a40;color:#fff;border-color:#34445a}body[data-theme="dark"] .dar-extra-card p,body[data-theme="dark"] .dar-field label{color:#d1d8e2}body[data-theme="dark"] .dar-field input,body[data-theme="dark"] .dar-field select,body[data-theme="dark"] .dar-field textarea{background:#101b2c;color:#fff;border-color:#46556a}body[data-theme="dark"] .dar-vehicle{background:#1a2a40;color:#fff;border-color:#46556a}body[data-theme="dark"] .dar-vehicle:has(input:checked){background:#3a3325;border-color:#c6a15b}body[data-theme="dark"] .dar-account-tabs button{background:#1a2a40;color:#fff;border-color:#46556a}body[data-theme="dark"] .dar-account-tabs button.active{background:#c6a15b;color:#101b2c}body[data-theme="dark"] .dar-request-item{background:#1a2a40;color:#fff;border-color:#46556a}body[data-theme="dark"] .service-nav-menu{background:#1a2a40;border-color:#46556a}body[data-theme="dark"] .service-nav-menu a{color:#fff!important}body[data-theme="dark"] .service-nav-menu a:hover{background:#293b53}
+@media(max-width:900px){.dar-extra-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dar-service-layout{grid-template-columns:1fr}.dar-vehicle-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.service-nav-menu{position:static;box-shadow:none;margin-top:5px}.service-nav-group:hover .service-nav-menu{display:grid}}
+@media(max-width:600px){.dar-extra-section{padding:55px 0}.dar-extra-grid,.dar-form-grid{grid-template-columns:1fr}.dar-form{padding:17px}.dar-vehicle-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dar-result{align-items:flex-start;flex-direction:column}.customer-login-link{font-size:11px;padding:9px!important}}
+</style>
 </head>
 
 <body>
@@ -422,12 +452,16 @@ footer p {font-size:13px;line-height:2}
       <li><a href="#properties" data-quick-operation="sale">للبيع</a></li>
       <li><a href="#properties" data-quick-operation="rent">للإيجار</a></li>
       <li><a href="#areas">المناطق</a></li>
+      <li><a href="#real-estate-projects">المشروعات</a></li>
+      <li><a href="#sales-team">فريق المبيعات</a></li>
+      <li class="service-nav-group"><a href="#dar-services">خدماتنا ▾</a><div class="service-nav-menu"><a href="#dar-payment">السداد والتقسيط</a><a href="#dar-finishing">باقات التشطيب</a><a href="#dar-moving">نقل العفش</a><a href="#dar-account">حساب العميل</a></div></li>
       <li><a href="products.html">الأثاث والإكسسوارات</a></li>
       <li><a href="#contact">تواصل معنا</a></li>
     </ul>
     <div class="nav-actions">
       <button class="lang-btn" id="langButton" type="button">EN</button>
-      <a href="admin.html" class="lang-btn admin-link">لوحة التحكم</a>
+      <a href="#dar-account" class="lang-btn customer-login-link">حساب العميل</a>
+       <a href="admin.html" class="lang-btn admin-link">لوحة التحكم</a>
       <a href="#add-property" class="add-property" id="openAddProperty">أضف عقارك +</a>
     </div>
   </div>
@@ -753,12 +787,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   <div class="container search-wrap">
     <form class="search-box" id="propertySearch">
-      <div class="search-title">
-        <div>
-          <h3>ابحث عن عقارك المثالي</h3>
-          <p>استخدم الفلاتر للوصول إلى العقار المناسب لك</p>
-        </div>
-      </div>
+
 
       <div class="search-field">
         <label for="keyword">ابحث باسم العقار أو المنطقة</label>
@@ -1060,6 +1089,19 @@ document.addEventListener("DOMContentLoaded",()=>{
           <label for="newDescription">وصف العقار *</label>
           <textarea id="newDescription" required maxlength="1500" placeholder="اكتب وصفاً واضحاً للعقار ومميزاته..."></textarea>
         </div>
+        <div class="form-field full">
+          <label for="newAmenities">مميزات إضافية للعقار</label>
+          <textarea id="newAmenities" maxlength="1000" placeholder="مثال: جراج خاص، أمن وحراسة، حمام سباحة، مصعد، تشطيب سوبر لوكس"></textarea>
+        </div>
+        <div class="form-field full check-field">
+          <input id="newFeatured" type="checkbox">
+          <label for="newFeatured">إظهار العقار ضمن العقارات المميزة بشارة ذهبية</label>
+        </div>
+        <div class="form-field full check-field">
+          <input id="newShowFloorplan" type="checkbox" checked>
+          <label for="newShowFloorplan">إظهار مخطط تقسيم تقريبي ثنائي الأبعاد عند فتح تفاصيل الشقة</label>
+        </div>
+        <p class="form-hint form-field full">المخطط التوضيحي يتم توليده تلقائيًا من بيانات المساحة والغرف، ولا يُعد رسماً هندسياً تنفيذياً أو بديلاً عن مخطط مهندس معتمد.</p>
       </div>
 
       <h3 class="form-section-title">صور العقار</h3>
@@ -1129,6 +1171,12 @@ document.addEventListener("DOMContentLoaded",()=>{
 
           <h3>مميزات العقار</h3>
           <ul class="amenities-list" id="detailsAmenities"></ul>
+          <section class="floorplan-section" id="detailsFloorplanSection" hidden>
+            <h3>المخطط المعماري التقريبي للشقة</h3>
+            <p class="floorplan-note">رسم توضيحي من أعلى يوضح توزيعاً مقترحاً للفراغات. الأبعاد والتقسيم ليست مخططاً هندسياً معتمداً.</p>
+            <div class="floorplan-canvas" id="detailsFloorplan"></div>
+            <div class="floorplan-legend"><span>غرف ومعيشة</span><span>خدمات</span><span>ممرات وتوزيع</span></div>
+          </section>
         </div>
       </div>
 
@@ -1154,6 +1202,30 @@ document.addEventListener("DOMContentLoaded",()=>{
         </form>
       </aside>
     </div>
+  </div>
+</section>
+
+<!-- REAL ESTATE PROJECTS -->
+<section class="vip-projects home-content" id="real-estate-projects">
+  <div class="container">
+    <div class="section-heading"><div><span class="section-tag">REAL ESTATE PROJECTS</span><h2>مشروعات <span>دار العقارات</span></h2><p>مشروعات مختارة بعناية بتفاصيل راقية ومستوى VIP</p></div></div>
+    <article class="vip-project-card">
+      <div class="vip-project-image"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85" alt="فيلا فاخرة ضمن مشروعات دار العقارات" loading="lazy"><span class="vip-label">VIP EXCLUSIVE</span></div>
+      <div class="vip-project-info"><span class="eyebrow">SIGNATURE COLLECTION · 01</span><h3>فيلا جراند VIP</h3><p>مشروع فيلا فاخرة بتصميم معماري معاصر، مساحات رحبة، واجهات أنيقة، وحديقة خاصة. تواصل مع فريق المبيعات لمعرفة التفاصيل والتوافر.</p><div class="vip-stats"><div><strong>420 م²</strong><span>مساحة البناء</span></div><div><strong>5</strong><span>غرف نوم</span></div><div><strong>4</strong><span>حمامات</span></div></div><button class="vip-project-btn" type="button" id="vipProjectDetails">استكشف المشروع</button></div>
+    </article>
+  </div>
+</section>
+
+<!-- SALES TEAM -->
+<section class="sales-team home-content" id="sales-team">
+  <div class="container">
+    <div class="section-heading"><div><span class="section-tag">MEET OUR SALES TEAM</span><h2>فريق <span>المبيعات</span></h2><p>فريق دار العقارات جاهز لمساعدتك في اختيار العقار المناسب وترتيب المعاينة</p></div></div>
+    <div class="sales-grid">
+      <article class="sales-card"><div class="sales-avatar">SA</div><h3>مستشار المبيعات</h3><div class="sales-role">SENIOR SALES CONSULTANT</div><p>متابعة طلبات العملاء وتقديم الخيارات المناسبة للبيع والشراء.</p><a class="sales-contact" href="tel:+201000000001">اتصل بالمبيعات</a></article>
+      <article class="sales-card"><div class="sales-avatar">PR</div><h3>مسؤول المشروعات</h3><div class="sales-role">PROJECT SALES SPECIALIST</div><p>معلومات عن المشروعات السكنية والفلل والوحدات المميزة.</p><a class="sales-contact" href="tel:+201000000002">اتصل بالمبيعات</a></article>
+      <article class="sales-card"><div class="sales-avatar">CS</div><h3>خدمة العملاء</h3><div class="sales-role">CLIENT RELATIONS</div><p>تنسيق مواعيد المعاينة والرد على الاستفسارات ومتابعة العملاء.</p><a class="sales-contact" href="tel:+201000000003">اتصل بنا</a></article>
+    </div>
+    <p class="form-hint" style="text-align:center;margin-top:18px">أرقام التواصل المعروضة تجريبية؛ استبدلها بأرقام فريق الشركة قبل النشر.</p>
   </div>
 </section>
 
@@ -1223,6 +1295,165 @@ document.addEventListener("DOMContentLoaded",()=>{
       </article>
     </div>
   </div>
+</section>
+
+
+<section class="dar-extra-section" id="dar-services">
+ <div class="container">
+  <div class="dar-extra-head"><h2>خدمات دار العقارات</h2><p>من اختيار وحدتك السكنية إلى تجهيزها والانتقال إليها، خدمات متكاملة في مكان واحد.</p></div>
+  <div class="dar-extra-grid">
+   <article class="dar-extra-card"><span class="dar-tag">عقارات مميزة</span><h3>الشقق والفيلات الفاخرة</h3><p>استكشف وحدات سكنية بمساحات وتصميمات ومستويات تشطيب مختلفة، مع تفاصيل العقار وطلب معاينة.</p><a class="dar-extra-btn" href="#properties">استكشف العقارات</a></article>
+   <article class="dar-extra-card"><span class="dar-tag">خطط مرنة</span><h3>السداد والتقسيط</h3><p>احسب المقدم والقسط التقديري، واطلب من فريق الشركة مراجعة نظام السداد المناسب.</p><a class="dar-extra-btn" href="#dar-payment">احسب قسطك</a></article>
+   <article class="dar-extra-card"><span class="dar-tag">تشطيب حسب الطلب</span><h3>باقات التشطيب</h3><p>قارن بين مستويات التشطيب والخامات والتكلفة التقديرية قبل اتخاذ قرارك.</p><a class="dar-extra-btn" href="#dar-finishing">شاهد الباقات</a></article>
+   <article class="dar-extra-card"><span class="dar-tag">خدمة إضافية</span><h3>نقل العفش</h3><p>اختر حجم السيارة وعدد العمال والخدمات الإضافية، ثم أرسل طلب حجز للإدارة.</p><a class="dar-extra-btn" href="#dar-moving">احجز سيارة</a></article>
+   <article class="dar-extra-card"><span class="dar-tag">متابعة شخصية</span><h3>حساب العميل</h3><p>أنشئ حساباً تجريبياً محلياً لمتابعة طلبات المعاينة والتشطيب ونقل العفش على هذا الجهاز.</p><a class="dar-extra-btn" href="#dar-account">إنشاء حساب</a></article>
+   <article class="dar-extra-card"><span class="dar-tag">خدمة العملاء</span><h3>طلب استشارة</h3><p>أرسل بياناتك واحتياجك، وسيتم تسجيل طلبك لمراجعته والتواصل معك.</p><a class="dar-extra-btn" href="#contact">تواصل معنا</a></article>
+  </div>
+ </div>
+</section>
+<section class="dar-extra-section alt" id="dar-payment">
+ <div class="container">
+  <div class="dar-extra-head"><h2>أنظمة السداد وحاسبة الأقساط</h2><p>احسب تصوراً مبدئياً لقيمة المقدم والقسط بناءً على سعر الوحدة والمدة المختارة.</p></div>
+  <div class="dar-service-layout">
+   <form class="dar-form" id="darPaymentForm">
+    <div class="dar-form-grid">
+     <div class="dar-field"><label for="darUnitPrice">سعر العقار (جنيه)</label><input id="darUnitPrice" type="number" min="0" step="1000" value="3000000" required></div>
+     <div class="dar-field"><label for="darDownPercent">نسبة المقدم (%)</label><input id="darDownPercent" type="number" min="0" max="100" value="20" required></div>
+     <div class="dar-field"><label for="darInstallYears">مدة التقسيط</label><select id="darInstallYears"><option value="2">سنتان</option><option value="3">3 سنوات</option><option value="4">4 سنوات</option><option value="5" selected>5 سنوات</option><option value="6">6 سنوات</option><option value="7">7 سنوات</option><option value="8">8 سنوات</option><option value="10">10 سنوات</option></select></div>
+     <div class="dar-field"><label for="darPaymentFrequency">دورية السداد</label><select id="darPaymentFrequency"><option value="monthly">شهري</option><option value="quarterly">ربع سنوي</option><option value="yearly">سنوي</option></select></div>
+    </div>
+    <div class="dar-result"><div><small>قيمة المقدم التقديرية</small><br><strong id="darDownValue">600,000 ج.م</strong></div><div><small>قيمة الدفعة التقديرية</small><br><strong id="darInstallValue">40,000 ج.م</strong></div></div>
+    <button class="dar-extra-btn" type="submit">اطلب مراجعة نظام السداد</button>
+    <p class="dar-muted">الحاسبة تقديرية بدون فوائد أو رسوم أو مصاريف إدارية. لا تمثل عرضاً تعاقدياً، ويخضع أي تقسيط لموافقة وسياسة الشركة.</p>
+   </form>
+   <div class="dar-service-list">
+    <div class="dar-service-point"><b>الدفع النقدي</b><br>إمكانية تسجيل طلب شراء نقدي ومراجعة تفاصيل السعر مع الإدارة.</div>
+    <div class="dar-service-point"><b>التقسيط المباشر من الشركة</b><br>يُعرض فقط إذا اعتمدت الإدارة نظاماً فعلياً للعقار المحدد، ويمكن تحديث الشروط لاحقاً.</div>
+    <div class="dar-service-point"><b>التمويل العقاري والبنوك</b><br>لا توجد حالياً بنوك متعاقدة مع الشركة. جهزنا القسم لاستقبال أسماء البنوك وشروطها عند توقيع أي اتفاق رسمي.</div>
+    <form class="dar-form" id="darFinanceRequest"><h3>طلب استفسار عن التمويل</h3><div class="dar-field"><label for="darFinanceName">الاسم</label><input id="darFinanceName" required></div><div class="dar-field"><label for="darFinancePhone">رقم الهاتف</label><input id="darFinancePhone" type="tel" required></div><div class="dar-field"><label for="darFinanceNote">تفاصيل الطلب</label><textarea id="darFinanceNote" placeholder="اكتب نوع العقار أو قيمة التمويل المطلوبة"></textarea></div><button class="dar-extra-btn" type="submit">إرسال طلب الاستفسار</button></form>
+   </div>
+  </div>
+ </div>
+</section>
+<section class="dar-extra-section" id="dar-finishing">
+ <div class="container">
+  <div class="dar-extra-head"><h2>باقات تشطيب الوحدات</h2><p>اختار مستوى التشطيب واحسب تكلفة تقديرية حسب مساحة وحدتك. الأسعار المعروضة أمثلة قابلة للتعديل من إدارة الشركة وليست عرض سعر نهائي.</p></div>
+  <div class="dar-extra-grid">
+   <article class="dar-extra-card"><span class="dar-tag">اقتصادي</span><h3>التشطيب الأساسي</h3><p>حل عملي بخامات أساسية واختيارات بسيطة تناسب الميزانيات المحددة.</p><b>تقدير تجريبي: 2,500 ج.م / م²</b></article>
+   <article class="dar-extra-card"><span class="dar-tag">متوسط</span><h3>التشطيب القياسي</h3><p>خامات عملية بمظهر متناسق وجودة مناسبة للاستخدام اليومي.</p><b>تقدير تجريبي: 3,500 ج.م / م²</b></article>
+   <article class="dar-extra-card"><span class="dar-tag">مميز</span><h3>سوبر لوكس</h3><p>اختيارات أوسع للأرضيات والدهانات والأبواب والتجهيزات.</p><b>تقدير تجريبي: 4,500 ج.م / م²</b></article>
+   <article class="dar-extra-card"><span class="dar-tag">فاخر</span><h3>هاي لوكس</h3><p>خامات وتشطيبات بتفاصيل أكثر فخامة وتصميم داخلي متناسق.</p><b>تقدير تجريبي: 6,000 ج.م / م²</b></article>
+   <article class="dar-extra-card"><span class="dar-tag">VIP</span><h3>ألترا لوكس</h3><p>مستوى فاخر مع خامات مختارة وتفاصيل مخصصة حسب التصميم.</p><b>تقدير تجريبي: 8,000 ج.م / م²</b></article>
+  </div>
+  <form class="dar-form" id="darFinishingForm" style="max-width:850px;margin:25px auto 0">
+   <h3>احسب تكلفة تشطيب وحدتك</h3><div class="dar-form-grid"><div class="dar-field"><label for="darFinishArea">مساحة الوحدة بالمتر</label><input id="darFinishArea" type="number" min="1" value="120" required></div><div class="dar-field"><label for="darFinishType">فئة التشطيب</label><select id="darFinishType"><option value="2500">اقتصادي - 2,500 ج.م/م²</option><option value="3500">قياسي - 3,500 ج.م/م²</option><option value="4500" selected>سوبر لوكس - 4,500 ج.م/م²</option><option value="6000">هاي لوكس - 6,000 ج.م/م²</option><option value="8000">ألترا لوكس - 8,000 ج.م/م²</option></select></div></div>
+   <div class="dar-result"><div><small>التكلفة التقديرية</small><br><strong id="darFinishTotal">540,000 ج.م</strong></div><span class="dar-muted">تتغير التكلفة النهائية حسب المعاينة والخامات والتصميم.</span></div><button class="dar-extra-btn" type="submit">اطلب معاينة وتشطيب</button>
+  </form>
+ </div>
+</section>
+<section class="dar-extra-section dark" id="dar-moving">
+ <div class="container">
+  <div class="dar-extra-head"><h2>خدمة نقل العفش من دار العقارات</h2><p>حدد حجم السيارة وعدد العمال والخدمات المطلوبة، وسجل طلب النقل ليتم تأكيد السعر والموعد من الإدارة.</p></div>
+  <form class="dar-form" id="darMovingForm">
+   <div class="dar-field"><label>اختار حجم السيارة</label><div class="dar-vehicle-grid">
+    <label class="dar-vehicle"><input type="radio" name="darVehicle" value="small" data-price="900" checked><b>سيارة صغيرة</b><small>حمولة محدودة</small><br><small>ابتداءً من 900 ج.م</small></label>
+    <label class="dar-vehicle"><input type="radio" name="darVehicle" value="medium" data-price="1500"><b>سيارة متوسطة</b><small>أثاث شقة صغيرة</small><br><small>ابتداءً من 1,500 ج.م</small></label>
+    <label class="dar-vehicle"><input type="radio" name="darVehicle" value="large" data-price="2300"><b>سيارة كبيرة</b><small>أثاث شقة كاملة</small><br><small>ابتداءً من 2,300 ج.م</small></label>
+    <label class="dar-vehicle"><input type="radio" name="darVehicle" value="xlarge" data-price="3500"><b>سيارة ضخمة</b><small>فيلا أو حمولة كبيرة</small><br><small>ابتداءً من 3,500 ج.م</small></label>
+   </div></div>
+   <div class="dar-form-grid"><div class="dar-field"><label for="darWorkers">عدد العمال</label><select id="darWorkers"><option value="0">بدون عمال</option><option value="2" selected>عاملان (+ 400 ج.م)</option><option value="3">3 عمال (+ 600 ج.م)</option><option value="4">4 عمال (+ 800 ج.م)</option><option value="5">5 عمال (+ 1,000 ج.م)</option><option value="6">6 عمال (+ 1,200 ج.م)</option></select></div><div class="dar-field"><label for="darMovingDate">تاريخ النقل</label><input id="darMovingDate" type="date" required></div><div class="dar-field"><label for="darMovingFrom">عنوان الاستلام</label><input id="darMovingFrom" required></div><div class="dar-field"><label for="darMovingTo">عنوان التوصيل</label><input id="darMovingTo" required></div><div class="dar-field"><label for="darMovingPhone">رقم الهاتف</label><input id="darMovingPhone" type="tel" required></div><div class="dar-field"><label for="darMovingExtra">خدمات إضافية</label><select id="darMovingExtra"><option value="0">بدون</option><option value="300">تغليف (+ 300 ج.م)</option><option value="500">فك وتركيب (+ 500 ج.م)</option><option value="700">تغليف وفك وتركيب (+ 700 ج.م)</option></select></div></div>
+   <div class="dar-result"><div><small>السعر التقديري المبدئي</small><br><strong id="darMovingTotal">1,300 ج.م</strong></div><span class="dar-muted">السعر النهائي يحدده فريق الشركة بعد مراجعة المسافة والحمولة والتفاصيل.</span></div>
+   <button class="dar-extra-btn" type="submit">إرسال طلب حجز سيارة</button>
+  </form>
+ </div>
+</section>
+<section class="dar-extra-section alt" id="dar-account">
+ <div class="container">
+  <div class="dar-extra-head"><h2>حساب العميل ومتابعة الطلبات</h2><p>أنشئ حساباً لمتابعة طلباتك المسجلة على هذا الجهاز.</p></div>
+  <div class="dar-account-wrap">
+   <div class="dar-notice">نسخة تشغيل أولية: الحسابات والطلبات تُحفظ محلياً في المتصفح الحالي فقط. لتفعيل تسجيل دخول آمن ومزامنة بين الأجهزة، يجب ربط الموقع لاحقاً بقاعدة بيانات وخدمة مصادقة على الخادم.</div>
+   <div id="darAuthArea" class="dar-form" style="margin-top:16px">
+    <div class="dar-account-tabs"><button type="button" id="darLoginTab" class="active">تسجيل الدخول</button><button type="button" id="darRegisterTab">إنشاء حساب</button></div>
+    <form id="darLoginForm"><div class="dar-field"><label for="darLoginEmail">البريد الإلكتروني أو رقم الهاتف</label><input id="darLoginEmail" required></div><div class="dar-field"><label for="darLoginPassword">كلمة المرور</label><input id="darLoginPassword" type="password" required></div><button class="dar-extra-btn" type="submit">دخول</button></form>
+    <form id="darRegisterForm" class="dar-hidden"><div class="dar-form-grid"><div class="dar-field"><label for="darRegisterName">الاسم بالكامل</label><input id="darRegisterName" required></div><div class="dar-field"><label for="darRegisterPhone">رقم الهاتف</label><input id="darRegisterPhone" type="tel" required></div></div><div class="dar-field"><label for="darRegisterEmail">البريد الإلكتروني</label><input id="darRegisterEmail" type="email" required></div><div class="dar-field"><label for="darRegisterPassword">كلمة المرور</label><input id="darRegisterPassword" type="password" minlength="6" required></div><button class="dar-extra-btn" type="submit">إنشاء الحساب</button></form>
+    <p id="darAuthMessage" class="dar-muted" aria-live="polite"></p>
+   </div>
+   <div id="darCustomerDashboard" class="dar-form dar-hidden" style="margin-top:16px"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h3 id="darWelcomeName">حسابي</h3><button type="button" id="darLogout" class="dar-extra-btn secondary">تسجيل الخروج</button></div><h4>طلباتي</h4><div id="darCustomerRequests"><p class="dar-muted">لا توجد طلبات مسجلة حتى الآن.</p></div></div>
+  </div>
+ </div>
+</section>
+
+<!-- DAR EL AQARAT: animated 18-floor construction finale -->
+<section class="dar-construction-finale" id="dar-construction-finale" aria-label="مشهد بناء مشروع دار العقارات">
+ <div class="dar-construction-glow"></div>
+ <div class="dar-construction-inner">
+  <div class="dar-construction-copy">
+   <span class="dar-construction-kicker">DAR EL AQARAT · BUILDING THE FUTURE</span>
+   <h2>نبني اليوم.. <em>بيوت أحلام الغد</em></h2>
+   <p>من أول حجر إلى أعلى طابق، نصنع مكاناً يليق بأحلامك.</p>
+   <div class="dar-construction-stats"><span><b>18</b><small>طابقاً من التميز</small></span><i></i><span><b>36</b><small>وحدة سكنية</small></span><i></i><span><b>VIP</b><small>جودة وفخامة</small></span></div>
+  </div>
+  <div class="dar-construction-stage">
+   <div class="dar-gold-mark" aria-label="شعار دار العقارات الذهبي">
+    <div class="dar-mark-ring"><span class="dar-mark-symbol">دار</span><span class="dar-mark-name">DAR EL AQARAT</span></div>
+    <span class="dar-mark-spark"></span>
+   </div>
+   <svg class="dar-building-scene" viewBox="0 0 1100 650" role="img" aria-label="عمارة من 18 دور وعمال ومعدات بناء">
+    <defs>
+     <linearGradient id="darSky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#182b43"/><stop offset="1" stop-color="#52677a"/></linearGradient>
+     <linearGradient id="darTower" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#6f7f8d"/><stop offset=".5" stop-color="#c7d0d6"/><stop offset="1" stop-color="#657687"/></linearGradient>
+     <linearGradient id="darGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0b8"/><stop offset=".45" stop-color="#d6ad55"/><stop offset="1" stop-color="#8c6425"/></linearGradient>
+     <filter id="darShadow"><feGaussianBlur stdDeviation="8"/></filter>
+    </defs>
+    <rect width="1100" height="650" fill="url(#darSky)" opacity=".12"/>
+    <circle cx="830" cy="105" r="72" fill="#f1d18a" opacity=".12" filter="url(#darShadow)"/>
+    <path d="M0 550H1100V650H0Z" fill="#172332"/><path d="M0 570H1100" stroke="#d2ad62" stroke-width="3" opacity=".6"/>
+    <!-- distant skyline -->
+    <g fill="#33485d" opacity=".55"><path d="M40 550V390h75v160M125 550V430h65v120M200 550V365h90v185M760 550V410h70v140M845 550V350h95v200M955 550V425h90v125"/></g>
+    <!-- tower core and 18 floors -->
+    <rect x="390" y="88" width="310" height="445" rx="3" fill="url(#darTower)" stroke="#e8edf0" stroke-width="3"/>
+    <rect x="380" y="76" width="330" height="18" fill="#d6ad55"/>
+    <g class="build-floor" style="--floor-delay:0.00s"><rect x="405" y="525" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="528" width="48" height="13" fill="#203a52"/><rect x="485" y="528" width="48" height="13" fill="#203a52"/><rect x="550" y="528" width="48" height="13" fill="#203a52"/><rect x="615" y="528" width="48" height="13" fill="#203a52"/><path d="M475 525v19 M540 525v19 M605 525v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.04s"><rect x="405" y="501" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="504" width="48" height="13" fill="#203a52"/><rect x="485" y="504" width="48" height="13" fill="#203a52"/><rect x="550" y="504" width="48" height="13" fill="#203a52"/><rect x="615" y="504" width="48" height="13" fill="#203a52"/><path d="M475 501v19 M540 501v19 M605 501v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.09s"><rect x="405" y="477" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="480" width="48" height="13" fill="#203a52"/><rect x="485" y="480" width="48" height="13" fill="#203a52"/><rect x="550" y="480" width="48" height="13" fill="#203a52"/><rect x="615" y="480" width="48" height="13" fill="#203a52"/><path d="M475 477v19 M540 477v19 M605 477v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.14s"><rect x="405" y="453" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="456" width="48" height="13" fill="#203a52"/><rect x="485" y="456" width="48" height="13" fill="#203a52"/><rect x="550" y="456" width="48" height="13" fill="#203a52"/><rect x="615" y="456" width="48" height="13" fill="#203a52"/><path d="M475 453v19 M540 453v19 M605 453v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.18s"><rect x="405" y="429" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="432" width="48" height="13" fill="#203a52"/><rect x="485" y="432" width="48" height="13" fill="#203a52"/><rect x="550" y="432" width="48" height="13" fill="#203a52"/><rect x="615" y="432" width="48" height="13" fill="#203a52"/><path d="M475 429v19 M540 429v19 M605 429v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.22s"><rect x="405" y="405" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="408" width="48" height="13" fill="#203a52"/><rect x="485" y="408" width="48" height="13" fill="#203a52"/><rect x="550" y="408" width="48" height="13" fill="#203a52"/><rect x="615" y="408" width="48" height="13" fill="#203a52"/><path d="M475 405v19 M540 405v19 M605 405v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.27s"><rect x="405" y="381" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="384" width="48" height="13" fill="#203a52"/><rect x="485" y="384" width="48" height="13" fill="#203a52"/><rect x="550" y="384" width="48" height="13" fill="#203a52"/><rect x="615" y="384" width="48" height="13" fill="#203a52"/><path d="M475 381v19 M540 381v19 M605 381v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.32s"><rect x="405" y="357" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="360" width="48" height="13" fill="#203a52"/><rect x="485" y="360" width="48" height="13" fill="#203a52"/><rect x="550" y="360" width="48" height="13" fill="#203a52"/><rect x="615" y="360" width="48" height="13" fill="#203a52"/><path d="M475 357v19 M540 357v19 M605 357v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.36s"><rect x="405" y="333" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="336" width="48" height="13" fill="#203a52"/><rect x="485" y="336" width="48" height="13" fill="#203a52"/><rect x="550" y="336" width="48" height="13" fill="#203a52"/><rect x="615" y="336" width="48" height="13" fill="#203a52"/><path d="M475 333v19 M540 333v19 M605 333v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.40s"><rect x="405" y="309" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="312" width="48" height="13" fill="#203a52"/><rect x="485" y="312" width="48" height="13" fill="#203a52"/><rect x="550" y="312" width="48" height="13" fill="#203a52"/><rect x="615" y="312" width="48" height="13" fill="#203a52"/><path d="M475 309v19 M540 309v19 M605 309v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.45s"><rect x="405" y="285" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="288" width="48" height="13" fill="#203a52"/><rect x="485" y="288" width="48" height="13" fill="#203a52"/><rect x="550" y="288" width="48" height="13" fill="#203a52"/><rect x="615" y="288" width="48" height="13" fill="#203a52"/><path d="M475 285v19 M540 285v19 M605 285v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.49s"><rect x="405" y="261" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="264" width="48" height="13" fill="#203a52"/><rect x="485" y="264" width="48" height="13" fill="#203a52"/><rect x="550" y="264" width="48" height="13" fill="#203a52"/><rect x="615" y="264" width="48" height="13" fill="#203a52"/><path d="M475 261v19 M540 261v19 M605 261v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.54s"><rect x="405" y="237" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="240" width="48" height="13" fill="#203a52"/><rect x="485" y="240" width="48" height="13" fill="#203a52"/><rect x="550" y="240" width="48" height="13" fill="#203a52"/><rect x="615" y="240" width="48" height="13" fill="#203a52"/><path d="M475 237v19 M540 237v19 M605 237v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.58s"><rect x="405" y="213" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="216" width="48" height="13" fill="#203a52"/><rect x="485" y="216" width="48" height="13" fill="#203a52"/><rect x="550" y="216" width="48" height="13" fill="#203a52"/><rect x="615" y="216" width="48" height="13" fill="#203a52"/><path d="M475 213v19 M540 213v19 M605 213v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.63s"><rect x="405" y="189" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="192" width="48" height="13" fill="#203a52"/><rect x="485" y="192" width="48" height="13" fill="#203a52"/><rect x="550" y="192" width="48" height="13" fill="#203a52"/><rect x="615" y="192" width="48" height="13" fill="#203a52"/><path d="M475 189v19 M540 189v19 M605 189v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.67s"><rect x="405" y="165" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="168" width="48" height="13" fill="#203a52"/><rect x="485" y="168" width="48" height="13" fill="#203a52"/><rect x="550" y="168" width="48" height="13" fill="#203a52"/><rect x="615" y="168" width="48" height="13" fill="#203a52"/><path d="M475 165v19 M540 165v19 M605 165v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.72s"><rect x="405" y="141" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="144" width="48" height="13" fill="#203a52"/><rect x="485" y="144" width="48" height="13" fill="#203a52"/><rect x="550" y="144" width="48" height="13" fill="#203a52"/><rect x="615" y="144" width="48" height="13" fill="#203a52"/><path d="M475 141v19 M540 141v19 M605 141v19" stroke="#d9e0e6" stroke-width="2"/></g>
+<g class="build-floor" style="--floor-delay:0.77s"><rect x="405" y="117" width="280" height="19" rx="1" fill="#b7c2cc" stroke="#e7edf2" stroke-width="1.2"/><rect x="420" y="120" width="48" height="13" fill="#203a52"/><rect x="485" y="120" width="48" height="13" fill="#203a52"/><rect x="550" y="120" width="48" height="13" fill="#203a52"/><rect x="615" y="120" width="48" height="13" fill="#203a52"/><path d="M475 117v19 M540 117v19 M605 117v19" stroke="#d9e0e6" stroke-width="2"/></g>
+    <rect x="390" y="88" width="18" height="445" fill="#e8edf0" opacity=".55"/><rect x="685" y="88" width="15" height="445" fill="#40576b" opacity=".7"/>
+    <rect x="510" y="52" width="70" height="36" fill="#9caab5"/><path d="M545 52V22" stroke="#e0b85f" stroke-width="5"/>
+    <text x="545" y="17" text-anchor="middle" fill="#f3d48c" font-size="13" font-weight="bold">18 FLOORS</text>
+    <!-- open construction side / scaffolding -->
+    <g stroke="#d9b76e" stroke-width="5" fill="none" opacity=".9"><path d="M720 190H845V550M720 280H845M720 370H845M720 460H845M760 190V550M805 190V550"/><path d="M720 190l40 90 45-90 40 90M720 280l40 90 45-90 40 90M720 370l40 90 45-90 40 90" stroke-width="2"/></g>
+    <!-- tower crane -->
+    <g class="dar-crane-boom"><path d="M320 80V550M290 550H350M320 80L250 145H850L780 80Z" fill="none" stroke="#d6ad55" stroke-width="8"/><path d="M320 80L250 145M320 80L390 145M250 145V170M850 145V165" stroke="#f1d18a" stroke-width="3"/><path d="M780 80V145" stroke="#d6ad55" stroke-width="7"/><path d="M780 145v95q0 20 18 20" fill="none" stroke="#f1d18a" stroke-width="4"/><path d="M798 260q-13 12 0 25q13-13 0-25" fill="none" stroke="#f1d18a" stroke-width="4"/></g>
+    <!-- material pallet lifted -->
+    <g class="dar-lifted-load"><path d="M740 300h80v30h-80z" fill="#b77c42" stroke="#f1d18a" stroke-width="2"/><path d="M750 300v30m20-30v30m20-30v30m20-30v30" stroke="#6b452b" stroke-width="3"/></g>
+    <!-- worker on scaffold: body, helmet, moving arm -->
+    <g class="dar-worker dar-worker-one" transform="translate(760 380)"><circle cx="0" cy="-35" r="12" fill="#d9a77c"/><path d="M-13 -45q13-17 26 0v5h-26z" fill="#e0b34f"/><path d="M-14 -20l28 0 8 44h-44z" fill="#e56e35"/><path d="M-10 22l-5 38m22-38 8 38" stroke="#26384a" stroke-width="9" stroke-linecap="round"/><path class="dar-worker-arm" d="M-12 -12l-24 12-8-20" stroke="#d9a77c" stroke-width="8" fill="none" stroke-linecap="round"/><path d="M-5 -10l22 12" stroke="#d9a77c" stroke-width="8" stroke-linecap="round"/></g>
+    <!-- worker holding materials -->
+    <g class="dar-worker dar-worker-two" transform="translate(870 505)"><circle cx="0" cy="-32" r="11" fill="#c98f68"/><path d="M-12-42q12-15 24 0v5h-24z" fill="#e0b34f"/><path d="M-13 -18h26l8 42h-42z" fill="#315d83"/><path d="M-9 22l-6 34m20-34 7 34" stroke="#26384a" stroke-width="8" stroke-linecap="round"/><path d="M-10-10l-24-8m46 8 19-15" stroke="#c98f68" stroke-width="8" stroke-linecap="round"/><rect x="25" y="-35" width="30" height="25" fill="#b77c42" stroke="#e0b34f" stroke-width="2"/></g>
+    <!-- worker with hammer -->
+    <g class="dar-worker dar-worker-three" transform="translate(310 520)"><circle cx="0" cy="-30" r="11" fill="#d9a77c"/><path d="M-12-40q12-15 24 0v5h-24z" fill="#e0b34f"/><path d="M-13-16h26l7 40h-40z" fill="#e56e35"/><path d="M-8 22l-5 34m18-34 7 34" stroke="#26384a" stroke-width="8" stroke-linecap="round"/><path class="dar-hammer-arm" d="M-10-8l-28-28" stroke="#d9a77c" stroke-width="8" stroke-linecap="round"/><path d="M-45-44l17-10 8 7-17 11z" fill="#9da9b1"/></g>
+    <!-- construction materials and mixer -->
+    <g><path d="M90 525h150v32H90z" fill="#b57a43"/><path d="M100 525v32m35-32v32m35-32v32m35-32v32" stroke="#69452d" stroke-width="4"/><path d="M155 500h60l-10 25h-40z" fill="#9ba9b4"/><circle cx="168" cy="560" r="8" fill="#111d2b"/><circle cx="208" cy="560" r="8" fill="#111d2b"/></g>
+    <g class="dar-mixer" transform="translate(950 535)"><circle cx="-25" cy="23" r="10" fill="#111d2b"/><circle cx="35" cy="23" r="10" fill="#111d2b"/><path d="M-45 0h90l-10 20h-70z" fill="#d6ad55"/><path d="M-20-35q35-25 55 0l-8 35h-42z" fill="#e0b34f"/><path d="M-12-25l38 20" stroke="#805b2b" stroke-width="4"/></g>
+    <g fill="#f1d18a" opacity=".8"><circle cx="270" cy="470" r="3"/><circle cx="286" cy="450" r="2"/><circle cx="725" cy="515" r="3"/><circle cx="735" cy="495" r="2"/></g>
+   </svg>
+   <div class="dar-scene-caption"><span class="dar-live-dot"></span> مشروعنا ينمو طابقاً بعد طابق</div>
+  </div>
+ </div>
 </section>
 
 <footer id="contact" class="home-content">
@@ -1300,6 +1531,12 @@ const propertyData = {
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85"
     ],
     amenities:["إطلالة مميزة","تصميم راقٍ","غرفتان نوم","حمامان","مناسبة للاستثمار","قريبة من الخدمات"]
+  }
+  ,"vip-villa-project": {
+    reference:"DAR-VIP-001", operation:"sale", status:"مشروع VIP", title:"فيلا جراند VIP", location:"مشروع مميز - القاهرة الجديدة", price:"يُحدد عند التواصل", priceNote:"السعر حسب تفاصيل المشروع", rooms:"5", baths:"4", area:"420", type:"فيلا",
+    description:"مشروع فيلا VIP بتصميم معاصر ومساحات واسعة وحديقة خاصة. هذه بيانات عرض أولية قابلة للتحديث ببيانات المشروع الفعلية.",
+    images:["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85","https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=85"],
+    amenities:["تصميم معماري معاصر","حديقة خاصة","5 غرف نوم","4 حمامات","مساحات واسعة","مشروع VIP"], featured:true, showFloorplan:false
   }
 };
 
@@ -1516,6 +1753,26 @@ document.querySelectorAll("[data-area-search]").forEach(link => {
 // صفحة تفاصيل العقار
 // =========================================
 
+function buildApproximateFloorplan(property) {
+  const roomCount = Math.max(1,Math.min(5,Number(property.rooms)||3));
+  const bedroom3 = roomCount >= 3 ? '<text x="125" y="300" text-anchor="middle" font-size="16" fill="#243247">غرفة نوم 3</text>' : '<text x="125" y="300" text-anchor="middle" font-size="15" fill="#243247">غرفة متعددة الاستخدام</text>';
+  const bedroom4 = roomCount >= 4 ? '<text x="305" y="300" text-anchor="middle" font-size="15" fill="#243247">غرفة نوم 4</text>' : '';
+  const bedroom5 = roomCount >= 5 ? '<text x="495" y="300" text-anchor="middle" font-size="15" fill="#243247">غرفة نوم 5</text>' : '';
+  return `<svg viewBox="0 0 620 410" role="img" aria-label="مخطط تقسيم تقريبي من أعلى للشقة">
+    <rect x="25" y="25" width="570" height="350" fill="#fff" stroke="#343a40" stroke-width="9"/>
+    <rect x="34" y="34" width="286" height="176" fill="#f6f1e7"/><rect x="329" y="34" width="257" height="176" fill="#eee7d9"/>
+    <rect x="34" y="219" width="176" height="147" fill="#f6f1e7"/><rect x="219" y="219" width="176" height="147" fill="#f6f1e7"/><rect x="404" y="219" width="182" height="147" fill="#e8dfce"/>
+    <path d="M324 25 V110 M324 158 V214 M25 214 H105 M153 214 H214 M214 214 H395 M395 214 H595 M214 214 V270 M214 318 V375 M399 214 V260 M399 308 V375" fill="none" stroke="#343a40" stroke-width="8"/>
+    <path d="M105 214 A48 48 0 0 1 153 166 M324 110 A48 48 0 0 0 372 158 M214 270 A48 48 0 0 1 262 318 M399 260 A48 48 0 0 0 447 308" fill="none" stroke="#c6a15b" stroke-width="3"/>
+    <path d="M115 25 H205 M455 25 H535 M25 105 V165 M595 100 V160" stroke="#6b9eaa" stroke-width="7"/>
+    <g font-family="Cairo, sans-serif" fill="#243247" text-anchor="middle">
+      <text x="175" y="112" font-size="20" font-weight="700">معيشة وسفرة</text><text x="455" y="112" font-size="18">مطبخ</text>
+      <text x="122" y="278" font-size="16">غرفة نوم رئيسية</text>${bedroom3}${bedroom4}${bedroom5}
+      <text x="495" y="278" font-size="16">حمام</text><text x="495" y="302" font-size="11">وخدمات</text>
+      <text x="310" y="395" font-size="11" fill="#8a7652">المساحة المسجلة: ${property.area||"—"} م² · توزيع تصوري قابل للتعديل</text>
+    </g>
+  </svg>`;
+}
 function showProperty(propertyId) {
   const property = propertyData[propertyId];
   if (!property) return;
@@ -1601,11 +1858,16 @@ function showProperty(propertyId) {
   const amenities = document.getElementById("detailsAmenities");
   amenities.replaceChildren();
 
-  property.amenities.forEach(item => {
+  (property.amenities || []).forEach(item => {
     const li = document.createElement("li");
     li.textContent = item;
     amenities.appendChild(li);
   });
+
+  const floorplanSection = document.getElementById("detailsFloorplanSection");
+  const isApartment = ["شقة","دوبلكس"].includes(property.type);
+  floorplanSection.hidden = !(isApartment && property.showFloorplan !== false);
+  if (!floorplanSection.hidden) document.getElementById("detailsFloorplan").innerHTML = buildApproximateFloorplan(property);
 
   document.getElementById("inquiryForm").reset();
   document.getElementById("inquiryMessage").hidden = true;
@@ -1915,6 +2177,12 @@ function createUserPropertyCard(property) {
   });
 
   imageWrapper.append(image,badge,favorite);
+  if (property.featured) {
+    const featuredRibbon = document.createElement("span");
+    featuredRibbon.className = "featured-ribbon";
+    featuredRibbon.textContent = "عقار مميز";
+    imageWrapper.appendChild(featuredRibbon);
+  }
 
   const info = document.createElement("div");
   info.className = "property-info";
@@ -2056,11 +2324,14 @@ document.getElementById("newPropertyForm").addEventListener("submit",event => {
     baths:String(baths),
     description,
     images:[...selectedPropertyImages],
+    featured:document.getElementById("newFeatured").checked,
+    showFloorplan:document.getElementById("newShowFloorplan").checked,
     amenities:[
       "موقع العقار: " + location,
       "المساحة: " + area + " متر",
       "عدد غرف النوم: " + rooms,
-      "عدد الحمامات: " + baths
+      "عدد الحمامات: " + baths,
+      ...document.getElementById("newAmenities").value.split(/[،,\n]/).map(x=>x.trim()).filter(Boolean)
     ],
     ownerName,
     ownerPhone,
@@ -2130,6 +2401,10 @@ if (window.location.hash.startsWith("#property-")) {
   showProperty(window.location.hash.replace("#property-",""));
 }
 
+// فتح تفاصيل مشروع الفيلا المميز
+const vipDetailsButton = document.getElementById("vipProjectDetails");
+if (vipDetailsButton) vipDetailsButton.addEventListener("click",() => showProperty("vip-villa-project"));
+
 // السنة الحالية
 document.getElementById("currentYear").textContent =
   new Date().getFullYear();
@@ -2141,6 +2416,282 @@ loadUserProperties();
 applyFilters(false);
 
 </script>
+
+
+<!-- DAR EL AQARAT: global appearance and language controls -->
+<div class="site-tools" aria-label="إعدادات الموقع">
+  <button id="siteThemeToggle" class="site-theme-toggle" type="button"
+          aria-label="تغيير وضع إضاءة الموقع" aria-pressed="false"
+          title="الوضع النهاري / الليلي">
+    <svg class="tow-truck-icon" viewBox="0 0 100 66" aria-hidden="true">
+      <path d="M8 42h49V25H22L8 34z" fill="currentColor" opacity=".95"/>
+      <path d="M57 34h19l13 12v9H57z" fill="currentColor"/>
+      <path d="M65 37h10l8 8H65z" fill="#b8d7e8"/>
+      <path d="M15 30h35" stroke="#d7b875" stroke-width="3" stroke-linecap="round"/>
+      <path d="M34 24 47 8h5L40 25" fill="none" stroke="#d7b875" stroke-width="4" stroke-linecap="round"/>
+      <path d="M49 9h11" stroke="#d7b875" stroke-width="3" stroke-linecap="round"/>
+      <path d="M59 9v10q0 5 5 5" fill="none" stroke="#d7b875" stroke-width="2.5"/>
+      <path d="M64 24q-4 5 0 7 4-2 0-7" fill="#d7b875"/>
+      <circle cx="27" cy="56" r="8" fill="#101b2c" stroke="#d7b875" stroke-width="3"/>
+      <circle cx="27" cy="56" r="3" fill="#fff"/>
+      <circle cx="73" cy="56" r="8" fill="#101b2c" stroke="#d7b875" stroke-width="3"/>
+      <circle cx="73" cy="56" r="3" fill="#fff"/>
+    </svg>
+    <span class="theme-control-copy"><strong id="siteThemeLabel">وضع النهار</strong><small>اضغط لتغيير الإضاءة</small></span>
+    <span class="theme-indicator" aria-hidden="true">☀</span>
+  </button>
+</div>
+
+<style id="darSiteToolsStyles">
+.site-tools{position:fixed;z-index:9999;left:22px;bottom:22px}
+.site-theme-toggle{display:flex;align-items:center;gap:10px;min-width:205px;padding:10px 13px;border:1px solid #c6a15b;border-radius:16px;background:#101b2c;color:#f5dfad;box-shadow:0 10px 30px #0003;cursor:pointer;transition:transform .25s,background .25s}
+.site-theme-toggle:hover{transform:translateY(-4px)}
+.tow-truck-icon{width:58px;height:42px;flex:none}
+.theme-control-copy{display:flex;flex-direction:column;text-align:right;line-height:1.5}
+.theme-control-copy strong{font-size:12px}
+.theme-control-copy small{font-size:10px;color:#cbd2dc}
+.theme-indicator{margin-right:auto;font-size:19px;color:#f3c969}
+html[data-theme="dark"] .site-theme-toggle{background:#f4f0e7;color:#17243a}
+html[data-theme="dark"] .theme-control-copy small{color:#657080}
+html[data-theme="dark"] .theme-indicator{color:#34465f}
+html[data-theme="dark"] .theme-indicator::before{content:"";display:inline-block}
+html[data-theme="dark"] body{background:#101722!important;color:#e7ebf1!important}
+html[data-theme="dark"] header,html[data-theme="dark"] footer{background:#080f1a!important}
+html[data-theme="dark"] .featured-properties,html[data-theme="dark"] .why-us,html[data-theme="dark"] .sales-team,html[data-theme="dark"] .details-page,html[data-theme="dark"] .add-property-section{background:#131e2d!important}
+html[data-theme="dark"] .areas-section{background:#101722!important}
+html[data-theme="dark"] .property-card,html[data-theme="dark"] .why-card,html[data-theme="dark"] .details-main,html[data-theme="dark"] .details-sidebar-card,html[data-theme="dark"] .add-property-form,html[data-theme="dark"] .search-box,html[data-theme="dark"] .sales-card{background:#1b293b!important;border-color:#34445a!important;color:#e7ebf1!important}
+html[data-theme="dark"] .property-info h3,html[data-theme="dark"] .section-heading h2,html[data-theme="dark"] .why-card h3,html[data-theme="dark"] .details-content h3,html[data-theme="dark"] .details-sidebar-card h3,html[data-theme="dark"] .details-title,html[data-theme="dark"] .add-property-heading h2,html[data-theme="dark"] .form-section-title,html[data-theme="dark"] .form-field label,html[data-theme="dark"] .search-field label,html[data-theme="dark"] .search-title h3{color:#f1f3f7!important}
+html[data-theme="dark"] .section-heading p,html[data-theme="dark"] .why-card p,html[data-theme="dark"] .details-description,html[data-theme="dark"] .details-sidebar-card p,html[data-theme="dark"] .form-hint,html[data-theme="dark"] .property-location,html[data-theme="dark"] .property-features,html[data-theme="dark"] .muted{color:#b5c0ce!important}
+html[data-theme="dark"] .search-field input,html[data-theme="dark"] .search-field select,html[data-theme="dark"] .form-field input,html[data-theme="dark"] .form-field select,html[data-theme="dark"] .form-field textarea,html[data-theme="dark"] .inquiry-form input,html[data-theme="dark"] .inquiry-form textarea{background:#101a28!important;color:#f1f3f7!important;border-color:#42516a!important}
+html[data-theme="dark"] .amenities-list li,html[data-theme="dark"] .detail-spec,html[data-theme="dark"] .floorplan-section,html[data-theme="dark"] .check-field,html[data-theme="dark"] .upload-area{background:#243247!important;border-color:#40516a!important;color:#e7ebf1!important}
+html[data-theme="dark"] .details-btn,html[data-theme="dark"] .back-btn{background:#1b293b!important;color:#f1f3f7!important;border-color:#c6a15b!important}
+html[data-theme="dark"] .no-results{background:#1b293b!important;border-color:#53627a!important}
+html[data-theme="dark"] .no-results h3,html[data-theme="dark"] .detail-spec strong{color:#f1f3f7!important}
+html[data-theme="dark"] .sales-card h3,
+html[data-theme="dark"] .sales-card p,
+html[data-theme="dark"] .sales-contact{color:#ffffff!important}
+html[data-theme="dark"] .sales-card .sales-role{color:#e0c17c!important}
+html[data-theme="dark"] .sales-contact{border-color:#c6a15b!important;background:#243247!important}
+html[data-theme="dark"] .vip-projects{background:#080f1a!important}
+html[data-theme="dark"] .search-box{box-shadow:0 15px 45px #0006!important}
+html[dir="ltr"] body{text-align:left}
+html[dir="ltr"] .nav-links{direction:ltr}
+html[dir="ltr"] .theme-control-copy{text-align:left}
+@media(max-width:550px){.site-tools{left:12px;bottom:12px}.site-theme-toggle{min-width:0;padding:8px 10px;gap:7px}.tow-truck-icon{width:48px;height:35px}.theme-control-copy small{display:none}}
+</style>
+
+<script id="darLanguageAndTheme">
+(function(){
+  const html=document.documentElement;
+  const langButton=document.getElementById("langButton");
+  const themeButton=document.getElementById("siteThemeToggle");
+  const themeLabel=document.getElementById("siteThemeLabel");
+
+  const translations={
+    "الرئيسية":"Home","للبيع":"For Sale","للإيجار":"For Rent","المناطق":"Locations",
+    "المشروعات":"Projects","فريق المبيعات":"Sales Team","الأثاث والإكسسوارات":"Furniture & Accessories",
+    "تواصل معنا":"Contact Us","لوحة التحكم":"Admin Panel","أضف عقارك +":"List Your Property +",
+    "اختيارك العقاري يبدأ من عنوان مميز":"Your Property Journey Starts Here",
+    "اكتشف العقار":"Discover Your Property","من زاوية جديدة":"From a New Perspective",
+    "شاهد العمارة وهي تُبنى من الأساسات حتى التشطيب، ثم ادخل الشقق وشاهد الأثاث وحرّك زاوية الرؤية بنفسك.":"Watch the building rise from its foundations to its finished design, then explore the apartments and view the interiors.",
+    "اكتشف العقارات":"Explore Properties","نموذج معماري تفاعلي":"Interactive Architectural Model",
+    "18 دور":"18 Floors","فحص الأدوار":"Explore Floors","الدور":"Floor",
+    "حرّك الماوس على العمارة لتُبنى من الأساسات حتى التشطيب، ثم اختر دوراً لفحصه.":"Move over the building to watch it take shape, then select a floor to explore.",
+    "عرض العمارة كاملة":"Show Full Building","جولة داخل الشقة":"Apartment Tour",
+    "وضع الليل":"Night Mode","وضع النهار":"Day Mode","حرّك الماوس على العمارة لبدء البناء":"Move over the building to start construction",
+    "خروج من الجولة":"Exit Tour","اسحب للنظر حولك · W A S D للتحرك":"Drag to look around · Use W A S D to move",
+    "الأساسات":"Foundations","الهيكل الخرساني":"Concrete Structure","الواجهة الزجاجية":"Glass Facade","التشطيب والأثاث":"Finishing & Furniture",
+    "تعذر تحميل المجسم ثلاثي الأبعاد. تأكد من اتصال الإنترنت وتفعيل WebGL.":"Unable to load the 3D model. Check your internet connection and WebGL support.",
+    "ابحث باسم العقار أو المنطقة":"Search by property or location","نوع العملية":"Transaction Type",
+    "كل العمليات":"All Transactions","نوع العقار":"Property Type","كل الأنواع":"All Types",
+    "شقة":"Apartment","فيلا":"Villa","دوبلكس":"Duplex","محل تجاري":"Commercial Shop","مكتب":"Office","أرض":"Land",
+    "المحافظة":"Governorate","كل المحافظات":"All Governorates","القاهرة":"Cairo","الجيزة":"Giza",
+    "الإسكندرية":"Alexandria","مطروح":"Matrouh","المنطقة":"Area","السعر بالجنيه المصري":"Price (EGP)",
+    "المساحة بالمتر المربع":"Area (m²)","عدد غرف النوم":"Bedrooms","عدد الحمامات":"Bathrooms",
+    "أي عدد":"Any","غرفة واحدة فأكثر":"1+ Bedroom","غرفتان فأكثر":"2+ Bedrooms","3 غرف فأكثر":"3+ Bedrooms",
+    "4 غرف فأكثر":"4+ Bedrooms","5 غرف فأكثر":"5+ Bedrooms","حمام واحد فأكثر":"1+ Bathroom",
+    "حمامان فأكثر":"2+ Bathrooms","3 حمامات فأكثر":"3+ Bathrooms","4 حمامات فأكثر":"4+ Bathrooms",
+    "ابحث عن العقارات":"Search Properties","مسح جميع الفلاتر ↺":"Clear All Filters ↺",
+    "عقارات":"Properties","مميزة":"Featured","اكتشف مجموعة مختارة من أفضل العقارات في مصر":"Discover a handpicked selection of properties in Egypt",
+    "عرض جميع العقارات ←":"View All Properties →","عدد العقارات المطابقة:":"Matching Properties:",
+    "جميع العقارات المعروضة":"All Listed Properties","عرض التفاصيل":"View Details",
+    "لم نعثر على عقارات مطابقة لبحثك":"No Properties Match Your Search",
+    "جرّب تغيير المنطقة أو السعر أو تقليل عدد الفلاتر.":"Try changing the area or price, or removing some filters.",
+    "عرض جميع العقارات":"Show All Properties","البيانات الأساسية":"Basic Information",
+    "عنوان العقار *":"Property Title *","نوع العملية *":"Transaction Type *","بيع":"Sale","إيجار":"Rent",
+    "نوع العقار *":"Property Type *","اختر نوع العقار":"Select Property Type","موقع العقار":"Property Location",
+    "المحافظة *":"Governorate *","اختر المحافظة":"Select Governorate","المنطقة *":"Area *","العنوان بالتفصيل":"Full Address",
+    "تفاصيل العقار":"Property Details","السعر بالجنيه المصري *":"Price in EGP *","المساحة بالمتر *":"Area in m² *",
+    "عدد غرف النوم *":"Bedrooms *","عدد الحمامات *":"Bathrooms *","وصف العقار *":"Property Description *",
+    "مميزات إضافية للعقار":"Additional Property Features",
+    "إظهار العقار ضمن العقارات المميزة بشارة ذهبية":"Show this property in Featured Properties with a gold badge",
+    "إظهار مخطط تقسيم تقريبي ثنائي الأبعاد عند فتح تفاصيل الشقة":"Show an approximate 2D floor plan in apartment details",
+    "المخطط التوضيحي يتم توليده تلقائيًا من بيانات المساحة والغرف، ولا يُعد رسماً هندسياً تنفيذياً أو بديلاً عن مخطط مهندس معتمد.":"The illustrative plan is generated from the area and room data. It is not an engineering or construction drawing.",
+    "صور العقار":"Property Photos","＋ اضغط هنا لاختيار صور العقار":"＋ Click here to choose property photos",
+    "يمكنك اختيار حتى 6 صور بصيغة JPG أو PNG أو WebP، بحد أقصى 2 ميجابايت للصورة":"Choose up to 6 JPG, PNG or WebP images, maximum 2 MB each",
+    "بيانات المعلن":"Contact Details","اسم المعلن *":"Contact Name *","رقم الهاتف *":"Phone Number *",
+    "إرسال العقار للنشر":"Submit Property","إلغاء والعودة للموقع":"Cancel and Return to Website",
+    "العودة إلى العقارات":"Back to Properties","مميزات العقار":"Property Features",
+    "المخطط المعماري التقريبي للشقة":"Approximate Apartment Floor Plan",
+    "رسم توضيحي من أعلى يوضح توزيعاً مقترحاً للفراغات. الأبعاد والتقسيم ليست مخططاً هندسياً معتمداً.":"A top-down illustration showing a suggested room layout. Dimensions and layout are not an approved architectural plan.",
+    "غرف ومعيشة":"Rooms & Living Area","خدمات":"Services","ممرات وتوزيع":"Hallways & Circulation",
+    "مهتم بالعقار؟":"Interested in This Property?","الاسم بالكامل":"Full Name","رقم الهاتف":"Phone Number",
+    "ملاحظات (اختياري)":"Notes (Optional)","إرسال طلب المعاينة":"Send Viewing Request",
+    "مشروعات مختارة بعناية بتفاصيل راقية ومستوى VIP":"Carefully selected projects with premium VIP details",
+    "فيلا جراند VIP":"Grand VIP Villa",
+    "مشروع فيلا فاخرة بتصميم معماري معاصر، مساحات رحبة، واجهات أنيقة، وحديقة خاصة. تواصل مع فريق المبيعات لمعرفة التفاصيل والتوافر.":"A luxury villa with contemporary architecture, spacious interiors, elegant facades and a private garden. Contact our sales team for details and availability.",
+    "مساحة البناء":"Built-up Area","غرف نوم":"Bedrooms","حمامات":"Bathrooms","استكشف المشروع":"Explore Project",
+    "فريق":"Our","المبيعات":"Sales Team","فريق دار العقارات جاهز لمساعدتك في اختيار العقار المناسب وترتيب المعاينة":"Our team is ready to help you find the right property and arrange a viewing",
+    "مستشار المبيعات":"Sales Consultant","متابعة طلبات العملاء وتقديم الخيارات المناسبة للبيع والشراء.":"Managing client requests and recommending suitable properties.",
+    "اتصل بالمبيعات":"Call Sales","مسؤول المشروعات":"Project Specialist",
+    "معلومات عن المشروعات السكنية والفلل والوحدات المميزة.":"Information about residential projects, villas and featured units.",
+    "خدمة العملاء":"Customer Service","تنسيق مواعيد المعاينة والرد على الاستفسارات ومتابعة العملاء.":"Arranging viewings, answering questions and following up with clients.",
+    "اتصل بنا":"Contact Us","أرقام التواصل المعروضة تجريبية؛ استبدلها بأرقام فريق الشركة قبل النشر.":"The displayed contact numbers are samples. Replace them with your company's actual numbers before publishing.",
+    "اكتشف أشهر":"Discover Popular","اختار المنطقة المناسبة لحياتك واستثمارك":"Choose the right area for your lifestyle and investment",
+    "التجمع الخامس":"Fifth Settlement","الشيخ زايد":"Sheikh Zayed","العاصمة الإدارية":"New Administrative Capital",
+    "الساحل الشمالي":"North Coast","اكتشف العقارات المميزة ←":"Explore Featured Properties →","اكتشف العقارات ←":"Explore Properties →",
+    "لماذا تختار":"Why Choose","دار العقارات؟":"Dar El Aqarat?","نقدم لك تجربة عقارية سهلة وواضحة من بداية البحث وحتى اختيار العقار المناسب":"We provide a clear and easy property experience, from your first search to choosing the right home.",
+    "عقارات بمعلومات واضحة":"Clear Property Information","تفاصيل العقارات معروضة بشكل منظم لتساعدك على تكوين صورة أوضح قبل التواصل.":"Organized property details help you make an informed decision before contacting us.",
+    "مساعدة في الاختيار":"Help Choosing","استكشف خيارات متنوعة وقارن بين المساحات والأسعار والمناطق بسهولة.":"Explore options and compare areas, prices and spaces with ease.",
+    "مناطق متنوعة":"Multiple Locations","تعرّف على عقارات في التجمع الخامس والشيخ زايد والعاصمة الإدارية والساحل.":"Discover properties in Fifth Settlement, Sheikh Zayed, the New Capital and North Coast.",
+    "تجربة سهلة":"Easy Experience","واجهة بسيطة تساعدك على الوصول إلى العقار المناسب دون خطوات معقدة.":"A simple interface helps you find the right property without complicated steps.",
+    "منصة لاستكشاف العقارات للبيع والإيجار في مصر.":"A platform to explore properties for sale and rent in Egypt.",
+    "ج.م":"EGP","ج.م / شهرياً":"EGP / month","عقار مميز":"Featured Property",
+    "إضافة للمفضلة":"Add to Favorites","حذف الصورة":"Remove image",
+    "جارٍ حفظ العقار...":"Saving property...","تمت إضافة عقارك بنجاح! أصبح العقار ظاهرًا في قائمة العقارات، ويمكن الوصول إليه من البحث والتفاصيل.":"Your property has been added successfully! It is now listed and available through search and details.",
+    "من فضلك أضف صورة واحدة على الأقل للعقار.":"Please add at least one property photo.",
+    "من فضلك أكمل جميع البيانات المطلوبة.":"Please complete all required fields.",
+    "تعذر حفظ العقار. مساحة التخزين في المتصفح قد لا تكون كافية. حاول تقليل حجم الصور.":"Unable to save the property. Browser storage may be full. Try reducing image sizes."
+  };
+
+  const placeholders={
+    "مثال: شقة في التجمع الخامس":"Example: Apartment in Fifth Settlement",
+    "مثال: التجمع الخامس":"Example: Fifth Settlement","أقل سعر":"Minimum Price","أعلى سعر":"Maximum Price",
+    "من م²":"From m²","إلى م²":"To m²","مثال: شقة فاخرة في التجمع الخامس":"Example: Luxury apartment in Fifth Settlement",
+    "اسم الشارع أو الكمبوند أو رقم المبنى":"Street, compound or building number",
+    "مثال: 2500000":"Example: 2500000","مثال: 150":"Example: 150",
+    "اكتب وصفاً واضحاً للعقار ومميزاته...":"Describe the property and its features...",
+    "مثال: جراج خاص، أمن وحراسة، حمام سباحة، مصعد، تشطيب سوبر لوكس":"Example: Private garage, security, pool, elevator, premium finishing",
+    "01xxxxxxxxx":"01xxxxxxxxx","اكتب اسمك":"Enter your name",
+    "اكتب الوقت المناسب للمعاينة أو أي استفسار":"Enter a suitable viewing time or any questions"
+  };
+  const reverse=Object.fromEntries(Object.entries(translations).map(([a,b])=>[b,a]));
+  const reversePlaceholders=Object.fromEntries(Object.entries(placeholders).map(([a,b])=>[b,a]));
+  let currentLang=localStorage.getItem("dar_site_language")||"ar";
+
+  function translateNode(node,lang){
+    if(node.nodeType===Node.TEXT_NODE){
+      const raw=node.nodeValue,trim=raw.trim();if(!trim)return;
+      const dict=lang==="en"?translations:reverse;
+      const translated=dict[trim];if(translated)node.nodeValue=raw.replace(trim,translated);
+    }else if(node.nodeType===Node.ELEMENT_NODE){
+      ["placeholder","aria-label","title"].forEach(attr=>{
+        if(!node.hasAttribute(attr))return;
+        const val=node.getAttribute(attr),dict=lang==="en"?placeholders:reversePlaceholders;
+        if(dict[val])node.setAttribute(attr,dict[val]);
+      });
+      if(node.tagName==="OPTION"){
+        const dict=lang==="en"?translations:reverse;
+        const v=node.textContent.trim();if(dict[v])node.textContent=dict[v];
+      }
+    }
+  }
+  function applyLanguage(lang){
+    currentLang=lang;
+    html.lang=lang;html.dir=lang==="en"?"ltr":"rtl";
+    document.title=lang==="en"?"Dar El Aqarat | Real Estate":"دار العقارات | DAR EL AQARAT";
+    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT|NodeFilter.SHOW_ELEMENT);
+    let n;while(n=walker.nextNode())translateNode(n,lang);
+    if(langButton)langButton.textContent=lang==="ar"?"EN":"عربي";
+    if(themeLabel)themeLabel.textContent=(html.dataset.theme==="dark")
+      ?(lang==="en"?"Night Mode":"وضع الليل")
+      :(lang==="en"?"Day Mode":"وضع النهار");
+    localStorage.setItem("dar_site_language",lang);
+    document.body.classList.toggle("site-ltr",lang==="en");
+  }
+  if(langButton)langButton.addEventListener("click",()=>applyLanguage(currentLang==="ar"?"en":"ar"));
+
+  const savedTheme=localStorage.getItem("dar_site_theme")||"light";
+  function applyTheme(theme){
+    html.dataset.theme=theme;
+    const dark=theme==="dark";
+    if(themeLabel)themeLabel.textContent=dark?(currentLang==="en"?"Night Mode":"وضع الليل"):(currentLang==="en"?"Day Mode":"وضع النهار");
+    if(themeButton){
+      themeButton.setAttribute("aria-pressed",String(dark));
+      themeButton.title=dark?"Switch to daytime appearance":"Switch to nighttime appearance";
+    }
+    const indicator=themeButton&&themeButton.querySelector(".theme-indicator");
+    if(indicator)indicator.textContent=dark?"☾":"☀";
+    localStorage.setItem("dar_site_theme",theme);
+  }
+  if(themeButton)themeButton.addEventListener("click",()=>applyTheme(html.dataset.theme==="dark"?"light":"dark"));
+  applyLanguage(currentLang);
+  applyTheme(savedTheme);
+
+  // Translate text added later by property cards, details and interactive sections.
+  const observer=new MutationObserver(records=>{
+    records.forEach(record=>{
+      record.addedNodes.forEach(node=>{
+        if(node.nodeType===Node.TEXT_NODE||node.nodeType===Node.ELEMENT_NODE){
+          if(node.nodeType===Node.TEXT_NODE)translateNode(node,currentLang);
+          else{
+            const w=document.createTreeWalker(node,NodeFilter.SHOW_TEXT|NodeFilter.SHOW_ELEMENT);
+            let x;while(x=w.nextNode())translateNode(x,currentLang);
+          }
+        }
+      });
+    });
+  });
+  observer.observe(document.body,{childList:true,subtree:true});
+})();
+</script>
+
+
+<script id="darExtraServicesApp">
+(function(){
+ const $=id=>document.getElementById(id);
+ const money=n=>Math.max(0,Number(n)||0).toLocaleString('en-US')+' ج.م';
+ const read=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback}catch(e){return fallback}};
+ const write=(key,val)=>localStorage.setItem(key,JSON.stringify(val));
+ const REQUESTS_KEY='dar_customer_requests_v1', USERS_KEY='dar_customer_users_v1', SESSION_KEY='dar_customer_session_v1';
+ let currentUser=read(SESSION_KEY,null);
+ function addRequest(type,details){const requests=read(REQUESTS_KEY,[]);const item={id:'DAR-'+Date.now(),type,details,createdAt:new Date().toISOString(),status:'طلب جديد',customer:currentUser?.email||details.phone||'زائر'};requests.unshift(item);write(REQUESTS_KEY,requests);renderCustomerRequests();alert('تم تسجيل طلبك بنجاح. ستتم مراجعته من إدارة الشركة.');}
+ function paymentCalc(){const price=Math.max(0,Number($('darUnitPrice')?.value)||0),pct=Math.min(100,Math.max(0,Number($('darDownPercent')?.value)||0)),years=Math.max(1,Number($('darInstallYears')?.value)||1),freq=$('darPaymentFrequency')?.value||'monthly';const down=price*pct/100,rest=price-down,count=years*(freq==='monthly'?12:freq==='quarterly'?4:1);$('darDownValue').textContent=money(down);$('darInstallValue').textContent=money(count?rest/count:0);return{price,downPayment:down,remaining:rest,years,frequency:freq,estimatedInstallment:count?rest/count:0};}
+ ['darUnitPrice','darDownPercent','darInstallYears','darPaymentFrequency'].forEach(id=>$(id)?.addEventListener('input',paymentCalc));$('darPaymentForm')?.addEventListener('submit',e=>{e.preventDefault();const calc=paymentCalc();addRequest('طلب مراجعة نظام سداد',calc);});
+ $('darFinanceRequest')?.addEventListener('submit',e=>{e.preventDefault();addRequest('استفسار تمويل عقاري',{name:$('darFinanceName').value,phone:$('darFinancePhone').value,note:$('darFinanceNote').value,bankPartnersAvailable:false});e.target.reset();});
+ function finishCalc(){const area=Math.max(0,Number($('darFinishArea')?.value)||0),rate=Number($('darFinishType')?.value)||0;const total=area*rate;$('darFinishTotal').textContent=money(total);return{area,rate,total};}
+ ['darFinishArea','darFinishType'].forEach(id=>$(id)?.addEventListener('input',finishCalc));$('darFinishingForm')?.addEventListener('submit',e=>{e.preventDefault();addRequest('طلب معاينة وتشطيب',finishCalc());});
+ function movingCalc(){const v=document.querySelector('input[name="darVehicle"]:checked');const base=Number(v?.dataset.price)||0,workers=Number($('darWorkers')?.value)||0,extra=Number($('darMovingExtra')?.value)||0,total=base+workers*200+extra;$('darMovingTotal').textContent=money(total);return{vehicle:v?.value,vehicleBasePrice:base,workers,workersCost:workers*200,extraServicesCost:extra,estimatedTotal:total};}
+ document.querySelectorAll('input[name="darVehicle"]').forEach(el=>el.addEventListener('change',movingCalc));['darWorkers','darMovingExtra'].forEach(id=>$(id)?.addEventListener('change',movingCalc));$('darMovingForm')?.addEventListener('submit',e=>{e.preventDefault();const data=movingCalc();Object.assign(data,{date:$('darMovingDate').value,from:$('darMovingFrom').value,to:$('darMovingTo').value,phone:$('darMovingPhone').value});addRequest('حجز نقل عفش',data);e.target.reset();const first=document.querySelector('input[name="darVehicle"]');if(first)first.checked=true;movingCalc();});
+ function showAuth(mode){$('darLoginForm').classList.toggle('dar-hidden',mode!=='login');$('darRegisterForm').classList.toggle('dar-hidden',mode!=='register');$('darLoginTab').classList.toggle('active',mode==='login');$('darRegisterTab').classList.toggle('active',mode==='register');$('darAuthMessage').textContent='';}
+ $('darLoginTab')?.addEventListener('click',()=>showAuth('login'));$('darRegisterTab')?.addEventListener('click',()=>showAuth('register'));
+ function renderCustomerRequests(){const host=$('darCustomerRequests');if(!host)return;const all=read(REQUESTS_KEY,[]);const mine=all.filter(r=>currentUser&&(r.customer===currentUser.email||r.customer===currentUser.phone));host.innerHTML=mine.length?mine.map(r=>`<article class="dar-request-item"><b>${r.type}</b><div class="dar-muted">${new Date(r.createdAt).toLocaleString('ar-EG')} · ${r.status}</div><div class="dar-muted">رقم الطلب: ${r.id}</div></article>`).join(''):'<p class="dar-muted">لا توجد طلبات مسجلة على هذا الحساب حتى الآن.</p>';}
+ function refreshAccount(){const auth=$('darAuthArea'),dash=$('darCustomerDashboard');if(currentUser){auth.classList.add('dar-hidden');dash.classList.remove('dar-hidden');$('darWelcomeName').textContent='مرحباً، '+(currentUser.name||currentUser.email);renderCustomerRequests();}else{auth.classList.remove('dar-hidden');dash.classList.add('dar-hidden');}}
+ $('darRegisterForm')?.addEventListener('submit',e=>{e.preventDefault();const users=read(USERS_KEY,[]),email=$('darRegisterEmail').value.trim().toLowerCase(),phone=$('darRegisterPhone').value.trim();if(users.some(u=>u.email===email||u.phone===phone)){$('darAuthMessage').textContent='هذا البريد الإلكتروني أو رقم الهاتف مسجل بالفعل.';return;}const user={name:$('darRegisterName').value.trim(),phone,email,password:$('darRegisterPassword').value};users.push(user);write(USERS_KEY,users);currentUser={name:user.name,phone:user.phone,email:user.email};write(SESSION_KEY,currentUser);e.target.reset();refreshAccount();});
+ $('darLoginForm')?.addEventListener('submit',e=>{e.preventDefault();const id=$('darLoginEmail').value.trim().toLowerCase(),password=$('darLoginPassword').value,users=read(USERS_KEY,[]),user=users.find(u=>(u.email===id||u.phone===id)&&u.password===password);if(!user){$('darAuthMessage').textContent='بيانات الدخول غير صحيحة أو الحساب غير موجود.';return;}currentUser={name:user.name,phone:user.phone,email:user.email};write(SESSION_KEY,currentUser);e.target.reset();refreshAccount();});
+ $('darLogout')?.addEventListener('click',()=>{currentUser=null;localStorage.removeItem(SESSION_KEY);refreshAccount();showAuth('login');});
+ const date=$('darMovingDate');if(date){const today=new Date();date.min=`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;}
+ paymentCalc();finishCalc();movingCalc();refreshAccount();
+})();
+</script>
+
+
+<style id="darConstructionFinaleStyles">
+.dar-construction-finale{position:relative;isolation:isolate;overflow:hidden;padding:78px 0 35px;background:radial-gradient(ellipse at 72% 28%,#30445a 0,#17283d 42%,#0b1421 100%);color:#f6f2e9}
+.dar-construction-finale:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,#d7ad5530 50%,transparent 65%);transform:translateX(-100%);animation:darSceneShine 9s ease-in-out infinite;pointer-events:none}
+.dar-construction-glow{position:absolute;width:520px;height:520px;right:12%;top:-270px;border-radius:50%;background:#d4a94e24;filter:blur(70px);z-index:-1}
+.dar-construction-inner{width:min(1200px,92%);margin:auto;display:grid;grid-template-columns:.75fr 1.4fr;align-items:center;gap:35px}
+.dar-construction-copy{position:relative;z-index:2}.dar-construction-kicker{font-size:11px;letter-spacing:3px;color:#e0bd73;font-weight:800}.dar-construction-copy h2{font-size:clamp(28px,4vw,48px);line-height:1.25;margin:18px 0;color:#fff}.dar-construction-copy h2 em{font-style:normal;color:#e0bd73;display:block}.dar-construction-copy p{color:#c4ced8;line-height:2;font-size:15px;max-width:380px}.dar-construction-stats{display:flex;align-items:center;gap:17px;margin-top:30px}.dar-construction-stats span{display:flex;flex-direction:column;gap:5px}.dar-construction-stats b{font-size:27px;color:#e3bd70}.dar-construction-stats small{font-size:10px;color:#c2cbd5}.dar-construction-stats i{height:35px;width:1px;background:#d3ad5c70}
+.dar-construction-stage{position:relative;min-width:0;padding-top:25px}.dar-building-scene{width:100%;height:auto;display:block;overflow:visible;filter:drop-shadow(0 22px 22px #0005)}
+.dar-gold-mark{position:absolute;z-index:4;right:7%;top:-2px;width:124px;height:124px;display:grid;place-items:center;perspective:600px}.dar-mark-ring{width:108px;height:108px;border-radius:50%;border:2px solid #f1d18a;outline:1px solid #9d762f;outline-offset:5px;background:radial-gradient(circle at 30% 25%,#fff1bc,#d4a94f 35%,#77501e 100%);color:#172334;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 24px #e6bb5b88,inset 0 0 16px #fff7c8;animation:darLogoSpin 8s linear infinite, darLogoFloat 3s ease-in-out infinite;transform-style:preserve-3d}.dar-mark-symbol{font-size:29px;font-weight:900;line-height:1.1}.dar-mark-name{font-size:8px;letter-spacing:1px;font-weight:900}.dar-mark-spark{position:absolute;width:12px;height:12px;border-radius:50%;background:#fff4bf;box-shadow:0 0 18px 7px #e8c16c;top:5px;left:18px;animation:darSpark 2.2s ease-in-out infinite}.dar-scene-caption{position:absolute;bottom:5px;left:4%;display:flex;align-items:center;gap:9px;color:#e4c77f;font-size:11px;letter-spacing:.5px}.dar-live-dot{width:7px;height:7px;border-radius:50%;background:#8cda9a;box-shadow:0 0 0 5px #8cda9a25;animation:darPulse 1.7s infinite}
+.build-floor{animation:darFloorGlow 5s ease-in-out infinite;animation-delay:var(--floor-delay)}.dar-crane-boom{transform-origin:320px 80px;animation:darCraneMove 12s ease-in-out infinite}.dar-lifted-load{animation:darLoad 4s ease-in-out infinite}.dar-worker-arm{transform-origin:-12px -12px;animation:darWorkArm 1.8s ease-in-out infinite}.dar-hammer-arm{transform-origin:-10px -8px;animation:darHammer 1.5s ease-in-out infinite}.dar-worker-two{animation:darWorkerShift 4s ease-in-out infinite}.dar-mixer{transform-origin:950px 500px;animation:darMixerTurn 2.8s linear infinite}
+@keyframes darLogoSpin{0%{transform:rotateY(0) rotateZ(-4deg)}100%{transform:rotateY(360deg) rotateZ(-4deg)}}@keyframes darLogoFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}@keyframes darSpark{0%,100%{opacity:.4;transform:scale(.7)}50%{opacity:1;transform:scale(1.3)}}@keyframes darPulse{50%{box-shadow:0 0 0 9px #8cda9a08;opacity:.65}}@keyframes darFloorGlow{0%,100%{filter:brightness(.95)}50%{filter:brightness(1.25)}}@keyframes darCraneMove{0%,100%{transform:rotate(0)}50%{transform:rotate(2deg)}}@keyframes darLoad{0%,100%{transform:translateY(0)}50%{transform:translateY(22px)}}@keyframes darWorkArm{0%,100%{transform:rotate(0)}50%{transform:rotate(-24deg)}}@keyframes darHammer{0%,100%{transform:rotate(0)}50%{transform:rotate(30deg)}}@keyframes darWorkerShift{0%,100%{transform:translate(870px,505px)}50%{transform:translate(880px,505px)}}@keyframes darMixerTurn{to{rotate:360deg}}@keyframes darSceneShine{0%,70%,100%{transform:translateX(-100%)}85%{transform:translateX(100%)}}
+html[data-theme="light"] .dar-construction-finale{background:radial-gradient(ellipse at 72% 28%,#647b8e 0,#2d4358 45%,#14263a 100%)}
+html[dir="ltr"] .dar-construction-copy{text-align:left}.dar-construction-finale+footer{position:relative}
+@media(max-width:850px){.dar-construction-inner{grid-template-columns:1fr;gap:10px}.dar-construction-copy{text-align:center}.dar-construction-copy p{margin-inline:auto}.dar-construction-stats{justify-content:center}.dar-construction-stage{margin-top:20px}.dar-gold-mark{width:90px;height:90px;right:4%;top:0}.dar-mark-ring{width:76px;height:76px}.dar-mark-symbol{font-size:22px}.dar-mark-name{font-size:6px}.dar-construction-finale{padding:55px 0 28px}}
+@media(max-width:520px){.dar-construction-finale{padding-top:45px}.dar-construction-copy h2{font-size:29px}.dar-construction-stats{gap:11px}.dar-construction-stats b{font-size:22px}.dar-construction-stats small{font-size:9px}.dar-construction-stage{margin-inline:-5%}.dar-scene-caption{font-size:9px;bottom:-2px}}
+@media(prefers-reduced-motion:reduce){.dar-construction-finale *{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
 
 </body>
 </html>
