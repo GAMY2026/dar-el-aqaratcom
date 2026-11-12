@@ -422,6 +422,7 @@ footer p {font-size:13px;line-height:2}
       <li><a href="#properties" data-quick-operation="sale">للبيع</a></li>
       <li><a href="#properties" data-quick-operation="rent">للإيجار</a></li>
       <li><a href="#areas">المناطق</a></li>
+      <li><a href="products.html">الأثاث والإكسسوارات</a></li>
       <li><a href="#contact">تواصل معنا</a></li>
     </ul>
     <div class="nav-actions">
@@ -476,6 +477,7 @@ footer p {font-size:13px;line-height:2}
 .b3-photo img{position:absolute;inset:-3%;width:106%;height:106%;object-fit:cover;opacity:0;will-change:transform,opacity}
 .b3-photo img.fl{inset:0;width:100%;height:100%;transition:opacity .5s;transform:none!important}.b3-photo img.fl.on{opacity:1}
 .b3-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(270deg,#0a1424e6 0%,#0a142499 36%,transparent 66%);pointer-events:none}
+.b3-dn{position:absolute;z-index:4;right:28px;top:24px;background:#0b1626cc;color:#f0d9a1;border:1px solid #c6a15b88;border-radius:30px;padding:9px 20px;font-weight:800;font-size:13px;cursor:pointer;backdrop-filter:blur(8px);transition:.3s}.b3-dn:hover{background:var(--gold);color:var(--navy)}.b3.walk .b3-dn{opacity:0;pointer-events:none}.b3.ph .b3-dn{display:none}
 .b3-fb{position:absolute;z-index:2;inset:0;display:grid;place-items:center;color:#9fb0c8;font-size:14px;text-align:center;padding:20px}
 .b3-fb[hidden]{display:none}
 @media(max-width:900px){
@@ -483,7 +485,7 @@ footer p {font-size:13px;line-height:2}
  .b3-copy{align-items:flex-start;padding-top:70px}.b3 .hero-content{max-width:100%;padding:0}
  .b3-panel{left:12px;right:12px;top:auto;bottom:150px;width:auto;padding:12px}.b3-panel h4,#b3grid,#b3txt{display:none}
  .b3-m{display:flex;align-items:center;gap:10px;font-size:12px}.b3-m input{flex:1}
- .b3-chip{left:12px;top:12px}.b3-zoom{left:12px;bottom:230px}.b3-stage{bottom:100px}.b3-hint{top:auto;bottom:240px}
+ .b3-chip{left:12px;top:12px}.b3-dn{right:12px;top:12px}.b3-zoom{left:12px;bottom:230px}.b3-stage{bottom:100px}.b3-hint{top:auto;bottom:240px}
  .b3-pad{display:flex}.b3-walk span{display:none}
 }
 @media(max-width:550px){.b3-stage{bottom:80px}}
@@ -511,6 +513,7 @@ footer p {font-size:13px;line-height:2}
   </aside>
   <div class="b3-zoom"><button type="button" id="b3zi" aria-label="تقريب">＋</button><button type="button" id="b3zo" aria-label="تبعيد">－</button></div>
   <div class="b3-stage"><small id="b3pct">0%</small><div class="b3-bar"><i id="b3fill"></i></div><ol id="b3steps"><li>الأساسات</li><li>الهيكل الخرساني</li><li>الواجهة الزجاجية</li><li>التشطيب والأثاث</li></ol></div>
+  <button type="button" class="b3-dn" id="b3dn" aria-pressed="false">☾ وضع الليل</button>
   <div class="b3-hint" id="b3hint">حرّك الماوس على العمارة لبدء البناء</div>
   <div class="b3-walk" id="b3walk" hidden><button type="button" id="b3exit">✕ خروج من الجولة</button><span>اسحب للنظر حولك · W A S D للتحرك</span><div class="b3-pad"><button type="button" id="b3f">▲</button><button type="button" id="b3b">▼</button></div></div>
 </section>
@@ -567,17 +570,17 @@ R.setPixelRatio(Math.min(devicePixelRatio||1,2));R.shadowMap.enabled=true;R.shad
 R.outputEncoding=T.sRGBEncoding;R.toneMapping=T.ACESFilmicToneMapping;R.toneMappingExposure=1.3;
 const scene=new T.Scene(),cam=new T.PerspectiveCamera(42,1,.1,700);
 /* السماء والانعكاسات */
-const skyMat=new T.ShaderMaterial({side:T.BackSide,depthWrite:false,
+const skyMat=new T.ShaderMaterial({side:T.BackSide,depthWrite:false,uniforms:{uN:{value:0}},
  vertexShader:"varying vec3 p;void main(){p=normalize(position);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}",
- fragmentShader:"varying vec3 p;void main(){float h=p.y;vec3 top=vec3(.16,.36,.78),mid=vec3(.95,.82,.66),low=vec3(.25,.30,.35);vec3 c=h>0.?mix(mid,top,pow(h,.5)):mix(mid,low,pow(-h,.5));c+=vec3(1.,.82,.55)*pow(max(dot(normalize(p),normalize(vec3(.46,.77,.39))),0.),48.)*1.6;c=mix(c,vec3(.95,.86,.74),exp(-abs(h)*7.)*.45);gl_FragColor=vec4(c,1.);}"});
+ fragmentShader:"uniform float uN;varying vec3 p;void main(){float h=p.y;vec3 top=mix(vec3(.16,.36,.78),vec3(.01,.02,.08),uN),mid=mix(vec3(.95,.82,.66),vec3(.10,.12,.24),uN),low=mix(vec3(.25,.30,.35),vec3(.02,.03,.06),uN);vec3 c=h>0.?mix(mid,top,pow(h,.5)):mix(mid,low,pow(-h,.5));c+=mix(vec3(1.,.82,.55),vec3(.55,.62,.9),uN)*pow(max(dot(normalize(p),normalize(vec3(.46,.77,.39))),0.),mix(48.,160.,uN))*mix(1.6,1.,uN);c=mix(c,mix(vec3(.95,.86,.74),vec3(.12,.14,.26),uN),exp(-abs(h)*7.)*.45);float s=step(.9965,fract(sin(dot(floor(normalize(p)*170.),vec3(12.9,78.2,37.7)))*43758.5))*smoothstep(.05,.4,h)*uN;c+=vec3(s);gl_FragColor=vec4(c,1.);}"});
 scene.add(new T.Mesh(new T.SphereGeometry(400,32,16),skyMat));
 const es=new T.Scene();es.add(new T.Mesh(new T.SphereGeometry(50,32,16),skyMat));
 
 scene.fog=new T.Fog(0xe0cdb0,170,430);
 /* الإضاءة */
-scene.add(new T.HemisphereLight(0xc4dcff,0x7a6a58,1.05),new T.AmbientLight(0xffffff,.3));
+const hemi=new T.HemisphereLight(0xc4dcff,0x7a6a58,1.05),amb=new T.AmbientLight(0xffffff,.3);scene.add(hemi,amb);
 const sun=new T.DirectionalLight(0xfff0d8,3);sun.position.set(45,75,38);sun.target.position.set(0,25,0);scene.add(sun,sun.target);const fill=new T.DirectionalLight(0x9db7ff,.6);fill.position.set(-40,30,-30);scene.add(fill);
-sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-60,right:60,top:60,bottom:-60,near:1,far:220});sun.shadow.camera.updateProjectionMatrix();sun.shadow.bias=-.0006;
+sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-85,right:85,top:75,bottom:-75,near:1,far:260});sun.shadow.camera.updateProjectionMatrix();sun.shadow.bias=-.0006;
 const walkLight=new T.PointLight(0xffe2b8,0,18,1.5);scene.add(walkLight);
 /* خامات */
 const tex=f=>{const c=document.createElement("canvas");c.width=c.height=256;f(c.getContext("2d"));const t=new T.CanvasTexture(c);t.wrapS=t.wrapT=T.RepeatWrapping;t.encoding=T.sRGBEncoding;t.anisotropy=4;return t};
@@ -586,11 +589,12 @@ const tx={conc:tex(g=>spk(g,"#b7b5ae",9000,.07)),slab:tex(g=>spk(g,"#d3cfc6",500
  wood:tex(g=>{for(let i=0;i<10;i++){g.fillStyle=`hsl(28,40%,${(95+Math.random()*25)/2.4}%)`;g.fillRect(i*25.6,0,25.6,256)}for(let i=0;i<500;i++){g.fillStyle=`rgba(40,22,8,${Math.random()*.12})`;g.fillRect(Math.random()*256,0,1,256)}g.fillStyle="rgba(0,0,0,.35)";for(let i=0;i<10;i++)g.fillRect(i*25.6,0,1.5,256)})};
 const M=(c,o)=>{o=o||{};if(o.transparent)return new T.MeshStandardMaterial(Object.assign({color:c,roughness:.8,metalness:0},o));
  const m=Object.assign({color:c,emissive:0x2e2e2e},o);["roughness","metalness","bumpMap","bumpScale","envMapIntensity"].forEach(k=>delete m[k]);return new T.MeshLambertMaterial(m)};
-const mat={conc:M(0xffffff,{roughness:.95,map:tx.conc,bumpMap:tx.conc,bumpScale:.8}),slab:M(0xffffff,{roughness:.9,map:tx.slab}),wood:M(0xffffff,{roughness:.5,map:tx.wood}),dark:M(0x5a4028,{roughness:.6}),wall:M(0xffffff,{roughness:.95,map:tx.plaster}),
- frame:M(0x2b323b),gold:M(0xc6a15b,{emissive:0x4a3a18}),
- glass:M(0x9fd0f0,{metalness:.25,roughness:.08,transparent:true,opacity:.42,envMapIntensity:1.2,depthWrite:false,emissive:0xffd9a0,emissiveIntensity:0}),
+const mat={conc:M(0xe6c27a,{roughness:.95,map:tx.conc,bumpMap:tx.conc,bumpScale:.8}),slab:M(0xe8cf94,{roughness:.9,map:tx.slab}),wood:M(0xffffff,{roughness:.5,map:tx.wood}),dark:M(0x5a4028,{roughness:.6}),wall:M(0xffffff,{roughness:.95,map:tx.plaster}),
+ frame:M(0x2b323b),gold:M(0xe0b44f,{emissive:0x6b5222}),
+ glass:M(0xd9a93f,{metalness:.35,roughness:.08,transparent:true,opacity:.38,envMapIntensity:1.2,depthWrite:false,emissive:0xffd9a0,emissiveIntensity:0}),
  sofa:M(0xffffff,{roughness:1,map:tx.fabric}),bed:M(0xece6dc,{roughness:1}),pil:M(0xb9a07a,{roughness:1}),black:M(0x0c0f14,{roughness:.3}),leaf:M(0x2f6b3a,{roughness:1}),
- lamp:M(0xffe2a8,{emissive:0xffcf80,emissiveIntensity:0}),crane:M(0xe0a030,{roughness:.6}),curtain:M(0xe8e1d4,{roughness:1,side:T.DoubleSide}),art:M(0xb5503c,{roughness:.8}),tree:M(0x3e7a3f,{roughness:1}),trunk:M(0x5a4028,{roughness:1}),road:M(0x2a2d32,{roughness:.95}),line:M(0xf2f2f2,{roughness:.8}),city:M(0x8a9bb0,{roughness:.8}),ground:M(0x56664f,{roughness:1}),plaza:M(0xc4c0b6,{roughness:.9})};
+ lamp:M(0xffe2a8,{emissive:0xffcf80,emissiveIntensity:0}),crane:M(0xe0a030,{roughness:.6}),post:M(0xfff0c0,{emissive:0xffe0a0,emissiveIntensity:0}),curtain:M(0xe8e1d4,{roughness:1,side:T.DoubleSide}),art:M(0xb5503c,{roughness:.8}),tree:M(0x3e7a3f,{roughness:1}),trunk:M(0x5a4028,{roughness:1}),road:M(0x2a2d32,{roughness:.95}),line:M(0xf2f2f2,{roughness:.8}),city:M(0x8a9bb0,{roughness:.8}),ground:M(0x56664f,{roughness:1}),plaza:M(0xc4c0b6,{roughness:.9})};
+const GV=[mat.glass,mat.glass.clone(),mat.glass.clone(),mat.glass.clone()],GVm=[1,.2,.65,.04];function gv(i,k){return GV[(i*5+k*3+(i>>1))%4]}
 const UB=new T.BoxGeometry(1,1,1),US=new T.SphereGeometry(1,14,10);
 function bx(p,m,w,h,d,x,y,z,c){const s=new T.Mesh(UB,m);s.scale.set(w,h,d);s.position.set(x,y,z);s.castShadow=!!c;s.receiveShadow=!p.userData.ns;p.add(s);return s}
 const UC=new T.CylinderGeometry(1,1,1,18);
@@ -598,12 +602,15 @@ function cyl(p,m,r,h,x,y,z,c){const s=new T.Mesh(UC,m);s.scale.set(r,h,r);s.posi
 function sph(p,m,r,x,y,z){const s=new T.Mesh(US,m);s.scale.set(r,r,r);s.position.set(x,y,z);p.add(s)}
 /* الأرض والمحيط */
 const gr=new T.Mesh(new T.CircleGeometry(300,48),mat.ground);gr.rotation.x=-Math.PI/2;gr.receiveShadow=true;scene.add(gr);
-bx(scene,mat.plaza,BW+26,.2,BD+26,0,-.12,0,false);
+bx(scene,mat.plaza,BW+96,.2,BD+26,0,-.12,0,false);
 for(let k=0;k<14;k++){const a=k/14*6.283+.3,r=75+(k*37)%30,h=14+(k*53)%40;bx(scene,mat.city,10+(k%3)*4,h,10+(k%4)*3,Math.cos(a)*r,h/2,Math.sin(a)*r,false)}
-for(let k=0;k<18;k++){const a=k/18*6.283,r=26+(k%3)*3,x=Math.cos(a)*(BW/2+r*.9),z=Math.sin(a)*(BD/2+r*.9);if(z>BD/2+9&&z<BD/2+26)continue;const h=3+(k%4)*.6;cyl(scene,mat.trunk,.25,h,x,h/2,z,true);sph(scene,mat.tree,2+(k%3)*.4,x,h+1.4,z)}
+for(let k=0;k<18;k++){const a=k/18*6.283,r=26+(k%3)*3,x=Math.cos(a)*(BW/2+r*2.1),z=Math.sin(a)*(BD/2+r*.9);if(z>BD/2+9&&z<BD/2+26)continue;const h=3+(k%4)*.6;cyl(scene,mat.trunk,.25,h,x,h/2,z,true);sph(scene,mat.tree,2+(k%3)*.4,x,h+1.4,z)}
 const RZ=BD/2+19;bx(scene,mat.road,220,.06,9,0,.02,RZ,false);for(let x=-100;x<100;x+=8)bx(scene,mat.line,3,.07,.25,x,.05,RZ,false);
 [[-30,0xb02a2a],[-12,0x2a4a7a],[18,0xdedede],[40,0x333333]].forEach(([x,c])=>{const m=M(c),z=RZ-2;bx(scene,m,4.4,.9,1.9,x,.6,z,true);bx(scene,mat.black,2.4,.7,1.7,x-.2,1.3,z,true);
  for(const [dx,dz] of[[-1.4,-.95],[1.4,-.95],[-1.4,.95],[1.4,.95]]){const w=cyl(scene,mat.black,.38,.3,x+dx,.38,z+dz);w.rotation.x=Math.PI/2}});
+for(let x=-60;x<=60;x+=20){cyl(scene,mat.frame,.12,6,x,3,BD/2+14.5,true);sph(scene,mat.post,.5,x,6.2,BD/2+14.5)}
+const sg=(()=>{const c=document.createElement("canvas");c.width=2048;c.height=256;const g=c.getContext("2d");const draw=()=>{g.clearRect(0,0,2048,256);g.textAlign="center";g.lineJoin="round";g.font="800 150px Cairo,Arial,sans-serif";g.strokeStyle="rgba(16,27,44,.9)";g.lineWidth=14;g.strokeText("دار العقارات",1024,150);const gr=g.createLinearGradient(0,40,0,160);gr.addColorStop(0,"#f6dfa4");gr.addColorStop(1,"#c6a15b");g.fillStyle=gr;g.fillText("دار العقارات",1024,150);g.font="700 44px Cairo,Arial,sans-serif";g.lineWidth=8;g.strokeStyle="rgba(16,27,44,.9)";g.strokeText("D A R   E L   A Q A R A T",1024,222);g.fillStyle="#e2c286";g.fillText("D A R   E L   A Q A R A T",1024,222)};draw();
+ const t=new T.CanvasTexture(c);t.encoding=T.sRGBEncoding;if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{draw();t.needsUpdate=true});const m=new T.Mesh(new T.PlaneGeometry(57.6,7.2),new T.MeshBasicMaterial({map:t,transparent:true,toneMapped:false}));m.position.set(0,3.9,BD/2+13);scene.add(m);return m})();
 /* العمارة */
 const bld=new T.Group();scene.add(bld);
 const pit=bx(bld,mat.conc,BW+8,1.4,BD+8,0,-.7,0,false),fl=[],lamps=mat.lamp;
@@ -617,11 +624,11 @@ for(let i=0;i<N;i++){
  bx(S,mat.conc,5,H,3.4,0,.35+H/2,-5.6,true);
  if(i===N-1){bx(S,mat.slab,BW+.4,.4,BD+.4,0,FH+.15,0,true);bx(S,mat.gold,BW+.6,.16,BD+.6,0,FH+.42,0,false);bx(S,mat.frame,6,2.2,4,5,FH+1.5,-3,true)}
  /* الواجهة */
- for(const z of[BD/2,-BD/2]){bx(F,mat.glass,BW,gh,.06,0,.85+gh/2,z);bx(F,mat.conc,BW+.2,.5,.2,0,.6,z,true);
-  for(const x of[-BW/2,-BW/6,BW/6,BW/2])bx(F,mat.frame,.12,H,.14,x,.35+H/2,z)}
- for(const x of[BW/2,-BW/2]){bx(F,mat.glass,.06,gh,BD,x,.85+gh/2,0);bx(F,mat.conc,.2,.5,BD+.2,x,.6,0,true);bx(F,mat.frame,.14,H,.12,x,.35+H/2,0)}
- if(i%2===1){bx(F,mat.slab,BW-6,.28,2.4,0,.21,BD/2+1.2,true);bx(F,mat.glass,BW-6,1.05,.04,0,.9,BD/2+2.4);bx(F,mat.gold,BW-6,.05,.07,0,1.45,BD/2+2.4)}
- bx(F,mat.frame,BW+.2,.07,.7,0,FH-.12,BD/2+.35,true);
+ for(const z of[BD/2,-BD/2]){bx(F,gv(i,z>0?0:1),BW,gh,.06,0,.85+gh/2,z);bx(F,mat.gold,BW+.2,.5,.2,0,.6,z,true);
+  for(const x of[-BW/2,-BW/6,BW/6,BW/2])bx(F,mat.gold,.12,H,.14,x,.35+H/2,z)}
+ for(const x of[BW/2,-BW/2]){bx(F,gv(i,x>0?2:3),.06,gh,BD,x,.85+gh/2,0);bx(F,mat.gold,.2,.5,BD+.2,x,.6,0,true);bx(F,mat.gold,.14,H,.12,x,.35+H/2,0)}
+ if(i%2===1){bx(F,mat.slab,BW-6,.28,2.4,0,.21,BD/2+1.2,true);bx(F,gv(i,1),BW-6,1.05,.04,0,.9,BD/2+2.4);bx(F,mat.gold,BW-6,.05,.07,0,1.45,BD/2+2.4)}
+ bx(F,mat.gold,BW+.2,.07,.7,0,FH-.12,BD/2+.35,true);for(let fx=-BW/2+2.2;fx<BW/2-1;fx+=2.2)bx(F,mat.gold,.1,H,.2,fx,.35+H/2,BD/2+.08);
  if(i===0){bx(F,mat.frame,10,.25,4.5,0,2.7,BD/2+2.2,true);for(const x of[-4.5,4.5])cyl(F,mat.gold,.15,2.7,x,1.35,BD/2+4,true)}
  /* الداخل والأثاث */
  bx(I,mat.wood,BW-.4,.04,BD-.4,0,.37,0);
@@ -639,6 +646,14 @@ for(let i=0;i<N;i++){
  cyl(I,mat.frame,.03,1.5,4.3,1.15,6.6);cyl(I,lamps,.25,.3,4.3,1.95,6.6);bx(I,mat.curtain,2,2.6,.05,-9.2,1.7,BD/2-.4);bx(I,mat.curtain,2,2.6,.05,9.2,1.7,BD/2-.4);bx(I,mat.art,1.2,.8,.04,-7.2,2,3.1);bx(I,mat.pil,.5,.35,.12,5.9,.95,4.9);bx(I,mat.gold,.5,.35,.12,8.1,.95,4.9);
  fl.push({S,F,I});
 }
+const TW=[{fl,n:N}];
+function tower(cx,w,d,n){const a=[];for(let i=0;i<n;i++){const y=i*FH,H=FH-.35,S=new T.Group(),F=new T.Group(),I=new T.Group();[S,F,I].forEach(g=>{g.position.set(cx,y,0);bld.add(g)});I.userData.ns=1;
+ bx(S,mat.slab,w,.35,d,0,.175,0,true);for(const x of[-w/2+.4,w/2-.4])for(const z of[-d/2+.4,d/2-.4])bx(S,mat.conc,.6,H,.6,x,.35+H/2,z,true);
+ if(i===n-1){bx(S,mat.slab,w+.4,.4,d+.4,0,FH+.15,0,true);bx(S,mat.gold,w+.6,.16,d+.6,0,FH+.42,0,false)}
+ for(const z of[d/2,-d/2]){bx(F,gv(i,cx>0?2:0),w,H-.5,.06,0,.85+(H-.5)/2,z);bx(F,mat.gold,w+.2,.5,.2,0,.6,z,true)}
+ for(const x of[w/2,-w/2]){bx(F,gv(i,cx>0?1:3),.06,H-.5,d,x,.85+(H-.5)/2,0);bx(F,mat.gold,.2,.5,d+.2,x,.6,0,true)}
+ bx(I,mat.wood,w-.4,.04,d-.4,0,.37,0);bx(I,lamps,w-4,.05,d-4,0,3.1,0);bx(I,mat.wall,.15,2.7,d-1,w/4,1.75,0);for(let fx=-w/2+2;fx<w/2-1;fx+=2)bx(F,mat.gold,.1,H,.2,fx,.35+H/2,d/2+.08);a.push({S,F,I})}TW.push({fl:a,n})}
+tower(-30,16,13,14);tower(30,16,13,16);
 const hl=new T.Mesh(UB,new T.MeshBasicMaterial({color:0xc6a15b,transparent:true,opacity:.16,depthWrite:false}));hl.scale.set(BW+1,FH,BD+1);hl.visible=false;scene.add(hl);
 /* الونش */
 const crane=new T.Group();crane.position.set(BW/2+4,0,-BD/2-3);scene.add(crane);
@@ -649,30 +664,32 @@ const gm=new T.MeshBasicMaterial({color:0xc6a15b,transparent:true,opacity:.1,dep
 {const g=new T.Mesh(UB,gm);g.scale.set(BW,N*FH,BD);g.position.y=N*FH/2;ghost.add(g)}
 for(let i=0;i<=N;i++){const l=new T.LineSegments(new T.EdgesGeometry(UB),gl);l.scale.set(BW,.01,BD);l.position.y=i*FH;ghost.add(l)}
 for(const x of[-BW/2,BW/2])for(const z of[-BD/2,BD/2]){const l=new T.LineSegments(new T.EdgesGeometry(UB),gl);l.scale.set(.01,N*FH,.01);l.position.set(x,N*FH/2,z);ghost.add(l)}
+[[-30,16,13,14],[30,16,13,16]].forEach(([cx,w,d,n])=>{const g=new T.Mesh(UB,gm);g.scale.set(w,n*FH,d);g.position.set(cx,n*FH/2,0);ghost.add(g);for(let i=0;i<=n;i++){const l=new T.LineSegments(new T.EdgesGeometry(UB),gl);l.scale.set(w,.01,d);l.position.set(cx,i*FH,0);ghost.add(l)}});
 /* مراحل البناء: 0 -> 1 */
 function build(p){
  pit.scale.y=Math.max(.001,1.4*ease(cl(p/.12)));pit.position.y=-pit.scale.y/2;
  let top=0;
- for(let i=0;i<N;i++){const o=fl[i],t=cl((p-.12)/.43*N-i),f=cl((p-.55)/.27*(N+3)-i),d=cl((p-.82)/.18*(N+3)-i);
-  o.S.visible=t>0;o.S.scale.y=Math.max(.001,ease(t));if(t>0)top=i*FH+FH*ease(t);
-  o.F.visible=f>0;o.F.scale.y=Math.max(.001,ease(f));
-  o.I.visible=d>0;o.I.scale.y=Math.max(.001,ease(d))}
- lamps.emissiveIntensity=cl((p-.93)/.07)*3;mat.glass.emissiveIntensity=cl((p-.93)/.07)*.14;ghost.visible=p<.995;gm.opacity=.1*(1-p);gl.opacity=.9*(1-p);
+ TW.forEach((tw,k)=>tw.fl.forEach((o,i)=>{const n=tw.n,t=cl((p-.12)/.43*n-i),f=cl((p-.55)/.27*(n+3)-i),d=cl((p-.82)/.18*(n+3)-i);o.S.visible=t>0;o.S.scale.y=Math.max(.001,ease(t));if(k===0&&t>0)top=i*FH+FH*ease(t);o.F.visible=f>0;o.F.scale.y=Math.max(.001,ease(f));o.I.visible=d>0;o.I.scale.y=Math.max(.001,ease(d))}));
+ lamps.emissiveIntensity=cl((p-.9)/.07)*(3+NT*2.5);{const ge=Math.max(cl((p-.93)/.07)*.12,NT*cl((p-.5)/.25)*1.15);GV.forEach((g,j)=>{g.emissiveIntensity=ge*GVm[j]})}ghost.visible=p<.995;gm.opacity=.1*(1-p);gl.opacity=.9*(1-p);
  crane.visible=p<.97;const h=Math.max(10,top+12);mast.scale.y=h;mast.position.y=h/2;jib.position.y=h;jib.rotation.y+=.004;
 }
 /* الكاميرا والتحكم */
-const goal={th:.75,ph:1.2,r:78,ty:24},cur=Object.assign({},goal),w={on:false,x:0,z:5.6,yaw:0,pitch:0,f:0,k:{}};
+const goal={th:.75,ph:1.2,r:112,ty:24},cur=Object.assign({},goal),w={on:false,x:0,z:5.6,yaw:0,pitch:0,f:0,k:{}};
 let p=matchMedia("(prefers-reduced-motion:reduce)").matches?1:0,pd=0,idle=0,vis=true,sel=0,drag=null,want=false,pi=-1,si=-1;
 const btns=[],steps=[...$("b3steps").children],txt0=$("b3txt").textContent;
+let NT=0,dn=0;const C1=new T.Color(0xe0cdb0),C2=new T.Color(0x070b16);
+function night(k){const m=(a,b)=>a+(b-a)*k;skyMat.uniforms.uN.value=k;GV.forEach(g=>{g.opacity=m(.38,.8)});scene.fog.color.lerpColors(C1,C2,k);hemi.intensity=m(1.05,.28);amb.intensity=m(.3,.1);sun.intensity=m(3.4,0);fill.intensity=m(.6,.45);R.toneMappingExposure=m(1.3,1.05);
+ mat.city.emissive.setRGB(m(.03,.22),m(.03,.15),m(.03,.06));mat.post.emissiveIntensity=k*3}
+$("b3dn").onclick=()=>{dn=dn?0:1;$("b3dn").textContent=dn?"☀ وضع النهار":"☾ وضع الليل";$("b3dn").setAttribute("aria-pressed",String(!!dn))};
 function size(){const W=root.clientWidth,H=root.clientHeight;R.setSize(W,H,false);cam.aspect=W/H;
  if(W>900&&!w.on)cam.setViewOffset(W,H,Math.round(W*.12),0,W,H);else cam.clearViewOffset();cam.updateProjectionMatrix()}
 function selectFloor(n){sel=n;Object.assign(goal,{ty:(n-1)*FH+FH/2,r:32,ph:1.38});hl.visible=true;hl.position.y=(n-1)*FH+FH/2;
  btns.forEach((b,k)=>b&&b.classList.toggle("on",k===n));$("b3cur").textContent="الدور "+n;$("b3rng").value=n;
  $("b3txt").textContent="الدور "+n+": فحص الواجهة الزجاجية والبلكونات والتقسيم الداخلي للشقة. اسحب لتغيير زاوية الرؤية."}
-function overview(){sel=0;Object.assign(goal,{ph:1.2,r:78,ty:24});hl.visible=false;btns.forEach(b=>b&&b.classList.remove("on"));$("b3cur").textContent="";$("b3txt").textContent=txt0}
+function overview(){sel=0;Object.assign(goal,{ph:1.2,r:112,ty:24});hl.visible=false;btns.forEach(b=>b&&b.classList.remove("on"));$("b3cur").textContent="";$("b3txt").textContent=txt0}
 for(let n=N;n>=1;n--){const b=document.createElement("button");b.type="button";b.textContent="دور "+n;b.onclick=()=>selectFloor(n);$("b3grid").appendChild(b);btns[n]=b}
 $("b3rng").oninput=e=>selectFloor(+e.target.value);$("b3all").onclick=overview;
-$("b3zi").onclick=()=>{goal.r=cl(goal.r*.8,12,130)};$("b3zo").onclick=()=>{goal.r=cl(goal.r*1.25,12,130)};
+$("b3zi").onclick=()=>{goal.r=cl(goal.r*.8,12,170)};$("b3zo").onclick=()=>{goal.r=cl(goal.r*1.25,12,170)};
 function enterTour(){w.on=true;w.f=(sel||12)-1;w.x=0;w.z=5.6;w.yaw=0;w.pitch=0;hl.visible=false;cam.fov=74;size();walkLight.intensity=1.3;root.classList.add("walk");$("b3walk").hidden=false}
 function exitTour(){w.on=false;w.k={};cam.fov=42;walkLight.intensity=0;root.classList.remove("walk");$("b3walk").hidden=true;size();if(sel)selectFloor(sel)}
 $("b3tour").onclick=()=>{if(pd>.985)enterTour();else{p=1;want=true;$("b3hint").textContent="جارٍ إكمال البناء ثم الدخول للشقة…";root.classList.remove("moved")}};
@@ -695,7 +712,7 @@ function walk(){const sp=.075,fw=(w.k.f?1:0)-(w.k.b?1:0),st=(w.k.r?1:0)-(w.k.l?1
  const y=w.f*FH+1.95;cam.position.set(w.x,y,w.z);walkLight.position.set(w.x,y+.5,w.z);
  cam.lookAt(w.x+Math.sin(w.yaw)*Math.cos(w.pitch),y+Math.sin(w.pitch),w.z-Math.cos(w.yaw)*Math.cos(w.pitch))}
 function orbit(){for(const k in goal)cur[k]+=(goal[k]-cur[k])*.08;const s=Math.sin(cur.ph);
- cam.position.set(s*Math.sin(cur.th)*cur.r,cur.ty+Math.cos(cur.ph)*cur.r,s*Math.cos(cur.th)*cur.r);cam.lookAt(0,cur.ty,0)}
+ cam.position.set(s*Math.sin(cur.th)*cur.r,cur.ty+Math.cos(cur.ph)*cur.r,s*Math.cos(cur.th)*cur.r);cam.lookAt(0,cur.ty,0);sg.rotation.y=Math.atan2(cam.position.x,cam.position.z-sg.position.z)}
 function hud(){const pc=Math.round(pd*100);if(pc===pi)return;pi=pc;$("b3pct").textContent=pc+"%";$("b3fill").style.width=pc+"%";
  const s=pd>.995?4:pd<.12?0:pd<.55?1:pd<.82?2:3;if(s!==si){si=s;steps.forEach((li,k)=>{li.className=k<s?"done":k===s?"on":""})}}
 function frame(){requestAnimationFrame(frame);if(!vis)return;idle++;
@@ -703,7 +720,7 @@ function frame(){requestAnimationFrame(frame);if(!vis)return;idle++;
  if(!w.on&&!sel&&!drag&&idle>120)goal.th+=.0018;
  pd+=(p-pd)*(want?.12:.07);if(p-pd<.0005)pd=p;
  if(want&&pd>.985){want=false;enterTour()}
- build(pd);w.on?walk():orbit();R.render(scene,cam);hud()}
+ if(NT!==dn){NT+=(dn-NT)*.06;if(Math.abs(dn-NT)<.003)NT=dn;night(NT)}build(pd);w.on?walk():orbit();R.render(scene,cam);hud()}
 if("IntersectionObserver" in window)new IntersectionObserver(e=>{vis=e[0].isIntersecting}).observe(root);
 if("ResizeObserver" in window)new ResizeObserver(size).observe(root);else addEventListener("resize",size);
 size();frame();
